@@ -1,0 +1,1567 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F290150A-4D22-4F23-821D-F933510D86DF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ProjectsNow</RootNamespace>
+    <AssemblyName>ProjectsNow</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>PN.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.78\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\DontRead.cs" />
+    <Compile Include="Attributes\DontWrite.cs" />
+    <Compile Include="Attributes\ID.cs" />
+    <Compile Include="Attributes\Join.cs" />
+    <Compile Include="Attributes\JoinID.cs" />
+    <Compile Include="Attributes\QPanelProperty.cs" />
+    <Compile Include="Attributes\ReadTable.cs" />
+    <Compile Include="Attributes\WriteTable.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BankAccountController.cs" />
+    <Compile Include="Controllers\BillItemController.cs" />
+    <Compile Include="Controllers\BillPanelController.cs" />
+    <Compile Include="Controllers\CompanyPOTransactionController.cs" />
+    <Compile Include="Controllers\ConsultantController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\DiscountSheetItemController.cs" />
+    <Compile Include="Controllers\EstimationController.cs" />
+    <Compile Include="Controllers\FilterController.cs" />
+    <Compile Include="Controllers\GroupController.cs" />
+    <Compile Include="Controllers\InquiryController.cs" />
+    <Compile Include="Controllers\ItemPurchasedController.cs" />
+    <Compile Include="Controllers\ItemTransactionController.cs" />
+    <Compile Include="Controllers\JItemController.cs" />
+    <Compile Include="Controllers\JobOrderController.cs" />
+    <Compile Include="Controllers\JPanelController.cs" />
+    <Compile Include="Controllers\JPanelDetailsController.cs" />
+    <Compile Include="Controllers\MItemController.cs" />
+    <Compile Include="Controllers\MoneyTransactionController.cs" />
+    <Compile Include="Controllers\MPanelController.cs" />
+    <Compile Include="Controllers\PurchaseOrderController.cs" />
+    <Compile Include="Controllers\QItemController.cs" />
+    <Compile Include="Controllers\QPanelController.cs" />
+    <Compile Include="Controllers\QuotationContentController.cs" />
+    <Compile Include="Controllers\QuotationController.cs" />
+    <Compile Include="Controllers\QuotationOptionController.cs" />
+    <Compile Include="Controllers\QuotationOptionPanelController.cs" />
+    <Compile Include="Controllers\ReferenceController.cs" />
+    <Compile Include="Controllers\SalesmanController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Controllers\SupplierInvoiceController.cs" />
+    <Compile Include="Controllers\TermController.cs" />
+    <Compile Include="Controllers\UpdateController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controls\Generale\LoadingControl.xaml.cs">
+      <DependentUpon>LoadingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Account.cs" />
+    <Compile Include="Database\Acknowledgment.cs" />
+    <Compile Include="Database\AcknowledgmentInformation.cs" />
+    <Compile Include="Database\APanel.cs" />
+    <Compile Include="Database\ApprovalRequest.cs" />
+    <Compile Include="Database\ApprovalRequestInformation.cs" />
+    <Compile Include="Database\BankAccount.cs" />
+    <Compile Include="Database\BillItem.cs" />
+    <Compile Include="Database\BillPanel.cs" />
+    <Compile Include="Database\Category.cs" />
+    <Compile Include="Database\CItem.cs" />
+    <Compile Include="Database\CompanyPO.cs" />
+    <Compile Include="Database\CompanyPOTransaction.cs" />
+    <Compile Include="Database\Consultant.cs" />
+    <Compile Include="Database\Contact.cs" />
+    <Compile Include="Database\Customer.cs" />
+    <Compile Include="Database\DatabaseAI.cs" />
+    <Compile Include="Database\Delivery.cs" />
+    <Compile Include="Database\DeliveryInformation.cs" />
+    <Compile Include="Database\DiscountSheetItem.cs" />
+    <Compile Include="Database\DPanel.cs" />
+    <Compile Include="Database\Enclosure.cs" />
+    <Compile Include="Database\Estimation.cs" />
+    <Compile Include="Database\Filter.cs" />
+    <Compile Include="Database\Group.cs" />
+    <Compile Include="Database\Inquiry.cs" />
+    <Compile Include="Database\Invoice.cs" />
+    <Compile Include="Database\InvoiceInformation.cs" />
+    <Compile Include="Database\IPanel.cs" />
+    <Compile Include="Database\ItemPurchased.cs" />
+    <Compile Include="Database\ItemStock.cs" />
+    <Compile Include="Database\ItemTransaction.cs" />
+    <Compile Include="Database\JItem.cs" />
+    <Compile Include="Database\JobOrder.cs" />
+    <Compile Include="Database\JobOrderFinance.cs" />
+    <Compile Include="Database\JPanel.cs" />
+    <Compile Include="Database\JPanelDetails.cs" />
+    <Compile Include="Database\MItem.cs" />
+    <Compile Include="Database\Modification.cs" />
+    <Compile Include="Database\MoneyTransaction.cs" />
+    <Compile Include="Database\MPanel.cs" />
+    <Compile Include="Database\PurchaseOrder.cs" />
+    <Compile Include="Database\QItem.cs" />
+    <Compile Include="Database\QPanel.cs" />
+    <Compile Include="Database\Quotation.cs" />
+    <Compile Include="Database\QuotationContent.cs" />
+    <Compile Include="Database\QuotationOption.cs" />
+    <Compile Include="Database\QuotationOptionPanel.cs" />
+    <Compile Include="Database\Reference.cs" />
+    <Compile Include="Database\Salesman.cs" />
+    <Compile Include="Database\Store\TransferInvoice.cs" />
+    <Compile Include="Database\Supplier.cs" />
+    <Compile Include="Database\SupplierInvoice.cs" />
+    <Compile Include="Database\Suppliers\Contact.cs" />
+    <Compile Include="Database\Term.cs" />
+    <Compile Include="Database\TPanel.cs" />
+    <Compile Include="Database\User.cs" />
+    <Compile Include="DataInput\Input.cs" />
+    <Compile Include="DataInput\ToArabicWord.cs" />
+    <Compile Include="Enums\Actions.cs" />
+    <Compile Include="Enums\ConditionTypes.cs" />
+    <Compile Include="Enums\ItemTypes.cs" />
+    <Compile Include="Enums\MoneyTransactionTypes.cs" />
+    <Compile Include="Enums\SelectionGroups.cs" />
+    <Compile Include="Enums\Statuses.cs" />
+    <Compile Include="Enums\Tables.cs" />
+    <Compile Include="Enums\TransactionType.cs" />
+    <Compile Include="Events\DoingEvent.cs" />
+    <Compile Include="Printing\CheckList.xaml.cs">
+      <DependentUpon>CheckList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\ClosingForm.xaml.cs">
+      <DependentUpon>ClosingForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\DeliveryForm.xaml.cs">
+      <DependentUpon>DeliveryForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\Finance\CustomerStatement.xaml.cs">
+      <DependentUpon>CustomerStatement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\Finance\JobAnalysis.xaml.cs">
+      <DependentUpon>JobAnalysis.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\InvoiceForm.xaml.cs">
+      <DependentUpon>InvoiceForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\ModificationForm.xaml.cs">
+      <DependentUpon>ModificationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\OrderAcknowledgement.xaml.cs">
+      <DependentUpon>OrderAcknowledgement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\PanelsItems.xaml.cs">
+      <DependentUpon>PanelsItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\Print.cs" />
+    <Compile Include="Printing\Purchase\PurchaseOrderForm.xaml.cs">
+      <DependentUpon>PurchaseOrderForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\QuotationCoverPage.xaml.cs">
+      <DependentUpon>QuotationCoverPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\QuotationPage.xaml.cs">
+      <DependentUpon>QuotationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\QuotationPanelInfo.xaml.cs">
+      <DependentUpon>QuotationPanelInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\QuotationsItems.xaml.cs">
+      <DependentUpon>QuotationsItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\RequestforShopDrawingApprovalControl.xaml.cs">
+      <DependentUpon>RequestforShopDrawingApprovalControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\Store\InternalInvoice.xaml.cs">
+      <DependentUpon>InternalInvoice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\CustomerWindows\ConsultantsWindow.xaml.cs">
+      <DependentUpon>ConsultantsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\CustomerWindows\ContactsWindow.xaml.cs">
+      <DependentUpon>ContactsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\CustomerWindows\CustomersWindow.xaml.cs">
+      <DependentUpon>CustomersWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FinanceWindows\BankInformationWindow.xaml.cs">
+      <DependentUpon>BankInformationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FinanceWindows\CompanyAccountsWindow.xaml.cs">
+      <DependentUpon>CompanyAccountsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FinanceWindows\CompanyAccountWindow.xaml.cs">
+      <DependentUpon>CompanyAccountWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FinanceWindows\CustomersWindows\CustomerInformation.cs" />
+    <Compile Include="Windows\FinanceWindows\CustomersWindows\CustomersWindow.xaml.cs">
+      <DependentUpon>CustomersWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FinanceWindows\CustomersWindows\Statement.cs" />
+    <Compile Include="Windows\FinanceWindows\CustomersWindows\StatementInformation.cs" />
+    <Compile Include="Windows\FinanceWindows\CustomersWindows\StatementWindow.xaml.cs">
+      <DependentUpon>StatementWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FinanceWindows\JobOrdersWindows\JobOrdersWindow.xaml.cs">
+      <DependentUpon>JobOrdersWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FinanceWindows\JobOrdersWindows\JobOrderTransactionsWindow.xaml.cs">
+      <DependentUpon>JobOrderTransactionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FinanceWindows\JobOrdersWindows\JobOrderTransactionWindow.xaml.cs">
+      <DependentUpon>JobOrderTransactionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\InquiryWindows\AssignWindow.xaml.cs">
+      <DependentUpon>AssignWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\InquiryWindows\InquiriesWindow.xaml.cs">
+      <DependentUpon>InquiriesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\InquiryWindows\InquiryWindow.xaml.cs">
+      <DependentUpon>InquiryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\AcknowledgementWindow.xaml.cs">
+      <DependentUpon>AcknowledgementWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\ItemPurchaseOrdersWindows\ItemsWindow.xaml.cs">
+      <DependentUpon>ItemsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\ItemPurchaseOrdersWindows\OrderWindow.xaml.cs">
+      <DependentUpon>OrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\ItemPurchaseOrdersWindows\PurchaseOrdersWindow.xaml.cs">
+      <DependentUpon>PurchaseOrdersWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\ItemPurchaseOrdersWindows\QtyWindow.xaml.cs">
+      <DependentUpon>QtyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\Items%28New%29Window.xaml.cs">
+      <DependentUpon>Items%28New%29Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\Items%28Standard%29Window.xaml.cs">
+      <DependentUpon>Items%28Standard%29Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\ItemsModificationWindow.xaml.cs">
+      <DependentUpon>ItemsModificationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\JobOrdersWindow.xaml.cs">
+      <DependentUpon>JobOrdersWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\ModificationsHistoryWindow.xaml.cs">
+      <DependentUpon>ModificationsHistoryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\NewJobOrderWindow.xaml.cs">
+      <DependentUpon>NewJobOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\PanelItemsWindow.xaml.cs">
+      <DependentUpon>PanelItemsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\PanelProgressionWindow.xaml.cs">
+      <DependentUpon>PanelProgressionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\Panels%28Approval%29Windows\PanelsWindow.xaml.cs">
+      <DependentUpon>PanelsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\Panels%28Approval%29Windows\RequestsWindow.xaml.cs">
+      <DependentUpon>RequestsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\Panels%28Cancelling%29Windows\PanelsWindow.xaml.cs">
+      <DependentUpon>PanelsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\Panels%28Cancelling%29Windows\QtyWindow.xaml.cs">
+      <DependentUpon>QtyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\Panels%28Closing%29Windows\ClosingWindow.xaml.cs">
+      <DependentUpon>ClosingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\Panels%28Closing%29Windows\PanelsWindow.xaml.cs">
+      <DependentUpon>PanelsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\Panels%28Delivery%29Windows\DeliveryWindow.xaml.cs">
+      <DependentUpon>DeliveryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\Panels%28Delivery%29Windows\PanelsWindow.xaml.cs">
+      <DependentUpon>PanelsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\Panels%28Delivery%29Windows\QtyWindow.xaml.cs">
+      <DependentUpon>QtyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\Panels%28Design%29Window.xaml.cs">
+      <DependentUpon>Panels%28Design%29Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\Panels%28Hold%29Windows\PanelsWindow.xaml.cs">
+      <DependentUpon>PanelsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\Panels%28Hold%29Windows\QtyWindow.xaml.cs">
+      <DependentUpon>QtyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\Panels%28Invoicing%29Windows\InvoicingWindow.xaml.cs">
+      <DependentUpon>InvoicingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\Panels%28Invoicing%29Windows\PanelsWindow.xaml.cs">
+      <DependentUpon>PanelsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\Panels%28Invoicing%29Windows\QtyWindow.xaml.cs">
+      <DependentUpon>QtyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\Panels%28Production%29Window.xaml.cs">
+      <DependentUpon>Panels%28Production%29Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\PanelsWindow.xaml.cs">
+      <DependentUpon>PanelsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\PanelWindow.xaml.cs">
+      <DependentUpon>PanelWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\PurchaseOrdersWindow.xaml.cs">
+      <DependentUpon>PurchaseOrdersWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\PurchaseOrderWindow.xaml.cs">
+      <DependentUpon>PurchaseOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobOrderWindows\QuotationPanelsWindow.xaml.cs">
+      <DependentUpon>QuotationPanelsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWindows\FinanceControl.xaml.cs">
+      <DependentUpon>FinanceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWindows\ItemsControl.xaml.cs">
+      <DependentUpon>ItemsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWindows\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWindows\ProjectsControl.xaml.cs">
+      <DependentUpon>ProjectsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWindows\TendaringControl.xaml.cs">
+      <DependentUpon>TendaringControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MessageWindows\CMessageBox.xaml.cs">
+      <DependentUpon>CMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PrintWindows\PrintWindow.xaml.cs">
+      <DependentUpon>PrintWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\CategoriesDiscountsWindow.xaml.cs">
+      <DependentUpon>CategoriesDiscountsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\CategoryDiscountWindow.xaml.cs">
+      <DependentUpon>CategoryDiscountWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\DiscountSheetsWindow.xaml.cs">
+      <DependentUpon>DiscountSheetsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\DownloadPanelWindow.xaml.cs">
+      <DependentUpon>DownloadPanelWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\ItemWindow.xaml.cs">
+      <DependentUpon>ItemWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\LibraryOfPanelsWindow.xaml.cs">
+      <DependentUpon>LibraryOfPanelsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\NewItemWindow.xaml.cs">
+      <DependentUpon>NewItemWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\PrintQuotationWindow.xaml.cs">
+      <DependentUpon>PrintQuotationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\QuotationBillPriceOptionsWindow.xaml.cs">
+      <DependentUpon>QuotationBillPriceOptionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\QuotationOptionPanelsWindow.xaml.cs">
+      <DependentUpon>QuotationOptionPanelsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\QuotationOptionWindow.xaml.cs">
+      <DependentUpon>QuotationOptionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\QuotationPanelItemsWindow.xaml.cs">
+      <DependentUpon>QuotationPanelItemsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\QuotationPanelNameWindow.xaml.cs">
+      <DependentUpon>QuotationPanelNameWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\QuotationPanelsWindow.xaml.cs">
+      <DependentUpon>QuotationPanelsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\QuotationPanelWindow.xaml.cs">
+      <DependentUpon>QuotationPanelWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\QuotationPriceWindow.xaml.cs">
+      <DependentUpon>QuotationPriceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\QuotationsInformationWindows\QuotationBillPriceOptionsWindow.xaml.cs">
+      <DependentUpon>QuotationBillPriceOptionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\QuotationsInformationWindows\QuotationPanelItemsWindow.xaml.cs">
+      <DependentUpon>QuotationPanelItemsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\QuotationsInformationWindows\QuotationPanelsWindow.xaml.cs">
+      <DependentUpon>QuotationPanelsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\QuotationsInformationWindows\QuotationPanelWindow.xaml.cs">
+      <DependentUpon>QuotationPanelWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\QuotationsInformationWindows\QuotationPriceWindow.xaml.cs">
+      <DependentUpon>QuotationPriceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\QuotationsInformationWindows\QuotationsInformationWindow.xaml.cs">
+      <DependentUpon>QuotationsInformationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\QuotationsInformationWindows\QuotationWindow.xaml.cs">
+      <DependentUpon>QuotationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\QuotationsInformationWindows\TermsAndConditionsWindow.xaml.cs">
+      <DependentUpon>TermsAndConditionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\QuotationsWindow.xaml.cs">
+      <DependentUpon>QuotationsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\QuotationWindow.xaml.cs">
+      <DependentUpon>QuotationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\QuoteWindow.xaml.cs">
+      <DependentUpon>QuoteWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\RevisionsWindow.xaml.cs">
+      <DependentUpon>RevisionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\TermsAndConditionsWindow.xaml.cs">
+      <DependentUpon>TermsAndConditionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\QuotationWindows\TermWindow.xaml.cs">
+      <DependentUpon>TermWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ReferencesWindows\CategoriesDiscountsWindow.xaml.cs">
+      <DependentUpon>CategoriesDiscountsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ReferencesWindows\CategoryDiscountWindow.xaml.cs">
+      <DependentUpon>CategoryDiscountWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ReferencesWindows\EnclosuresWindow.xaml.cs">
+      <DependentUpon>EnclosuresWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ReferencesWindows\PrismaGWindow.xaml.cs">
+      <DependentUpon>PrismaGWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ReferencesWindows\PrismaPWindow.xaml.cs">
+      <DependentUpon>PrismaPWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ReferencesWindows\ReferencesWindow.xaml.cs">
+      <DependentUpon>ReferencesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ReferencesWindows\ReferenceWindow.xaml.cs">
+      <DependentUpon>ReferenceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ReferencesWindows\SelectionWindow.xaml.cs">
+      <DependentUpon>SelectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ReferencesWindows\SFWindow.xaml.cs">
+      <DependentUpon>SFWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\StoreWindows\InvoicesWindows\InvoicesWindow.xaml.cs">
+      <DependentUpon>InvoicesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\StoreWindows\InvoicesWindows\InvoiceWindow.xaml.cs">
+      <DependentUpon>InvoiceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\StoreWindows\InvoicesWindows\ItemsWindow.xaml.cs">
+      <DependentUpon>ItemsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\StoreWindows\InvoicesWindows\JobOrderItemsWindow.xaml.cs">
+      <DependentUpon>JobOrderItemsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\StoreWindows\InvoicesWindows\PurchaseOrdersItemsWindow.xaml.cs">
+      <DependentUpon>PurchaseOrdersItemsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\StoreWindows\InvoicesWindows\QtyWindow.xaml.cs">
+      <DependentUpon>QtyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\StoreWindows\ReturnItemsWindows\QtyWindow.xaml.cs">
+      <DependentUpon>QtyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\StoreWindows\ReturnItemsWindows\ReturnItemsWindow.xaml.cs">
+      <DependentUpon>ReturnItemsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\StoreWindows\StockWindows\JobOrderSelectorWindow.xaml.cs">
+      <DependentUpon>JobOrderSelectorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\StoreWindows\StockWindows\StockWindow.xaml.cs">
+      <DependentUpon>StockWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\StoreWindows\SuppliersWindows\ContactsWindow.xaml.cs">
+      <DependentUpon>ContactsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\StoreWindows\SuppliersWindows\ContactWindow.xaml.cs">
+      <DependentUpon>ContactWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\StoreWindows\SuppliersWindows\SuppliersWindow.xaml.cs">
+      <DependentUpon>SuppliersWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\StoreWindows\SuppliersWindows\SupplierWindow.xaml.cs">
+      <DependentUpon>SupplierWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\StoreWindows\TransferWindows\QtyWindow.xaml.cs">
+      <DependentUpon>QtyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\StoreWindows\TransferWindows\TransferWindow.xaml.cs">
+      <DependentUpon>TransferWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserWindows\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserWindows\UserWindow.xaml.cs">
+      <DependentUpon>UserWindow.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Accept.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PN.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\Generale\LoadingControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Printing\CheckList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Printing\ClosingForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Printing\DeliveryForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Printing\Finance\CustomerStatement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Printing\Finance\JobAnalysis.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Printing\InvoiceForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Printing\ModificationForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Printing\OrderAcknowledgement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Printing\PanelsItems.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Printing\Purchase\PurchaseOrderForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Printing\QuotationCoverPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Printing\QuotationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Printing\QuotationPanelInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Printing\QuotationsItems.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Printing\RequestforShopDrawingApprovalControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Printing\Store\InternalInvoice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CustomerWindows\ConsultantsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\CustomerWindows\ContactsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\CustomerWindows\CustomersWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\FinanceWindows\BankInformationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\FinanceWindows\CompanyAccountsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\FinanceWindows\CompanyAccountWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\FinanceWindows\CustomersWindows\CustomersWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\FinanceWindows\CustomersWindows\StatementWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\FinanceWindows\JobOrdersWindows\JobOrdersWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\FinanceWindows\JobOrdersWindows\JobOrderTransactionsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\FinanceWindows\JobOrdersWindows\JobOrderTransactionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\InquiryWindows\AssignWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\InquiryWindows\InquiriesWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\InquiryWindows\InquiryWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\AcknowledgementWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\ItemPurchaseOrdersWindows\ItemsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\ItemPurchaseOrdersWindows\OrderWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\ItemPurchaseOrdersWindows\PurchaseOrdersWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\ItemPurchaseOrdersWindows\QtyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\Items%28New%29Window.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\Items%28Standard%29Window.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\ItemsModificationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\JobOrdersWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\ModificationsHistoryWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\NewJobOrderWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\PanelItemsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\PanelProgressionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\Panels%28Approval%29Windows\PanelsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\Panels%28Approval%29Windows\RequestsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\Panels%28Cancelling%29Windows\PanelsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\Panels%28Cancelling%29Windows\QtyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\Panels%28Closing%29Windows\ClosingWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\Panels%28Closing%29Windows\PanelsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\Panels%28Delivery%29Windows\DeliveryWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\Panels%28Delivery%29Windows\PanelsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\Panels%28Delivery%29Windows\QtyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\Panels%28Design%29Window.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\Panels%28Hold%29Windows\PanelsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\Panels%28Hold%29Windows\QtyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\Panels%28Invoicing%29Windows\InvoicingWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\Panels%28Invoicing%29Windows\PanelsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\Panels%28Invoicing%29Windows\QtyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\Panels%28Production%29Window.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\PanelsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\PanelWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\PurchaseOrdersWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\PurchaseOrderWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\JobOrderWindows\QuotationPanelsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\MainWindows\FinanceControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\MainWindows\ItemsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\MainWindows\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\MainWindows\ProjectsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\MainWindows\TendaringControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\MessageWindows\CMessageBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\PrintWindows\PrintWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\CategoriesDiscountsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\CategoryDiscountWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\DiscountSheetsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\DownloadPanelWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\ItemWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\LibraryOfPanelsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\NewItemWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\PrintQuotationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\QuotationBillPriceOptionsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\QuotationOptionPanelsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\QuotationOptionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\QuotationPanelItemsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\QuotationPanelNameWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\QuotationPanelsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\QuotationPanelWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\QuotationPriceWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\QuotationsInformationWindows\QuotationBillPriceOptionsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\QuotationsInformationWindows\QuotationPanelItemsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\QuotationsInformationWindows\QuotationPanelsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\QuotationsInformationWindows\QuotationPanelWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\QuotationsInformationWindows\QuotationPriceWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\QuotationsInformationWindows\QuotationsInformationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\QuotationsInformationWindows\QuotationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\QuotationsInformationWindows\TermsAndConditionsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\QuotationsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\QuotationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\QuoteWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\RevisionsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\TermsAndConditionsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\QuotationWindows\TermWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ReferencesWindows\CategoriesDiscountsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ReferencesWindows\CategoryDiscountWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ReferencesWindows\EnclosuresWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ReferencesWindows\PrismaGWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ReferencesWindows\PrismaPWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ReferencesWindows\ReferencesWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ReferencesWindows\ReferenceWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ReferencesWindows\SelectionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ReferencesWindows\SFWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\StoreWindows\InvoicesWindows\InvoicesWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\StoreWindows\InvoicesWindows\InvoiceWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\StoreWindows\InvoicesWindows\ItemsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\StoreWindows\InvoicesWindows\JobOrderItemsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\StoreWindows\InvoicesWindows\PurchaseOrdersItemsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\StoreWindows\InvoicesWindows\QtyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\StoreWindows\ReturnItemsWindows\QtyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\StoreWindows\ReturnItemsWindows\ReturnItemsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\StoreWindows\StockWindows\JobOrderSelectorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\StoreWindows\StockWindows\StockWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\StoreWindows\SuppliersWindows\ContactsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\StoreWindows\SuppliersWindows\ContactWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\StoreWindows\SuppliersWindows\SuppliersWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\StoreWindows\SuppliersWindows\SupplierWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\StoreWindows\TransferWindows\QtyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\StoreWindows\TransferWindows\TransferWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserWindows\LoginWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\UserWindows\UserWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Accounts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Acknowledgement.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\AddItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\AddToGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\AddToRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\AddToYellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\AllFiles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\AsBuilt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Assign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Attention.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\BackAsBuilt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Bank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\BarCode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\BlueFolder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\BlueFolderSearch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Calculator.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Change.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Change1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\checklist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\checklist1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\ClosedPanel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\CloseJob.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Consultants.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Contacts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\CopyRow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Customer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Datetime.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\DeleteEnclosure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\DeleteFilter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\DeleteItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\DeleteRecord.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Deliver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Design.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Disbo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\DiscountUpdate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Download1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\DWNoReports.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Edit1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\EditEnclosure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\EditRow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Enclosure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Fill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Finance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\GrayFolder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\GreenFolder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\GroupDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\GroupUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\History.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\ID.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\IdetifyOrder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\IdetifyOrder1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Information.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\InsertDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\InsertUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Invoicing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Item!.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\ItemChange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Key1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\LeftGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Library.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\List.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\load.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Materials.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Maximize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Minimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\MoveDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\MoveUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\New.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\NewFile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\NewFile1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\NewJobFile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\NewPanels.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\NewProject.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\NewRow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Now.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\NSYCRN.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\NSYSF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\NSYSM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Old.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\OpenDoor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Option.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Options.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Order.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Pages.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\panelsItems.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Partnership.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Paste.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\PN.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\PostItems.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\PostItems1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\PreviousYears.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Price.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Progression.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\purchase-orders.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Purchase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Question.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Queue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Quotation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Quote.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Receive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\RedFolder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Reference.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\ReturnMaterials.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\RightGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Running.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\RunningFolder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\SelectAll.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\SendJobFile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Sheets.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Statement.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Status2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Stock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Store.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Store1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Submit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Submit1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Suppliers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\TargetPrice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\TC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Technical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Tendaring.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\ThisYear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\UnderWork.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Undo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\UserInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\WaitingApproval.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Wallet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\YellowFolder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Zoom.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

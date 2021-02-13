@@ -1,0 +1,899 @@
+﻿<Window x:Class="ProjectsNow.Windows.JobOrderWindows.JobOrdersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="Job Orders"
+        BorderBrush="DimGray"
+        BorderThickness="1"
+        WindowStyle="None"
+        ResizeMode="CanMinimize"
+        Loaded="Window_Loaded"
+        WindowStartupLocation="CenterScreen"
+        Height="700"
+        Width="1129">
+    <Window.Resources>
+
+        <ContextMenu x:Key="GridContextMenu" FontFamily="Times New Roman">
+            <MenuItem Click="AllJobOrders_Click">
+                <MenuItem.Header>
+                    <TextBlock Text="All Job Orders"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/AllFiles.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Click="RunningJobOrders_Click">
+                <MenuItem.Header>
+                    <TextBlock Text="Running Job Orders"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/RunningFolder.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Click="ClosedJobOrders_Click">
+                <MenuItem.Header>
+                    <TextBlock Text="Closed Job Orders"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/CloseJob.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
+
+        <ContextMenu x:Key="RowsContextMenu" FontFamily="Times New Roman">
+            <MenuItem Click="Information_Click">
+                <MenuItem.Header>
+                    <TextBlock Text="Information"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/Information.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Click="Acknowledgement_Click">
+                <MenuItem.Header>
+                    <TextBlock Text="Acknowledgement"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/Acknowledgement.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Click="PO_ClicK">
+                <MenuItem.Header>
+                    <TextBlock Text="Purchase Orders"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/purchase-orders.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Click="Panels_ClicK">
+                <MenuItem.Header>
+                    <TextBlock Text="Panels"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/Enclosure.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Click="DiscountSheets_ClicK">
+                <MenuItem.Header>
+                    <TextBlock Text="Discount Sheets"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/Sheets.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <Separator/>
+            <MenuItem Click="AllJobOrders_Click">
+                <MenuItem.Header>
+                    <TextBlock Text="All Job Orders"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/AllFiles.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Click="RunningJobOrders_Click">
+                <MenuItem.Header>
+                    <TextBlock Text="Running Job Orders"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/RunningFolder.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Click="ClosedJobOrders_Click">
+                <MenuItem.Header>
+                    <TextBlock Text="Closed Job Orders"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/CloseJob.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
+
+        <Style x:Key="YearsStyle" BasedOn="{StaticResource ComboBoxFlatStyle}" TargetType="{x:Type ComboBox}">
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="1,0"/>
+            <Setter Property="Background" Value="Black"/>
+        </Style>
+
+        <Style x:Key="FilterInput" BasedOn="{StaticResource TextBoxFlatStyle}" TargetType="{x:Type TextBox}">
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="1,0"/>
+            <EventSetter Event="KeyUp" Handler="ApplyFilter"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid Height="109" Background="White" MouseDown="Grid_MouseDown" VerticalAlignment="Top" Margin="0,0,0,0">
+            <Grid Background="LightGray" Margin="0,0,0,30"/>
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="5" Opacity="0.3" Direction="-90" RenderingBias="Quality" ShadowDepth="2"/>
+            </Grid.Effect>
+        </Grid>
+
+        <Image Width="65"
+               Height="65"
+               VerticalAlignment="Top"
+               HorizontalAlignment="Left"
+               Panel.ZIndex="1000"
+               Source="/Images/Icons/PN.png"
+               RenderOptions.BitmapScalingMode="HighQuality"
+               Margin="10,5,0,0">
+        </Image>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+
+            <Button Height="20"
+                    Width="30"
+                    Click="Minimize_Click" >
+
+                <Button.Resources>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="LightGray"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border CornerRadius="0" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
+                                        <Image Margin="4" Source="/Images/Icons\Minimize.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="DarkGray"/>
+                            </Trigger>
+                        </Style.Triggers>
+
+                    </Style>
+
+                </Button.Resources>
+            </Button>
+
+            <Button Click="CloseWindow_Click"
+                    Height="20"
+                    Width="30">
+
+                <Button.Resources>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="DarkRed"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border CornerRadius="0" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0">
+                                        <Image Margin="5" Source="/Images/Icons/close.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                            </Trigger>
+                        </Style.Triggers>
+
+                    </Style>
+
+                </Button.Resources>
+            </Button>
+
+        </StackPanel>
+
+        <TabControl Height="90"
+                    Background="#FFF1F1F1"
+                    BorderBrush="Transparent"
+                    BorderThickness="0"
+                    VerticalAlignment="Top" Margin="0,20,0,0">
+
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Border Name="Border" BorderThickness="0,0,0,0" BorderBrush="White" CornerRadius="2.5,2.5,0,0" Margin="0,0">
+                                    <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,0,10,0"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="#FFF1F1F1" />
+                                        <Setter TargetName="Border" Property="TextElement.Foreground" Value="Red" />
+                                        <Setter TargetName="Border" Property="TextElement.FontSize" Value="16" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Border" Property="Background" Value="Transparent" />
+                                        <Setter TargetName="Border" Property="TextElement.Foreground" Value="Black" />
+                                        <Setter TargetName="Border" Property="TextElement.FontSize" Value="12" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+
+            <TabItem Header="TabItem" Width="100" Visibility="Hidden"/>
+
+            <TabItem x:Name="Tool" Header="Tool" IsSelected="True">
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            DataContext="{Binding UserData}"
+                            Height="65" Margin="75,0,0,0">
+
+                    <Button x:Name="Information">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Height" Value="60"/>
+                                <Setter Property="Width" Value="60"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="ToolTip" Value="Quotation Information"/>
+                                <EventSetter Event="Click" Handler="Information_Click"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
+                                                <Image Source="/Images/Icons/Information.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="10"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGray"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <Button x:Name="AcknowledgementButton">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Height" Value="60"/>
+                                <Setter Property="Width" Value="60"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="ToolTip" Value="Order Acknowledgement"/>
+                                <EventSetter Event="Click" Handler="Acknowledgement_Click"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
+                                                <Image Source="/Images/Icons/Acknowledgement.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="5"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGray"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <Button x:Name="PurchaseOrders">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Height" Value="60"/>
+                                <Setter Property="Width" Value="60"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="ToolTip" Value="Purchase Orders"/>
+                                <EventSetter Event="Click" Handler="PO_ClicK"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
+                                                <Image Source="/Images/Icons/purchase-orders.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="0"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGray"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <Button x:Name="Panels">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Height" Value="60"/>
+                                <Setter Property="Width" Value="60"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="ToolTip" Value="Panels"/>
+                                <EventSetter Event="Click" Handler="Panels_ClicK"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
+                                                <Image Source="/Images/Icons/Enclosure.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="2.55"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGray"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <Button x:Name="Purchase">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Height" Value="60"/>
+                                <Setter Property="Width" Value="60"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="ToolTip" Value="Purchase Items"/>
+                                <EventSetter Event="Click" Handler="PurchaseItems_ClicK"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
+                                                <Image Source="/Images/Icons/Purchase.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="7.5"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGray"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+
+                    <Button x:Name="Posting">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Height" Value="60"/>
+                                <Setter Property="Width" Value="60"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="ToolTip" Value="Posting Items"/>
+                                <EventSetter Event="Click" Handler="PostingItems_ClicK"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
+                                                <Image Source="/Images/Icons/PostItems.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="2.55"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGray"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <Button x:Name="Invoicing">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Height" Value="60"/>
+                                <Setter Property="Width" Value="60"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="ToolTip" Value="Invoicing"/>
+                                <EventSetter Event="Click" Handler="Invoicing_Click"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
+                                                <Image Source="/Images/Icons/Invoicing.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="5,0"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGray"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+
+                    <Button>
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Height" Value="60"/>
+                                <Setter Property="Width" Value="60"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="ToolTip" Value="Discount Sheets"/>
+                                <EventSetter Event="Click" Handler="DiscountSheets_ClicK"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
+                                                <Image Source="/Images/Icons/Sheets.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="5,5.5"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGray"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Data" HorizontalAlignment="Right">
+                <StackPanel Margin="75,0,0,0" Orientation="Horizontal">
+
+                    <Button x:Name="All">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Height" Value="60"/>
+                                <Setter Property="Width" Value="60"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="ToolTip" Value="All JobOrders"/>
+                                <EventSetter Event="Click" Handler="AllJobOrders_Click"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
+                                                <Image Source="/Images/Icons/AllFiles.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="5"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGray"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <Button>
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Height" Value="60"/>
+                                <Setter Property="Width" Value="60"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="ToolTip" Value="Running JobOrders"/>
+                                <EventSetter Event="Click" Handler="RunningJobOrders_Click"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
+                                                <Image Source="/Images/Icons/RunningFolder.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="2"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGray"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <Button>
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Height" Value="60"/>
+                                <Setter Property="Width" Value="60"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="ToolTip" Value="Closed Job Orders"/>
+                                <EventSetter Event="Click" Handler="ClosedJobOrders_Click"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
+                                                <Image Source="/Images/Icons/CloseJob.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="2.55"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGray"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
+                        <Image Source="/Images/Icons/Datetime.png" Margin="5,-2.5,5,5" Height="30" Width="30" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        <ComboBox Name="YearsList" 
+                                  Width="80"
+                                  Style="{StaticResource YearsStyle}" 
+                                  DisplayMemberPath="Year"
+                                  SelectedValuePath="Year"
+                                  SelectionChanged="Years_SelectionChanged" 
+                                  VerticalAlignment="Center">
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Filters" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            DataContext="{Binding UserData}"
+                            Height="65" Margin="15,0,0,0">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,5">
+                        <TextBox x:Name="Code"
+                                 Width="158" 
+                                 Style="{StaticResource FilterInput}">
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,5">
+                        <TextBox x:Name="QuotationCode"
+                                 Width="158" 
+                                 Style="{StaticResource FilterInput}">
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,5">
+                        <TextBox x:Name="CustomerName" 
+                                 Width="298" 
+                                 Style="{StaticResource FilterInput}">
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,5">
+                        <TextBox x:Name="ProjectName" 
+                                 Width="298" 
+                                 Style="{StaticResource FilterInput}">
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,5">
+                        <TextBox x:Name="EstimationName"
+                                 Width="148" 
+                                 Style="{StaticResource FilterInput}">
+                        </TextBox>
+                    </StackPanel>
+
+                    <Button Margin="2.5,0,0,5">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Height" Value="30"/>
+                                <Setter Property="Width" Value="30"/>
+                                <Setter Property="VerticalAlignment" Value="Bottom"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="ToolTip" Value="Remove Filters"/>
+                                <EventSetter Event="Click" Handler="DeleteFilter_Click"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
+                                                <Image Source="/Images/Icons/DeleteFilter.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="5"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGray"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Help" HorizontalAlignment="Right">
+
+            </TabItem>
+
+        </TabControl>
+
+        <Grid  Margin="0,110,0,25">
+
+            <TextBlock x:Name="StatusName"
+                       Text="Running Job Orders"
+                       FontSize="32"
+                       FontWeight="Light"
+                       FontStyle="Italic"
+                       FontFamily="Times New Roman"
+                       Foreground="#FF9211E8"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       Margin="20,10,0,0">
+            </TextBlock>
+
+            <TextBlock x:Name="YearValue"
+                       Text=""
+                       FontSize="32"
+                       FontWeight="Light"
+                       FontStyle="Italic"
+                       FontFamily="Times New Roman"
+                       Foreground="#FF9211E8"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Right"
+                       Margin="0,10,20,0">
+            </TextBlock>
+
+            <Grid Margin="15,65,15,20" >
+                <Grid.Effect>
+                    <DropShadowEffect BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="2"/>
+                </Grid.Effect>
+                <Border Background="LightGray" CornerRadius="5">
+                    <TextBlock x:Name="NavigationPanel"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               FontFamily="Times New Roman"
+                               Margin="10,0,0,5"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Bottom">
+                    </TextBlock>
+                </Border>
+            </Grid>
+
+            <DataGrid x:Name="JobOrdersList"
+                      FontSize="14" 
+                      FontWeight="Bold" 
+                      FontFamily="Times New Roman"
+                      BorderThickness="0"
+                      IsReadOnly="True"
+                      RowHeaderWidth="0"
+                      Margin="20,70,20,50"
+                      CanUserAddRows="False"
+                      CanUserResizeRows="False"
+                      CanUserDeleteRows="False"
+                      CanUserSortColumns="False"
+                      CanUserResizeColumns="False"
+                      CanUserReorderColumns="False"
+                      SelectionMode="Single"
+                      SelectionUnit="FullRow"
+                      AutoGenerateColumns="False"
+                      ContextMenu="{StaticResource GridContextMenu}"
+                      HorizontalGridLinesBrush="LightGray"
+                      VerticalGridLinesBrush="Transparent"
+                      VerticalScrollBarVisibility="Visible"
+                      HorizontalScrollBarVisibility="Disabled"
+                      SelectedCellsChanged="JobOrdersList_SelectedCellsChanged">
+
+                <DataGrid.Resources>
+
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="MinWidth" Value="30" />
+                        <Setter Property="MinHeight" Value="30" />
+                        <Setter Property="Foreground" Value="Blue"/>
+                        <Setter Property="FontStyle" Value="Italic"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    </Style>
+
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <Setter Property="MaxHeight" Value="30"/>
+                        <Setter Property="MinHeight" Value="30"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                    <Grid Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" />
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+
+                        <Style.Triggers>
+                            <Trigger Property="DataGridCell.IsSelected" Value="True">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="Background" Value="LightGray" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="ContextMenu" Value="{StaticResource RowsContextMenu}"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Gray"/>
+                            </Trigger>
+
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="LightGray"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                </DataGrid.Resources>
+
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Width="160" Header="Job Order Code" Binding="{Binding Code}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Width="160" Header="Quotation Code" Binding="{Binding QuotationCode}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Width="300" Header="Customer Name" Binding="{Binding CustomerName}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Width="300" Header="Project Name" Binding="{Binding ProjectName}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Width="150" Header="Estimation Eng" Binding="{Binding EstimationName}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+
+                </DataGrid.Columns>
+
+            </DataGrid>
+        </Grid>
+
+        <Grid DataContext="{Binding UserData}" Background="LightGray" Height="25" VerticalAlignment="Bottom">
+            <TextBlock Text="{Binding UserName}" FontFamily="Times New Roman" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+            <TextBlock Text="{Binding Source={x:Static sys:DateTime.Today}, StringFormat='dddd - dd / MM / yyyy'}" FontFamily="Times New Roman" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+        </Grid>
+
+        <Grid x:Name="LoadingControl" Background="Black" Opacity="0.75" Visibility="Collapsed" Panel.ZIndex="10000">
+            <TextBlock Text="Loading....." FontSize="63" Foreground="White" FontFamily="Times New Roman" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+
+        <Popup x:Name="AcknowledgementPopup"
+               AllowsTransparency="True"
+               PopupAnimation="Fade"
+               PlacementTarget="{Binding ElementName=AcknowledgementButton}"
+               Placement="Bottom" 
+               StaysOpen="False">
+            <Popup.Resources>
+                <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+                    <Setter Property="Height" Value="25"/>
+                    <Setter Property="Width" Value="50"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Content" Value="Materials"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="FontFamily" Value="Times New Roman"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <ContentPresenter Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" />
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="LightGray"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                        </Trigger>
+                    </Style.Triggers>
+
+                </Style>
+            </Popup.Resources>
+
+            <Grid>
+                <Border BorderBrush="LightGray"
+                        Background="Black"
+                        BorderThickness="0"
+                        CornerRadius="10"
+                        Width="60"
+                        Height="90">
+                    <Grid>
+                        <StackPanel Orientation="Vertical">
+
+                            <Button Content="Edit" 
+                                    FontSize="18"
+                                    HorizontalContentAlignment="Center"
+                                    Click="EditAcknowledgement_Click" 
+                                    Style="{StaticResource ButtonStyle}"
+                                    Margin="5,15,5,0">
+                            </Button>
+                            <Button Content="Print"  
+                                    FontSize="18"
+                                    HorizontalContentAlignment="Center"
+                                    Click="PrintAcknowledgement_Click" 
+                                    Style="{StaticResource ButtonStyle}"
+                                    Margin="5,10,5,0">
+                            </Button>
+
+                        </StackPanel>
+
+                    </Grid>
+                </Border>
+
+            </Grid>
+        </Popup>
+
+    </Grid>
+</Window>

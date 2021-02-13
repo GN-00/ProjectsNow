@@ -1,0 +1,59 @@
+﻿using System;
+using System.Windows;
+using ProjectsNow.Database;
+using ProjectsNow.DataInput;
+using System.Windows.Controls;
+using System.Collections.Generic;
+
+namespace ProjectsNow.Printing.Store
+{
+    public partial class InternalInvoice : UserControl
+    {
+        public int Page { get; set; }
+        public int Pages { get; set; }
+        public double TotalCost { get; set; }
+        public double TotalVAT { get; set; }
+        public double TotalPrice { get; set; }
+        public double VATPercentage { get; set; }
+        public List<IPanel> PanelsData { get; set; }
+        public InvoiceInformation InvoiceInformationData { get; set; }
+
+        public InternalInvoice()
+        {
+            InitializeComponent();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Loaded -= UserControl_Loaded;
+
+            foreach (RowDefinition row in InvoiceTable.RowDefinitions)
+                row.Height = new GridLength(0);
+
+            InvoiceTable.RowDefinitions[0].Height = new GridLength(50);
+
+            for (int i = 1; i <= 6; i++)
+                ((Grid)FindName($"Total{i}")).Visibility = Visibility.Collapsed;
+
+            for (int i = 1; i <= PanelsData.Count; i++)
+                InvoiceTable.RowDefinitions[i].Height = new GridLength(40);
+
+            string textPrice = null;
+            string textPriceArabic = null;
+            if (TotalCost != 0)
+            {
+                InvoiceTable.RowDefinitions[9].Height = new GridLength(20);
+                for (int i = 1; i <= 6; i++)
+                    ((Grid)FindName($"Total{i}")).Visibility = Visibility.Visible;
+
+                textPrice = $"Only {Input.NumberToWords((int)Math.Ceiling(TotalPrice))} Saudi Riyals ";
+                ToWord toWord = new ToWord(Convert.ToDecimal(((int)Math.Ceiling(TotalPrice)).ToString()), new CurrencyInfo(CurrencyInfo.Currencies.SaudiArabia));
+
+                textPriceArabic = toWord.ConvertToArabic();
+            }
+
+            TotalPrice = Math.Ceiling(TotalPrice);
+            DataContext = new { PanelsData, InvoiceInformationData, TotalCost, TotalVAT, TotalPrice, textPrice, textPriceArabic, Page, Pages };
+        }
+    }
+}
