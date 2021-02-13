@@ -69,6 +69,7 @@ namespace ProjectsNow.Windows.StoreWindows.ReturnItemsWindows
                         Qty = qty,
                         Cost = ItemData.Cost,
                         Date = DateTime.Today,
+                        VAT = ItemData.VAT,
                     };
                     query = $"{DatabaseAI.InsertRecord<ItemTransaction>()}";
                     connection.Execute(query, transferData);
@@ -88,6 +89,8 @@ namespace ProjectsNow.Windows.StoreWindows.ReturnItemsWindows
                         Qty = qty,
                         Cost = ItemData.Cost,
                         Date = DateTime.Today,
+                        VAT = ItemData.VAT,
+                        TransferInvoiceID = senderInvoice.ID
                     };
                     query = $"{DatabaseAI.InsertRecord<ItemTransaction>()}";
                     connection.Execute(query, newItem);

@@ -1,8 +1,6 @@
 ﻿using Dapper;
-using System;
 using System.Linq;
 using System.Windows;
-using ProjectsNow.Enums;
 using System.Windows.Data;
 using ProjectsNow.Database;
 using System.Windows.Input;
@@ -10,7 +8,6 @@ using System.Data.SqlClient;
 using System.ComponentModel;
 using System.Windows.Controls;
 using ProjectsNow.Controllers;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using ProjectsNow.Windows.MessageWindows;
@@ -153,44 +150,59 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
         {
             if(POList.SelectedItem is CompanyPO companyPO)
             {
-
                 ObservableCollection<CompanyPOTransaction> POitems;
                 POitems = new ObservableCollection<CompanyPOTransaction>(items.Where(i => i.PurchaseOrderID == companyPO.ID));
                 
                 if (POitems.Count == 0)
                     return;
-                
-                using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
+
+                bool canPost = true;
+                foreach (CompanyPOTransaction transaction in POitems)
                 {
-                    foreach (CompanyPOTransaction transaction in POitems)
-                    {
-                        ItemTransaction newItem = new ItemTransaction()
-                        {
-                            JobOrderID = InvoiceData.JobOrderID,
-                            InvoiceID = InvoiceData.ID,
-                            PanelID = null,
-                            PanelTransactionID = null,
-                            Category = transaction.Category,
-                            Code = transaction.Code,
-                            Description = transaction.Description,
-                            Source = "New",
-                            Type = "Stock",
-                            Unit = transaction.Unit,
-                            Qty = transaction.Qty,
-                            Cost = transaction.Cost,
-                            Date = InvoiceData.Date,
-                        };
-
-                        string query = $"{DatabaseAI.InsertRecord<ItemTransaction>()}";
-                        newItem.ID = (int)(decimal)connection.ExecuteScalar(query, newItem);
-                        ItemsData.Add(newItem);
-
-                        query = $"Update [Purchase].[Transactions] Set Reference = {newItem.ID} Where ID = {transaction.ID}" ;
-                        connection.Execute(query);
-                    }
+                    if (transaction.Reference != null) canPost = false;
                 }
 
-                this.Close();
+                if (canPost)
+                {
+                    using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
+                    {
+                        foreach (CompanyPOTransaction transaction in POitems)
+                        {
+                            ItemTransaction newItem = new ItemTransaction()
+                            {
+                                JobOrderID = InvoiceData.JobOrderID,
+                                InvoiceID = InvoiceData.ID,
+                                PanelID = null,
+                                PanelTransactionID = null,
+                                Category = transaction.Category,
+                                Code = transaction.Code,
+                                Description = transaction.Description,
+                                Source = "New",
+                                Type = "Stock",
+                                Unit = transaction.Unit,
+                                Qty = transaction.Qty,
+                                Cost = transaction.Cost,
+                                Date = InvoiceData.Date,
+                                VAT = companyPO.VAT,
+                            };
+
+                            string query = $"{DatabaseAI.InsertRecord<ItemTransaction>()}";
+                            newItem.ID = (int)(decimal)connection.ExecuteScalar(query, newItem);
+                            ItemsData.Add(newItem);
+
+                            query = $"Update [Purchase].[Transactions] Set Reference = {newItem.ID} Where ID = {transaction.ID}";
+                            connection.Execute(query);
+                        }
+                    }
+
+                    this.Close();
+                }
+
+                if (!canPost)
+                {
+                    CMessageBox.Show("Error", "You can't post this PO!!", CMessageBoxButton.OK, CMessageBoxImage.Warning);
+                    return;
+                }
             }
         }
     }

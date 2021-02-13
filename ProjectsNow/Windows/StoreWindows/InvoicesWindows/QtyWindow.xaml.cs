@@ -20,6 +20,7 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ItemsToPostInput.Text = ItemData.RemainingQty.ToString();
+            VATInput.Text = App.VAT.ToString();
             DataContext = ItemData;
             ItemsToPostInput.Focus();
         }
@@ -49,6 +50,7 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
                     Unit = ItemData.Unit,
                     Qty = qty,
                     Cost = cost,
+                    VAT = double.Parse(VATInput.Text),
                     Date = InvoiceData.Date,
                 };
 
@@ -95,6 +97,18 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
             if (string.IsNullOrWhiteSpace(CostInput.Text))
             {
                 CostInput.Text = "0";
+            }
+        }
+
+        private void VATInput_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            DataInput.Input.DoubleOnly(e);
+        }
+        private void VATInput_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(VATInput.Text) || VATInput.Text == "0")
+            {
+                VATInput.Text = App.VAT.ToString();
             }
         }
     }

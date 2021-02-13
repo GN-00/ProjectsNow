@@ -23,7 +23,7 @@ namespace ProjectsNow.Windows.StoreWindows.TransferWindows
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ItemsToPostInput.Text = ItemData.FinalQty.ToString();
-            DataContext = JobOrderData.Code;
+            DataContext = JobOrderData ;
             ItemsToPostInput.Focus();
         }
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
@@ -48,7 +48,7 @@ namespace ProjectsNow.Windows.StoreWindows.TransferWindows
                     ItemData.TransferredQty += qty;
                     ItemTransaction transferData = new ItemTransaction()
                     {
-                        JobOrderID = JobOrderData.ID,
+                        JobOrderID = 0,
                         InvoiceID = senderInvoice.ID,
                         PanelID = null,
                         PanelTransactionID = null,
@@ -62,6 +62,7 @@ namespace ProjectsNow.Windows.StoreWindows.TransferWindows
                         Qty = qty,
                         Cost = ItemData.Cost,
                         Date = DateTime.Today,
+                        VAT = ItemData.VAT,
                     };
                     query = $"{DatabaseAI.InsertRecord<ItemTransaction>()}";
                     connection.Execute(query, transferData);
@@ -82,6 +83,7 @@ namespace ProjectsNow.Windows.StoreWindows.TransferWindows
                         Cost = ItemData.Cost,
                         Date = DateTime.Today,
                         TransferInvoiceID = senderInvoice.ID,
+                        VAT = ItemData.VAT,
                     };
                     query = $"{DatabaseAI.InsertRecord<ItemTransaction>()}";
                     connection.Execute(query, newItem);

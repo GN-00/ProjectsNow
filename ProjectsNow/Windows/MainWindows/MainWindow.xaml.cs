@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using ProjectsNow.Controllers;
 using ProjectsNow.Windows.ReferencesWindows;
 using System.Collections.ObjectModel;
+using System;
 
 namespace ProjectsNow.Windows.MainWindows
 {
@@ -23,12 +24,10 @@ namespace ProjectsNow.Windows.MainWindows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //#region Test
-            //using (SqlConnection connection = new SqlConnection(DatabaseAI.connectionString))
-            //{
-            //    UserData = connection.Query<User>($"Select * From [User].[Users] Where UserID = {UserID}").ToList().FirstOrDefault();
-            //}
-            //#endregion
+            using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
+            {
+                App.VAT = connection.QueryFirstOrDefault<double>($"Select MAX(VAT) AS VAT From [Finance].[VAT] Where Date <= '{DateTime.Today}'");
+            }
             DataContext = UserData;
 
             var subWindow = new TendaringControl(this.UserData);

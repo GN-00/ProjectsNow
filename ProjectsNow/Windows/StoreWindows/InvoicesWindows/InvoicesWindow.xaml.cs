@@ -229,7 +229,86 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
 
         private void Print_Click(object sender, RoutedEventArgs e)
         {
+            if (InvoicesList.SelectedItem is SupplierInvoice invoiceData)
+            {
+                if (invoiceData.SupplierID != 0)
+                {
+                    CMessageBox.Show("Invoice", "Only internal invoice can be print it!! ", CMessageBoxButton.OK, CMessageBoxImage.Warning);
+                    return;
+                }
 
+                InvoiceInformation invoiceInformation;
+                List<Printing.Store.Item> items;
+                List<IPanel> panels;
+                List<string> POs;
+                Printing.Store.InternalInvoice invoiceForm;
+                using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
+                {
+                    string query;
+                    query = $"Select * From [JobOrder].[InvoicesInformations] Where InvoiceNumber  = {invoiceData.Number}";
+                    invoiceInformation = connection.QueryFirstOrDefault<InvoiceInformation>(query);
+
+                    query = $"Select PurchaseOrdersNumber From [JobOrder].[Panels] Where JobOrderID = {invoiceData.JobOrderID}";
+                    panels = connection.Query<IPanel>(query).ToList();
+
+                    query = $"Select * From [Store].[Panels] Where InvoiceID = {invoiceData.ID}";
+                    items = connection.Query<Printing.Store.Item>(query).ToList();
+                }
+                POs = panels.GroupBy(p => p.PurchaseOrdersNumber).Select(p => p.Key).ToList();
+
+
+                for (int i = 1; i <= items.Count; i++)
+                    items[i - 1].SN = i;
+
+                foreach (string po in POs)
+                    invoiceInformation.POs += $"{po}, ";
+
+                invoiceInformation.POs = invoiceInformation.POs.Substring(0, invoiceInformation.POs.Length - 2);
+
+                double pagesNumber = (items.Count) / 8d;
+                if (pagesNumber - Convert.ToInt32(pagesNumber) != 0)
+                    pagesNumber = Convert.ToInt32(pagesNumber) + 1;
+
+                //if (pagesNumber != 0)
+                //{
+                //    List<FrameworkElement> elements = new List<FrameworkElement>();
+                //    for (int i = 1; i <= pagesNumber; i++)
+                //    {
+                //        if (i == pagesNumber)
+                //        {
+                //            invoiceForm = new InvoiceForm()
+                //            {
+                //                VATPercentage = panels.Max(p => p.VAT) * 100,
+                //                TotalCost = panels.Sum(p => p.PanelEstimatedPrice),
+                //                TotalVAT = panels.Sum(p => p.VATValue),
+                //                TotalPrice = panels.Sum(p => p.FinalPrice),
+                //                Page = i,
+                //                Pages = Convert.ToInt32(pagesNumber),
+                //                InvoiceInformationData = invoiceInformation,
+                //                PanelsData = panels.Where(p => p.PanelSN > ((i - 1) * 8) && p.PanelSN <= ((i) * 8)).ToList()
+                //            };
+                //        }
+                //        else
+                //        {
+                //            invoiceForm = new InvoiceForm()
+                //            {
+                //                Page = i,
+                //                Pages = Convert.ToInt32(pagesNumber),
+                //                InvoiceInformationData = invoiceInformation,
+                //                PanelsData = panels.Where(p => p.PanelSN > ((i - 1) * 8) && p.PanelSN <= ((i) * 8)).ToList()
+                //            };
+                //        }
+
+                //        elements.Add(invoiceForm);
+                //    }
+
+                //    Print.PrintPreview(elements);
+                //}
+                //else
+                //{
+                //    CMessageBox.Show("Items", "There is no panels!!", CMessageBoxButton.OK, CMessageBoxImage.Warning);
+                //}
+            }
         }
         private void AddItems_Click(object sender, RoutedEventArgs e)
         {

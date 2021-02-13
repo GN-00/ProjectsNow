@@ -12,7 +12,7 @@
         Loaded="Window_Loaded"
         WindowStartupLocation="CenterScreen"
         Height="170"
-        Width="400">
+        Width="600">
     <Window.Resources>
 
         <Style x:Key="LabelStyle" TargetType="{x:Type TextBlock}">
@@ -35,6 +35,7 @@
         <Grid x:Name="PopupGrid" Background="#FFF1F1F1">
             <Grid Background="White" Margin="0,0,0,65">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
@@ -60,16 +61,26 @@
                         <TextBlock Text="{Binding Unit}" Style="{StaticResource NumbersStyle}" Foreground="Black" Margin="2.5,0,0,0"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Remaining: " Style="{StaticResource LabelStyle}"/>
-                        <TextBlock Text="{Binding RemainingQty}" Style="{StaticResource NumbersStyle}" Foreground="Black" Margin="2.5,0,0,0"/>
+                        <TextBlock Text="Have: " Style="{StaticResource LabelStyle}"/>
+                        <TextBlock Text="{Binding PurchasedQty}" Style="{StaticResource NumbersStyle}" Foreground="Black" Margin="2.5,0,0,0"/>
                         <TextBlock Text="{Binding Unit}" Style="{StaticResource NumbersStyle}" Foreground="Black" Margin="2.5,0,0,0"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="5,50,5,0" Grid.Column="1">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Have: " Style="{StaticResource LabelStyle}"/>
-                        <TextBlock Text="{Binding PurchasedQty}" Style="{StaticResource NumbersStyle}" Foreground="Black" Margin="2.5,0,0,0"/>
+                        <TextBlock Text="Remaining: " Style="{StaticResource LabelStyle}"/>
+                        <TextBlock Text="{Binding RemainingQty}" Style="{StaticResource NumbersStyle}" Foreground="Black" Margin="2.5,0,0,0"/>
                         <TextBlock Text="{Binding Unit}" Style="{StaticResource NumbersStyle}" Foreground="Black" Margin="2.5,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="In Order: " Style="{StaticResource LabelStyle}"/>
+                        <TextBlock Text="{Binding InOrderQty}" Style="{StaticResource NumbersStyle}" Foreground="Black" Margin="2.5,0,0,0"/>
+                        <TextBlock Text="{Binding Unit}" Style="{StaticResource NumbersStyle}" Foreground="Black" Margin="2.5,0,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="5,50,5,0" Grid.Column="2">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="" Style="{StaticResource LabelStyle}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Damaged: " Style="{StaticResource LabelStyle}"/>
@@ -82,20 +93,25 @@
             <StackPanel Margin="10,0,0,6" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                 <StackPanel Orientation="Vertical" >
                     <TextBlock Text="Posting " Style="{StaticResource LabelStyle}" Width="auto" TextAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBox x:Name="ItemsToPostInput" Width="147.5" Style="{StaticResource TextBoxFlatStyle}" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman" TextAlignment="Center" PreviewKeyDown="ItemsToPostInput_PreviewKeyDown" LostFocus="ItemsToPostInput_LostFocus"/>
+                    <TextBox x:Name="ItemsToPostInput" Width="150" Style="{StaticResource TextBoxFlatStyle}" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman" TextAlignment="Center" PreviewKeyDown="ItemsToPostInput_PreviewKeyDown" LostFocus="ItemsToPostInput_LostFocus"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="10,0,0,0">
                     <TextBlock Text="Cost " Style="{StaticResource LabelStyle}" Width="auto" TextAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBox x:Name="CostInput" Text="0" Width="147.5" Style="{StaticResource TextBoxFlatStyle}" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman" TextAlignment="Center" PreviewKeyDown="CostInput_PreviewKeyDown" LostFocus="CostInput_LostFocus"/>
+                    <TextBox x:Name="CostInput" Text="0" Width="150" Style="{StaticResource TextBoxFlatStyle}" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman" TextAlignment="Center" PreviewKeyDown="CostInput_PreviewKeyDown" LostFocus="CostInput_LostFocus"/>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                    <TextBlock Text="VAT %" Style="{StaticResource LabelStyle}" Width="auto" TextAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox x:Name="VATInput" Width="150" Style="{StaticResource TextBoxFlatStyle}" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman" TextAlignment="Center" PreviewKeyDown="VATInput_PreviewKeyDown" LostFocus="VATInput_LostFocus" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="30,-2.5,0,0">
                     <TextBlock Text="" Style="{StaticResource LabelStyle}" Width="auto" TextAlignment="Center" VerticalAlignment="Center"/>
                     <Button Margin="5,0"
-                                Height="30"
-                                Width="30"
-                                Click="Posting_Click">
+                            Height="30"
+                            Width="30"
+                            Click="Posting_Click">
                         <Button.Resources>
                             <Style TargetType="{x:Type Button}">
                                 <Setter Property="Background" Value="Gray"/>
@@ -124,7 +140,7 @@
                     </Button>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical" Margin="0,-2.5,0,0">
                     <TextBlock Text="" Style="{StaticResource LabelStyle}" Width="auto" TextAlignment="Center" VerticalAlignment="Center"/>
                     <Button x:Name="Cancel"
                                 Height="30"

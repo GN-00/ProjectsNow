@@ -18,7 +18,7 @@
         <ContextMenu x:Key="ItemsContextMenu">
             <MenuItem Click="Add_Click">
                 <MenuItem.Header>
-                    <TextBlock Text="Transfer"/>
+                    <TextBlock Text="Return To Stock"/>
                 </MenuItem.Header>
                 <MenuItem.Icon>
                     <Image Source="/Images/Icons/ReturnMaterials.png" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality"/>

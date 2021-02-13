@@ -13,7 +13,7 @@
         Loaded="Window_Loaded"
         FontFamily="Times New Roman"
         WindowStartupLocation="CenterScreen"
-        Height="270"
+        Height="290"
         Width="1020">
     <Window.Resources>
 
@@ -149,7 +149,16 @@
                     <TextBox x:Name="TotalCost"  Width="100" Style="{StaticResource InputStyle}" TextAlignment="Center" IsReadOnly="True"/>
                 </StackPanel>
                 <StackPanel Margin="0,15,0,0" Orientation="Horizontal">
+                    <TextBlock Width="355" Visibility="Hidden"/>
 
+                    <TextBlock Text="VAT " Width="100" Style="{StaticResource LabelStyle}"/>
+                    <TextBox x:Name="VAT"  Width="100" Style="{StaticResource InputStyle}" TextAlignment="Center" PreviewKeyDown="VAT_PreviewKeyDown" LostFocus="VAT_LostFocus"/>
+
+                    <TextBlock Text="Unit Price " Width="95" Style="{StaticResource LabelStyle}"/>
+                    <TextBox x:Name="Price" Text="0" Width="100" Style="{StaticResource InputStyle}" LostFocus="Cost_LostFocus" TextAlignment="Center"/>
+
+                    <TextBlock Text="Total Price " Width="95" Style="{StaticResource LabelStyle}"/>
+                    <TextBox x:Name="TotalPrice"  Width="100" Style="{StaticResource InputStyle}" TextAlignment="Center" IsReadOnly="True"/>
                 </StackPanel>
 
             </StackPanel>

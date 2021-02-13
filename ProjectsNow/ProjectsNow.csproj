@@ -236,6 +236,7 @@
     <Compile Include="Printing\Store\InternalInvoice.xaml.cs">
       <DependentUpon>InternalInvoice.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Printing\Store\Item.cs" />
     <Compile Include="Windows\CustomerWindows\ConsultantsWindow.xaml.cs">
       <DependentUpon>ConsultantsWindow.xaml</DependentUpon>
     </Compile>

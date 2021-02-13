@@ -19,7 +19,7 @@ namespace ProjectsNow.Database
 		public int? PanelID { get; set; }
 		public int? PanelTransactionID { get; set; }
 		public int InvoiceID { get; set; }
-		public int TransferInvoiceID { get; set; }
+		public int? TransferInvoiceID { get; set; }
 
 
 		private string _Category;
@@ -127,6 +127,14 @@ namespace ProjectsNow.Database
 			get { return this._Cost; }
 			set { if (value != this._Cost) { this._Cost = value; NotifyPropertyChanged(); NotifyPropertyChanged("TotalCost"); } }
 		}
+
+		private double _VAT;
+		public double VAT
+		{
+			get { return this._VAT; }
+			set { if (value != this._VAT) { this._VAT = value; NotifyPropertyChanged(); } }
+		}
+
 		[DontRead][DontWrite]public double TotalCost { get { return Cost * FinalQty; } }
 		public DateTime Date { get; set; }
 		public string Type { get; set; }

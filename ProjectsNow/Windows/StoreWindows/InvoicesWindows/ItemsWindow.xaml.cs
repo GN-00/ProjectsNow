@@ -36,6 +36,11 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
             {
                 PartNumbersList.Text = newItemData.PartNumber;
                 Qty.Text = newItemData.Qty.ToString();
+                VAT.Text = newItemData.VAT.ToString();
+            }
+            else
+            {
+                VAT.Text = App.VAT.ToString();
             }
 
             CostCalculator();
@@ -85,6 +90,7 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
                 newItemData.Unit = Unit.Text;
                 newItemData.Qty = double.Parse(Qty.Text);
                 newItemData.Cost = double.Parse(Cost.Text);
+                newItemData.VAT = double.Parse(VAT.Text);
                 newItemData.Source = "New";
                 newItemData.Type = "Stock";
             }
@@ -150,18 +156,39 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
         }
         private void CostCalculator()
         {
-            double qty, cost;
+            double qty, cost, vat;
             if (string.IsNullOrWhiteSpace(Qty.Text)) qty = 0;
             else qty = double.Parse(Qty.Text);
 
             if (string.IsNullOrWhiteSpace(Cost.Text)) cost = 0;
             else cost = double.Parse(Cost.Text);
 
+            vat = double.Parse(VAT.Text);
+
             TotalCost.Text = Math.Abs(cost * qty).ToString("N2");
+            Price.Text = Math.Abs(cost * (1 + vat / 100)).ToString("N2");
+            TotalPrice.Text = Math.Abs(cost * (1 + vat / 100) * qty).ToString("N2");
         }
 
         private void Cost_LostFocus(object sender, RoutedEventArgs e)
         {
+            CostCalculator();
+        }
+
+        private void VAT_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            DataInput.Input.DoubleOnly(e);
+        }
+        private void VAT_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(VAT.Text) || VAT.Text == "0")
+            {
+                if (ActionData == Actions.Edit)
+                    VAT.Text = newItemData.VAT.ToString();
+                else
+                    VAT.Text = App.VAT.ToString();
+            }
+
             CostCalculator();
         }
     }
