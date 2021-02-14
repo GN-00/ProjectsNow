@@ -141,6 +141,11 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
                             return;
                         }
 
+                    if (item.FinalQty < 1)
+                    {
+                        e.Accepted = false;
+                        return;
+                    }
                 }
             }
             catch
@@ -210,13 +215,16 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
 
                     if (checkItemsUsage.Count() == 0 || checkItemsUsage == null)
                     {
-                        query = $"Delete From [Store].[Invoices] Where ID = {invoice.ID};" +
-                                $"Delete From [Store].[Transactions] Where InvoiceID = {invoice.ID}; ";
-                        connection.Execute(query);
+                        query = $"Delete From [Store].[Invoices] Where ID = {invoice.ID}; ";
+
                         foreach (ItemTransaction item in itemsData.Where(i => i.InvoiceID == invoice.ID).ToList())
                         {
+                            query += $"Delete From [Store].[Transactions] Where ID = {item.ID};" +
+                                     $"Delete From [Store].[Transactions] Where ID = {item.TransferInvoiceID};";
+
                             itemsData.Remove(item);
                         }
+                        connection.Execute(query);
                         invoices.Remove(invoice);
                     }
                     else
@@ -241,33 +249,42 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
                 List<Printing.Store.Item> items;
                 List<IPanel> panels;
                 List<string> POs;
+                string IDs = "";
                 Printing.Store.InternalInvoice invoiceForm;
+
+                    foreach (ItemTransaction item in viewDataItems.View)
+                        IDs += $"{item.ID}, ";
+
+                    IDs = IDs.Substring(0, IDs.Length - 2);
+
+
                 using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
                 {
-                    string query;
-                    query = $"Select * From [JobOrder].[InvoicesInformations] Where InvoiceNumber  = {invoiceData.Number}";
-                    invoiceInformation = connection.QueryFirstOrDefault<InvoiceInformation>(query);
+                    //string query;
+                    //query = $"Select * From [Store].[InvoicesInformations] Where ID  = {invoiceData.ID}";
+                    //invoiceInformation = connection.QueryFirstOrDefault<InvoiceInformation>(query);
 
-                    query = $"Select PurchaseOrdersNumber From [JobOrder].[Panels] Where JobOrderID = {invoiceData.JobOrderID}";
-                    panels = connection.Query<IPanel>(query).ToList();
+                    //query = $"Select PurchaseOrdersNumber From [JobOrder].[Panels] Where JobOrderID = {invoiceData.JobOrderID}";
+                    //panels = connection.Query<IPanel>(query).ToList();
 
-                    query = $"Select * From [Store].[Panels] Where InvoiceID = {invoiceData.ID}";
-                    items = connection.Query<Printing.Store.Item>(query).ToList();
+                    //query = $"Select * From [Store].[InvoicesItemsInformations] Where InvoiceID = {invoiceData.ID} And " +
+                    //        $"ID in ()";
+                    //items = connection.Query<Printing.Store.Item>(query).ToList();
                 }
-                POs = panels.GroupBy(p => p.PurchaseOrdersNumber).Select(p => p.Key).ToList();
+                //POs = panels.GroupBy(p => p.PurchaseOrdersNumber).Select(p => p.Key).ToList();
 
 
-                for (int i = 1; i <= items.Count; i++)
-                    items[i - 1].SN = i;
+                //for (int i = 1; i <= items.Count; i++)
+                //    items[i - 1].SN = i;
 
-                foreach (string po in POs)
-                    invoiceInformation.POs += $"{po}, ";
+                //foreach (string po in POs)
+                //    invoiceInformation.POs += $"{po}, ";
 
-                invoiceInformation.POs = invoiceInformation.POs.Substring(0, invoiceInformation.POs.Length - 2);
+                //invoiceInformation.POs = invoiceInformation.POs.Substring(0, invoiceInformation.POs.Length - 2);
 
-                double pagesNumber = (items.Count) / 8d;
-                if (pagesNumber - Convert.ToInt32(pagesNumber) != 0)
-                    pagesNumber = Convert.ToInt32(pagesNumber) + 1;
+                //double pagesNumber = (items.Count) / 8d;
+                //if (pagesNumber - Convert.ToInt32(pagesNumber) != 0)
+                //    pagesNumber = Convert.ToInt32(pagesNumber) + 1;
 
                 //if (pagesNumber != 0)
                 //{
@@ -276,33 +293,33 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
                 //    {
                 //        if (i == pagesNumber)
                 //        {
-                //            invoiceForm = new InvoiceForm()
-                //            {
-                //                VATPercentage = panels.Max(p => p.VAT) * 100,
-                //                TotalCost = panels.Sum(p => p.PanelEstimatedPrice),
-                //                TotalVAT = panels.Sum(p => p.VATValue),
-                //                TotalPrice = panels.Sum(p => p.FinalPrice),
-                //                Page = i,
-                //                Pages = Convert.ToInt32(pagesNumber),
-                //                InvoiceInformationData = invoiceInformation,
-                //                PanelsData = panels.Where(p => p.PanelSN > ((i - 1) * 8) && p.PanelSN <= ((i) * 8)).ToList()
-                //            };
+                //            //invoiceForm = new InvoiceForm()
+                //            //{
+                //            //    VATPercentage = panels.Max(p => p.VAT) * 100,
+                //            //    TotalCost = panels.Sum(p => p.PanelEstimatedPrice),
+                //            //    TotalVAT = panels.Sum(p => p.VATValue),
+                //            //    TotalPrice = panels.Sum(p => p.FinalPrice),
+                //            //    Page = i,
+                //            //    Pages = Convert.ToInt32(pagesNumber),
+                //            //    InvoiceInformationData = invoiceInformation,
+                //            //    PanelsData = panels.Where(p => p.PanelSN > ((i - 1) * 8) && p.PanelSN <= ((i) * 8)).ToList()
+                //            //};
                 //        }
                 //        else
                 //        {
-                //            invoiceForm = new InvoiceForm()
-                //            {
-                //                Page = i,
-                //                Pages = Convert.ToInt32(pagesNumber),
-                //                InvoiceInformationData = invoiceInformation,
-                //                PanelsData = panels.Where(p => p.PanelSN > ((i - 1) * 8) && p.PanelSN <= ((i) * 8)).ToList()
-                //            };
+                //            //invoiceForm = new InvoiceForm()
+                //            //{
+                //            //    Page = i,
+                //            //    Pages = Convert.ToInt32(pagesNumber),
+                //            //    InvoiceInformationData = invoiceInformation,
+                //            //    PanelsData = panels.Where(p => p.PanelSN > ((i - 1) * 8) && p.PanelSN <= ((i) * 8)).ToList()
+                //            //};
                 //        }
 
-                //        elements.Add(invoiceForm);
+                //        //elements.Add(invoiceForm);
                 //    }
 
-                //    Print.PrintPreview(elements);
+                //    //Print.PrintPreview(elements);
                 //}
                 //else
                 //{
@@ -319,6 +336,7 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
                     JobOrderID = JobOrderData.ID,
                     InvoiceID = invoice.ID,
                     Date = invoice.Date,
+                    OriginalInvoiceID = invoice.ID,
                 };
 
                 var window = new ItemsWindow()
@@ -333,31 +351,31 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
         }
         private void EditItems_Click(object sender, RoutedEventArgs e)
         {
-            if (ItemsList.SelectedItem is ItemTransaction item)
-            {
-                ItemTransaction checkItemUsage;
-                using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
-                {
-                    string query = $"Select Reference From [Store].[Transactions] Where Reference = {item.ID}";
-                    checkItemUsage = connection.QueryFirstOrDefault<ItemTransaction>(query);
-                }
+            //if (ItemsList.SelectedItem is ItemTransaction item)
+            //{
+            //    ItemTransaction checkItemUsage;
+            //    using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
+            //    {
+            //        string query = $"Select Reference From [Store].[Transactions] Where Reference = {item.ID}";
+            //        checkItemUsage = connection.QueryFirstOrDefault<ItemTransaction>(query);
+            //    }
 
-                if(checkItemUsage == null)
-                {
-                    var window = new ItemsWindow()
-                    {
-                        ActionData = Actions.Edit,
-                        ItemData = item,
-                        ReferencesData = referencesData,
-                        ItemsData = itemsData,
-                    };
-                    window.ShowDialog();
-                }
-                else
-                {
-                    CMessageBox.Show("Items Usage", "Can't edit this item!!", CMessageBoxButton.OK, CMessageBoxImage.Warning);
-                }
-            }
+            //    if(checkItemUsage == null)
+            //    {
+            //        var window = new ItemsWindow()
+            //        {
+            //            ActionData = Actions.Edit,
+            //            ItemData = item,
+            //            ReferencesData = referencesData,
+            //            ItemsData = itemsData,
+            //        };
+            //        window.ShowDialog();
+            //    }
+            //    else
+            //    {
+            //        CMessageBox.Show("Items Usage", "Can't edit this item!!", CMessageBoxButton.OK, CMessageBoxImage.Warning);
+            //    }
+            //}
         }
         private void DeleteItems_Click(object sender, RoutedEventArgs e)
         {
@@ -371,7 +389,8 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
 
                     if (checkItemUsage == null)
                     {
-                        query = $"Delete From [Store].[Transactions] Where ID = {item.ID}";
+                        query = $"Delete From [Store].[Transactions] Where ID = {item.ID};" +
+                                $"Delete From [Store].[Transactions] Where ID = {item.TransferInvoiceID};";
                         connection.Execute(query);
 
                         itemsData.Remove(item);

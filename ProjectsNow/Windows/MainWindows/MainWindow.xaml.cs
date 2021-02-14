@@ -26,8 +26,10 @@ namespace ProjectsNow.Windows.MainWindows
         {
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                App.VAT = connection.QueryFirstOrDefault<double>($"Select MAX(VAT) AS VAT From [Finance].[VAT] Where Date <= '{DateTime.Today}'");
+                DateTime date = DateTime.Today;
+                App.VAT = connection.QueryFirstOrDefault<double>($"Select MAX(VAT) AS VAT From [Finance].[VAT] Where Date <= @date", date);
             }
+
             DataContext = UserData;
 
             var subWindow = new TendaringControl(this.UserData);

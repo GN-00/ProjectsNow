@@ -291,7 +291,7 @@
                     </Style>
                 </MenuItem.Resources>
             </MenuItem>
-            <MenuItem Click="EditItems_Click">
+            <!--<MenuItem Click="EditItems_Click">
                 <MenuItem.Header>
                     <TextBlock Text="Edit Item"/>
                 </MenuItem.Header>
@@ -309,7 +309,7 @@
                         </Style.Triggers>
                     </Style>
                 </MenuItem.Resources>
-            </MenuItem>
+            </MenuItem>-->
             <Separator/>
             <MenuItem Click="JobOrderItems_Click">
                 <MenuItem.Header>

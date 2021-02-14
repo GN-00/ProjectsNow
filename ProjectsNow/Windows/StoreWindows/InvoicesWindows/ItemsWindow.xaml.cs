@@ -36,6 +36,7 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
             {
                 PartNumbersList.Text = newItemData.PartNumber;
                 Qty.Text = newItemData.Qty.ToString();
+                Cost.Text = newItemData.Cost.ToString();
                 VAT.Text = newItemData.VAT.ToString();
             }
             else
@@ -115,6 +116,9 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
                     {
                         string query = $"{DatabaseAI.UpdateRecord<ItemTransaction>()}";
                         connection.Execute(query, newItemData);
+
+                        query = $"{DatabaseAI.UpdateRecord<ItemTransaction>($"Where ID = @TransferInvoiceID")}";
+                        connection.Execute(query, newItemData);
                     }
                     ItemData.Update(newItemData);
                 }
@@ -163,7 +167,8 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
             if (string.IsNullOrWhiteSpace(Cost.Text)) cost = 0;
             else cost = double.Parse(Cost.Text);
 
-            vat = double.Parse(VAT.Text);
+            if (string.IsNullOrWhiteSpace(VAT.Text)) vat = App.VAT;
+            else vat = double.Parse(Cost.Text);
 
             TotalCost.Text = Math.Abs(cost * qty).ToString("N2");
             Price.Text = Math.Abs(cost * (1 + vat / 100)).ToString("N2");

@@ -101,6 +101,22 @@ namespace ProjectsNow.Database
             return ($"{query} {condition}");
         }
 
+        public static string UpdateRecord<T>(string condition) where T : new()
+        {
+            var propertiesToUpdateCount = 0;
+            string query = $"Update {((WriteTable)typeof(T).GetCustomAttribute(typeof(WriteTable))).Name} set ";
+            PropertyInfo[] properties = typeof(T).GetProperties();
+            for (int i = 0; i < properties.Length; i++)
+            {
+                var checkID = (ID)typeof(T).GetProperty(properties[i].Name).GetCustomAttribute(typeof(ID));
+
+                var checkAttribute = (DontWrite)typeof(T).GetProperty(properties[i].Name).GetCustomAttribute(typeof(DontWrite));
+                if (checkAttribute == null && checkID == null)
+                    query += $"{(propertiesToUpdateCount++ == 0 ? " " : ", ")}{properties[i].Name} = @{properties[i].Name}";
+            }
+            return ($"{query} {condition}");
+        }
+
         public static string UpdateRecords<T>() where T : new()
         {
             var propertiesToUpdateCount = 0;

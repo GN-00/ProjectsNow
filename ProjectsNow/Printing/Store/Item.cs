@@ -9,7 +9,8 @@ namespace ProjectsNow.Printing.Store
 	public class Item 
 	{
         public int ID { get; set; }
-        public int SN { get; set; }
+        public int InvoiceID { get; set; }
+		public int SN { get; set; }
         public string Supplier { get; set; }
 		public string InvoiceNumber { get; set; }
 		public string Category { get; set; }

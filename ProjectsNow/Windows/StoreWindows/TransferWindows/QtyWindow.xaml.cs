@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Input;
 using ProjectsNow.Database;
 using System.Data.SqlClient;
-using ProjectsNow.Controllers;
 using System.Collections.ObjectModel;
 
 namespace ProjectsNow.Windows.StoreWindows.TransferWindows
@@ -63,9 +62,10 @@ namespace ProjectsNow.Windows.StoreWindows.TransferWindows
                         Cost = ItemData.Cost,
                         Date = DateTime.Today,
                         VAT = ItemData.VAT,
+                        OriginalInvoiceID = ItemData.OriginalInvoiceID,
                     };
                     query = $"{DatabaseAI.InsertRecord<ItemTransaction>()}";
-                    connection.Execute(query, transferData);
+                    transferData.ID = (int)(decimal)connection.ExecuteScalar(query, transferData);
 
                     ItemTransaction newItem = new ItemTransaction()
                     {
@@ -82,8 +82,9 @@ namespace ProjectsNow.Windows.StoreWindows.TransferWindows
                         Qty = qty,
                         Cost = ItemData.Cost,
                         Date = DateTime.Today,
-                        TransferInvoiceID = senderInvoice.ID,
+                        TransferInvoiceID = transferData.ID,
                         VAT = ItemData.VAT,
+                        OriginalInvoiceID = ItemData.OriginalInvoiceID,
                     };
                     query = $"{DatabaseAI.InsertRecord<ItemTransaction>()}";
                     connection.Execute(query, newItem);

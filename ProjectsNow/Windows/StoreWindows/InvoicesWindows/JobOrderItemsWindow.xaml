@@ -12,7 +12,7 @@
         Loaded="Window_Loaded"
         WindowStartupLocation="CenterScreen"
         Height="580"
-        Width="1059">
+        Width="1159">
     <Window.Resources>
 
         <ContextMenu x:Key="ItemsContextMenu">
@@ -113,7 +113,8 @@
                               CanUserReorderColumns="False"
                               CanUserResizeColumns="False"
                               CanUserSortColumns="False"
-                              SelectionMode="Single"                               SelectionUnit="FullRow"
+                              SelectionMode="Single"                              
+                              SelectionUnit="FullRow"
                               AutoGenerateColumns="False"
                               HorizontalGridLinesBrush="LightGray"
                               VerticalGridLinesBrush="Transparent"
@@ -192,8 +193,16 @@
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            
+
                             <DataGridTextColumn Width="100" Header="Qty" Binding="{Binding Qty}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="100" Header="In Order" Binding="{Binding InOrderQty}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="{x:Type TextBlock}">
                                         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -228,6 +237,7 @@
                         </DataGrid.Columns>
 
                     </DataGrid>
+
 
                     <TextBlock x:Name="Navigation"
                                    FontSize="14"

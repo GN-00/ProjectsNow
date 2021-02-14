@@ -70,9 +70,10 @@ namespace ProjectsNow.Windows.StoreWindows.ReturnItemsWindows
                         Cost = ItemData.Cost,
                         Date = DateTime.Today,
                         VAT = ItemData.VAT,
+                        OriginalInvoiceID = ItemData.OriginalInvoiceID,
                     };
                     query = $"{DatabaseAI.InsertRecord<ItemTransaction>()}";
-                    connection.Execute(query, transferData);
+                    transferData.ID = (int)(decimal)connection.ExecuteScalar(query, transferData);
 
                     ItemTransaction newItem = new ItemTransaction()
                     {
@@ -90,7 +91,8 @@ namespace ProjectsNow.Windows.StoreWindows.ReturnItemsWindows
                         Cost = ItemData.Cost,
                         Date = DateTime.Today,
                         VAT = ItemData.VAT,
-                        TransferInvoiceID = senderInvoice.ID
+                        TransferInvoiceID = transferData.ID,
+                        OriginalInvoiceID = ItemData.OriginalInvoiceID,
                     };
                     query = $"{DatabaseAI.InsertRecord<ItemTransaction>()}";
                     connection.Execute(query, newItem);

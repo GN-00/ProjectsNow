@@ -52,6 +52,7 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
                     Cost = cost,
                     VAT = double.Parse(VATInput.Text),
                     Date = InvoiceData.Date,
+                    OriginalInvoiceID = InvoiceData.ID,
                 };
 
                 using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))

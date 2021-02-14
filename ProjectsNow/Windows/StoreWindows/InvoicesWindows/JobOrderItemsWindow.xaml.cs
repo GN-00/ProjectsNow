@@ -93,7 +93,7 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
                 e.Accepted = true;
                 if (e.Item is ItemPurchased item)
                 {
-                    if (item.PurchasedQty >= item.Qty)
+                    if (item.PurchasedQty + item.InOrderQty >= item.Qty)
                     {
                         e.Accepted = false;
                         return;

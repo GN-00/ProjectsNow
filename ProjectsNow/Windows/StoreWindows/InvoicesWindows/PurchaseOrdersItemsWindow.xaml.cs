@@ -184,6 +184,7 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
                                 Cost = transaction.Cost,
                                 Date = InvoiceData.Date,
                                 VAT = companyPO.VAT,
+                                OriginalInvoiceID = InvoiceData.ID,
                             };
 
                             string query = $"{DatabaseAI.InsertRecord<ItemTransaction>()}";

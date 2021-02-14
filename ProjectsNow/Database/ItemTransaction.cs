@@ -20,9 +20,10 @@ namespace ProjectsNow.Database
 		public int? PanelTransactionID { get; set; }
 		public int InvoiceID { get; set; }
 		public int? TransferInvoiceID { get; set; }
+        public int? OriginalInvoiceID { get; set; }
 
 
-		private string _Category;
+        private string _Category;
 		public string Category
 		{
 			get { return this._Category; }
