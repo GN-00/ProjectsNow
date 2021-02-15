@@ -54,7 +54,7 @@ namespace ProjectsNow.Printing
             }
 
             TotalPrice = Math.Ceiling(TotalPrice);
-            DataContext = new { PanelsData, InvoiceInformationData, TotalCost, TotalVAT, TotalPrice, textPrice, textPriceArabic, Page, Pages };
+            DataContext = new { PanelsData, InvoiceInformationData, TotalCost, VATPercentage, TotalVAT, TotalPrice, textPrice, textPriceArabic, Page, Pages };
         }
     }
 }

@@ -264,31 +264,37 @@ namespace ProjectsNow.Windows.JobOrderWindows
 
         private void AddItem_Click(object sender, RoutedEventArgs e)
         {
-            Items_Standard_Window window = new Items_Standard_Window()
+            if (PanelsList.SelectedItem is MPanel panel)
             {
-                PanelID = (PanelsList.SelectedItem as MPanel).PanelID,
-                ItemData = null,
-                ActionData = Actions.New,
-                ModificationData = (ModificationsList.SelectedItem as Modification),
-                ItemsData = items,
-                ReferencesData = this.referencesData,
-                JobOrderItemsData = this.jobOrderItems,
-            };
-            window.ShowDialog();
+                Items_Standard_Window window = new Items_Standard_Window()
+                {
+                    PanelID = panel.PanelID,
+                    ItemData = null,
+                    ActionData = Actions.New,
+                    ModificationData = (ModificationsList.SelectedItem as Modification),
+                    ItemsData = items,
+                    ReferencesData = this.referencesData,
+                    JobOrderItemsData = this.jobOrderItems,
+                };
+                window.ShowDialog();
+            }
         }
         private void RemoveItem_Click(object sender, RoutedEventArgs e)
         {
-            Items_Standard_Window window = new Items_Standard_Window()
+            if(PanelsList.SelectedItem is MPanel panel)
             {
-                PanelID = (PanelsList.SelectedItem as MPanel).PanelID,
-                ItemData = null,
-                ActionData = Actions.Remove,
-                ModificationData = (ModificationsList.SelectedItem as Modification),
-                ItemsData = items,
-                ReferencesData = this.referencesData,
-                JobOrderItemsData = this.jobOrderItems,
-            };
-            window.ShowDialog();
+                Items_Standard_Window window = new Items_Standard_Window()
+                {
+                    PanelID = panel.PanelID,
+                    ItemData = null,
+                    ActionData = Actions.Remove,
+                    ModificationData = (ModificationsList.SelectedItem as Modification),
+                    ItemsData = items,
+                    ReferencesData = this.referencesData,
+                    JobOrderItemsData = this.jobOrderItems,
+                };
+                window.ShowDialog();
+            }
         }
 
         private void EditItem_Click(object sender, RoutedEventArgs e)

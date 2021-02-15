@@ -157,7 +157,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Invoicing_Windows
                 invoiceNumber = connection.QueryFirstOrDefault<int>(query) + 1;
             }
 
-            var newInvoice = new Invoice() { Number = $"{DateTime.Today.Year}{DateTime.Today.Month}{invoiceNumber:000}", Date = DateTime.Today };
+            var newInvoice = new Invoice() { Number = $"{DateTime.Today.Year}{DateTime.Today.Month:00}{invoiceNumber:000}", Date = DateTime.Today };
             invoices.Insert(0, newInvoice);
             InvoicesList.SelectedItem = newInvoice;
 

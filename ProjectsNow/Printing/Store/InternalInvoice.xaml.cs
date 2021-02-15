@@ -53,7 +53,7 @@ namespace ProjectsNow.Printing.Store
             }
 
             TotalPrice = Math.Ceiling(TotalPrice);
-            DataContext = new { ItemsData, InvoiceInformationData, TotalCost, TotalVAT, TotalPrice, textPrice, textPriceArabic, Page, Pages };
+            DataContext = new { ItemsData, InvoiceInformationData, TotalCost, VATPercentage, TotalVAT, TotalPrice, textPrice, textPriceArabic, Page, Pages };
         }
     }
 }

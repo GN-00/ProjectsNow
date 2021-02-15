@@ -146,7 +146,11 @@
                 <Border Grid.Row="0" Grid.Column="5" BorderThickness="0,1,1,1" BorderBrush="Black" Background="#4f81bd">
                     <Grid >
                         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                            <TextBlock Text="VAT 15%" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock Text="VAT " FontSize="14" FontWeight="Bold" Foreground="White"/>
+                                <TextBlock Text="{Binding VATPercentage}" FontSize="14" FontWeight="Bold" Foreground="White"/>
+                                <TextBlock Text="%" FontSize="14" FontWeight="Bold" Foreground="White"/>
+                            </StackPanel>
                             <TextBlock Text="الضريبة" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"/>
                         </StackPanel>
                     </Grid>
@@ -446,9 +450,11 @@
                 <TextBlock Text="المجموع قبل ضريبة القيمة المضافة" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Black" FontSize="14"/>
             </Grid>
             <Grid x:Name="Total2" Height="20" Margin="0,0,0,0">
-                <TextBlock Text="VAT " HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontSize="14"/>
-                <TextBlock Text="{Binding VATPercentage}" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontSize="14"/>
-                <TextBlock Text=" " HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontSize="14"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock Text="VAT " Foreground="Black" FontSize="14"/>
+                    <TextBlock Text="{Binding VATPercentage}" Foreground="Black" FontSize="14"/>
+                    <TextBlock Text="%" Foreground="Black" FontSize="14"/>
+                </StackPanel>
                 <TextBlock Text="{Binding TotalVAT}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontSize="14"/>
                 <TextBlock Text="ضريبة القيمة المضافة" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Black" FontSize="14"/>
             </Grid>
