@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProjectsNow.Printing.Store
+﻿namespace ProjectsNow.Printing.Store
 {
 	public class Item 
 	{
@@ -22,11 +16,7 @@ namespace ProjectsNow.Printing.Store
 		public double Cost { get; set; }
 		public double TotalCost { get { return (Qty * Cost); } }
 		public double VAT { get; set; }
-		public double TotalPrice { get { return (Qty * Cost * (1 + VAT)); } }
-
-
-
-
-
+		public double VATValue { get { return (VAT / 100) * TotalCost; } }
+		public double TotalPrice { get { return (Qty * Cost * (1 + VAT / 100)); } }
 	}
 }

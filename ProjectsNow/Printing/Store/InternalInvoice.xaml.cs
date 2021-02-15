@@ -15,7 +15,7 @@ namespace ProjectsNow.Printing.Store
         public double TotalVAT { get; set; }
         public double TotalPrice { get; set; }
         public double VATPercentage { get; set; }
-        public List<IPanel> PanelsData { get; set; }
+        public List<Item> ItemsData { get; set; }
         public InvoiceInformation InvoiceInformationData { get; set; }
 
         public InternalInvoice()
@@ -35,7 +35,7 @@ namespace ProjectsNow.Printing.Store
             for (int i = 1; i <= 6; i++)
                 ((Grid)FindName($"Total{i}")).Visibility = Visibility.Collapsed;
 
-            for (int i = 1; i <= PanelsData.Count; i++)
+            for (int i = 1; i <= ItemsData.Count; i++)
                 InvoiceTable.RowDefinitions[i].Height = new GridLength(40);
 
             string textPrice = null;
@@ -53,7 +53,7 @@ namespace ProjectsNow.Printing.Store
             }
 
             TotalPrice = Math.Ceiling(TotalPrice);
-            DataContext = new { PanelsData, InvoiceInformationData, TotalCost, TotalVAT, TotalPrice, textPrice, textPriceArabic, Page, Pages };
+            DataContext = new { ItemsData, InvoiceInformationData, TotalCost, TotalVAT, TotalPrice, textPrice, textPriceArabic, Page, Pages };
         }
     }
 }

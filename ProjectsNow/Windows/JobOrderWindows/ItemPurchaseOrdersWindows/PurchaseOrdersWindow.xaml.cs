@@ -155,7 +155,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.ItemPurchaseOrdersWindows
 
         private void NewPO_Click(object sender, RoutedEventArgs e)
         {
-            CompanyPO order = new CompanyPO() { Date = DateTime.Today, JobOrderID = JobOrderData.ID };
+            CompanyPO order = new CompanyPO() { Date = DateTime.Today, JobOrderID = JobOrderData.ID, VAT = App.VAT };
             OrderWindow purchaseOrderWindow = new OrderWindow()
             {
                 ActionData = Actions.New,

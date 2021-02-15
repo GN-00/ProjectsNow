@@ -52,7 +52,6 @@ namespace ProjectsNow.Windows.JobOrderWindows.ItemPurchaseOrdersWindows
                 {
                     if (orderData.Number > 99)
                         orderData.Code = $"{(DateTime.Today.Year - DatabaseAI.CompanyCreationYear) * 1000 + orderData.Number}/ER-PCAPS/{DateTime.Today.Month:00}/{DateTime.Today.Year}";
-
                     else
                         orderData.Code = $"{(DateTime.Today.Year - DatabaseAI.CompanyCreationYear) * 100 + orderData.Number}/ER-PCAPS/{DateTime.Today.Month:00}/{DateTime.Today.Year}";
                 }
