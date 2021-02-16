@@ -34,7 +34,7 @@ namespace ProjectsNow.Windows.InquiryWindows
         {
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                InquiriesData = InquiryController.GetInquiries(connection, UserData, Statuses.New, DateTime.Today.Year);
+                InquiriesData = InquiryController.GetInquiries(connection, UserData, Statuses.New, DateTime.Now.Year);
                 YearsData = InquiryController.GetInquiriesYears(connection, UserData, Statuses.New);
             }
             DataContext = new { UserData };
@@ -42,8 +42,8 @@ namespace ProjectsNow.Windows.InquiryWindows
             viewData = new CollectionViewSource() { Source = InquiriesData };
             InquiriesList.ItemsSource = viewData.View;
             YearsList.ItemsSource = YearsData;
-            YearsList.SelectedItem = YearsData.Where(item => item.Year == DateTime.Today.Year).FirstOrDefault();
-            YearValue.Text = DateTime.Today.Year.ToString();
+            YearsList.SelectedItem = YearsData.Where(item => item.Year == DateTime.Now.Year).FirstOrDefault();
+            YearValue.Text = DateTime.Now.Year.ToString();
 
             viewData.Filter += DataFilter;
             viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
@@ -307,14 +307,14 @@ namespace ProjectsNow.Windows.InquiryWindows
             StatusName.Foreground = YearValue.Foreground = Brushes.Black;
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                viewData.Source = InquiriesData = InquiryController.GetInquiries(connection, UserData, Statuses.All, DateTime.Today.Year);
+                viewData.Source = InquiriesData = InquiryController.GetInquiries(connection, UserData, Statuses.All, DateTime.Now.Year);
                 YearsData = InquiryController.GetInquiriesYears(connection, UserData, Statuses.All);
             }
             InquiriesList.ItemsSource = viewData.View;
             YearsList.ItemsSource = YearsData;
 
-            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Today.Year);
-            YearValue.Text = DateTime.Today.Year.ToString();
+            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Now.Year);
+            YearValue.Text = DateTime.Now.Year.ToString();
 
             CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
@@ -331,14 +331,14 @@ namespace ProjectsNow.Windows.InquiryWindows
 
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                viewData.Source = InquiriesData = InquiryController.GetInquiries(connection, UserData, Statuses.New, DateTime.Today.Year);
+                viewData.Source = InquiriesData = InquiryController.GetInquiries(connection, UserData, Statuses.New, DateTime.Now.Year);
                 YearsData = InquiryController.GetInquiriesYears(connection, UserData, Statuses.New);
             }
             InquiriesList.ItemsSource = viewData.View;
             YearsList.ItemsSource = YearsData;
 
-            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Today.Year);
-            YearValue.Text = DateTime.Today.Year.ToString();
+            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Now.Year);
+            YearValue.Text = DateTime.Now.Year.ToString();
 
             CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
@@ -354,14 +354,14 @@ namespace ProjectsNow.Windows.InquiryWindows
             StatusName.Foreground = YearValue.Foreground = Brushes.Blue;
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                viewData.Source = InquiriesData = InquiryController.GetInquiries(connection, UserData, Statuses.Running, DateTime.Today.Year);
+                viewData.Source = InquiriesData = InquiryController.GetInquiries(connection, UserData, Statuses.Running, DateTime.Now.Year);
                 YearsData = InquiryController.GetInquiriesYears(connection, UserData, Statuses.Running);
             }
             InquiriesList.ItemsSource = viewData.View;
             YearsList.ItemsSource = YearsData;
 
-            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Today.Year);
-            YearValue.Text = DateTime.Today.Year.ToString();
+            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Now.Year);
+            YearValue.Text = DateTime.Now.Year.ToString();
 
             CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);

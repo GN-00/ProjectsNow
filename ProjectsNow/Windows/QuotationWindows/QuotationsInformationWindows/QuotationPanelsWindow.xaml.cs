@@ -255,7 +255,7 @@ namespace ProjectsNow.Windows.QuotationWindows.QuotationsInformationWindows
                     elements.Add(quotationsItems);
                 }
 
-                Printing.Print.PrintPreview(elements);
+                Printing.Print.PrintPreview(elements, $"Quotation {QuotationData.QuotationCode} Items");
             }
             else
             {

@@ -174,7 +174,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
             if (modifications.Count != 0)
                 newID = (modifications.Max<Modification>(m => m.ID));
 
-            var newModification = new Modification() { ID = ++newID, JobOrderID = JobOrderData.ID, Date = DateTime.Today };
+            var newModification = new Modification() { ID = ++newID, JobOrderID = JobOrderData.ID, Date = DateTime.Now };
             modifications.Insert(0, newModification);
             ModificationsList.SelectedItem = newModification;
 

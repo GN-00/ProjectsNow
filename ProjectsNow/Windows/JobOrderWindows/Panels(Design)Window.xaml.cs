@@ -66,7 +66,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
             if (List1.SelectedItem is JPanel panelData)
             {
                 panelData.Status = Statuses.Designing.ToString();
-                panelData.DateOfDesign = DateTime.Today;
+                panelData.DateOfDesign = DateTime.Now;
 
                 using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
                 {

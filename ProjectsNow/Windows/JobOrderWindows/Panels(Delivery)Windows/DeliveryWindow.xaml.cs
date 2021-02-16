@@ -153,11 +153,11 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Delivery_Windows
             int deliveryNumber;
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                string query = $"Select DeliveryNumber From [JobOrder].[DeliveryNumber] Where Year = {DateTime.Today.Year}";
+                string query = $"Select DeliveryNumber From [JobOrder].[DeliveryNumber] Where Year = {DateTime.Now.Year}";
                 deliveryNumber = connection.QueryFirstOrDefault<int>(query) + 1;
             }
 
-            var newDelivery = new Delivery() { Number = $"{deliveryNumber:000}{DateTime.Today.Month}{DateTime.Today.Year.ToString().Substring(2,2)}", Date = DateTime.Today };
+            var newDelivery = new Delivery() { Number = $"{deliveryNumber:000}{DateTime.Now.Month}{DateTime.Now.Year.ToString().Substring(2,2)}", Date = DateTime.Now };
             deliveries.Insert(0, newDelivery);
             DeliveriesList.SelectedItem = newDelivery;
 
@@ -285,7 +285,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Delivery_Windows
                         elements.Add(deliveryForm);
                     }
 
-                    Print.PrintPreview(elements);
+                    Print.PrintPreview(elements, $"Delivery-{deliveryData.Number}");
                 }
                 else
                 {

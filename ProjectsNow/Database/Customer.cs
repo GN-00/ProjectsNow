@@ -68,7 +68,7 @@ namespace ProjectsNow.Database
             set { if (value != this._Website) { this._Website = value; NotifyPropertyChanged(); } }
         }
 
-        private DateTime _StartRelation = DateTime.Today;
+        private DateTime _StartRelation = DateTime.Now;
         public DateTime StartRelation
         {
             get { return this._StartRelation; }

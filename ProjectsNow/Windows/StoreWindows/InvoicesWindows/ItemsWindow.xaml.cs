@@ -168,11 +168,11 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
             else cost = double.Parse(Cost.Text);
 
             if (string.IsNullOrWhiteSpace(VAT.Text)) vat = App.VAT;
-            else vat = double.Parse(Cost.Text);
+            else vat = double.Parse(VAT.Text);
 
             TotalCost.Text = Math.Abs(cost * qty).ToString("N2");
-            Price.Text = Math.Abs(cost * (1 + vat / 100)).ToString("N2");
-            TotalPrice.Text = Math.Abs(cost * (1 + vat / 100) * qty).ToString("N2");
+            Price.Text = Math.Abs(cost * (1 + (vat / 100))).ToString("N2");
+            TotalPrice.Text = Math.Abs(cost * (1 + (vat / 100)) * qty).ToString("N2");
         }
 
         private void Cost_LostFocus(object sender, RoutedEventArgs e)

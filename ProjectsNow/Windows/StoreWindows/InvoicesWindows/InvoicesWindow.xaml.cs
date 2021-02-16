@@ -160,7 +160,7 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
             SupplierInvoice supplierInvoice = new SupplierInvoice()
             {
                 JobOrderID = JobOrderData.ID,
-                Date = DateTime.Today,
+                Date = DateTime.Now,
             };
             InvoiceWindow invoicesWindow = new InvoiceWindow()
             {
@@ -174,15 +174,15 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
         {
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                string query = $"Select Number From [Store].[TransferInvoiceNumber] Where Year  = {DateTime.Today.Year} And Month = {DateTime.Today.Month} ";
+                string query = $"Select Number From [Store].[TransferInvoiceNumber] Where Year  = {DateTime.Now.Year} And Month = {DateTime.Now.Month} ";
                 int invoiceNumber = connection.QueryFirstOrDefault<int>(query) + 1;
                 SupplierInvoice supplierInvoice = new SupplierInvoice()
                 {
                     JobOrderID = JobOrderData.ID,
-                    Date = DateTime.Today,
+                    Date = DateTime.Now,
                     SupplierID = 0,
                     SupplierCode = null,
-                    Number = $"ER-{DateTime.Today.Year}{DateTime.Today.Month:00}{invoiceNumber:00}"
+                    Number = $"ER-{DateTime.Now.Year}{DateTime.Now.Month:00}{invoiceNumber:00}"
                 };
 
                 query = $"{DatabaseAI.InsertRecord<SupplierInvoice>()}";
@@ -219,8 +219,10 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
 
                         foreach (ItemTransaction item in itemsData.Where(i => i.InvoiceID == invoice.ID).ToList())
                         {
-                            query += $"Delete From [Store].[Transactions] Where ID = {item.ID};" +
-                                     $"Delete From [Store].[Transactions] Where ID = {item.TransferInvoiceID};";
+                            query += $"Delete From [Store].[Transactions] Where ID = {item.ID}; ";
+
+                            if (item.TransferInvoiceID != null)
+                                query += $"Delete From [Store].[Transactions] Where ID = {item.TransferInvoiceID}; ";
 
                             itemsData.Remove(item);
                         }
@@ -319,7 +321,7 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
                         elements.Add(invoiceForm);
                     }
 
-                    Printing.Print.PrintPreview(elements);
+                    Printing.Print.PrintPreview(elements, $"Invoice-{invoiceData.Number}");
                 }
                 else
                 {
@@ -389,8 +391,11 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
 
                     if (checkItemUsage == null)
                     {
-                        query = $"Delete From [Store].[Transactions] Where ID = {item.ID};" +
-                                $"Delete From [Store].[Transactions] Where ID = {item.TransferInvoiceID};";
+                        query = $"Delete From [Store].[Transactions] Where ID = {item.ID}; ";
+
+                        if (item.TransferInvoiceID != null)
+                            query += $"Delete From [Store].[Transactions] Where ID = {item.TransferInvoiceID}; ";
+
                         connection.Execute(query);
 
                         itemsData.Remove(item);

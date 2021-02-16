@@ -78,7 +78,7 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
 
         private void New_Click(object sender, RoutedEventArgs e)
         {
-            var jobOrder = new MoneyTransaction() { JobOrderID = JobOrderData.ID, CustomerID = JobOrderData.CustomerID, Date = DateTime.Today, Type = MoneyTransactionTypes.Project.ToString() };
+            var jobOrder = new MoneyTransaction() { JobOrderID = JobOrderData.ID, CustomerID = JobOrderData.CustomerID, Date = DateTime.Now, Type = MoneyTransactionTypes.Project.ToString() };
             JobOrderTransactionWindow jobOrderTransactionWindow = new JobOrderTransactionWindow()
             {
                 UserData = UserData,

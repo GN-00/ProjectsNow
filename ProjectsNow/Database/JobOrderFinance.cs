@@ -53,6 +53,9 @@ namespace ProjectsNow.Database
             }
         }
 
+		public string BalanceView
+		{ get { return Math.Round(Balance).ToString("N2"); } }
+
 	}
 
 }

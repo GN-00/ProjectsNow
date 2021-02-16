@@ -115,7 +115,7 @@ namespace ProjectsNow.Controllers
 
 		public static int GetCodeNumber(SqlConnection connection)
 		{
-			string query = $"Select MAX(CodeNumber) as CodeNumber From [JobOrder].[JobOrders] Where CodeYear = {DateTime.Today.Year}";
+			string query = $"Select MAX(CodeNumber) as CodeNumber From [JobOrder].[JobOrders] Where CodeYear = {DateTime.Now.Year}";
 			var codeNumber = (connection.QueryFirstOrDefault<JobOrder>(query)).CodeNumber;
 			return ++codeNumber;
 		}

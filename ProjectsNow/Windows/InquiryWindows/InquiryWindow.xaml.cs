@@ -48,9 +48,9 @@ namespace ProjectsNow.Windows.InquiryWindows
                 {
                     var query = DatabaseAI.InsertRecord<Inquiry>();
                     newInquiryData.InquiryID = (int)(decimal)connection.ExecuteScalar(query, newInquiryData);
-                    newInquiryData.RegisterNumber = InquiryController.NewRegisterNumber(connection, DateTime.Today.Year);
-                    newInquiryData.RegisterMonth = DateTime.Today.Month;
-                    newInquiryData.RegisterYear = DateTime.Today.Year;
+                    newInquiryData.RegisterNumber = InquiryController.NewRegisterNumber(connection, DateTime.Now.Year);
+                    newInquiryData.RegisterMonth = DateTime.Now.Month;
+                    newInquiryData.RegisterYear = DateTime.Now.Year;
                     newInquiryData.RegisterCode =
                         $"ER-Inquiry{newInquiryData.RegisterNumber:000}/{newInquiryData.RegisterMonth}/{newInquiryData.RegisterYear.ToString().Substring(2, 2)}";
                 }
@@ -199,7 +199,7 @@ namespace ProjectsNow.Windows.InquiryWindows
 
             if (date == null)
             {
-                picker.SelectedDate = DateTime.Today;
+                picker.SelectedDate = DateTime.Now;
             }
             else
             {

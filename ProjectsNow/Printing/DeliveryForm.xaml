@@ -46,19 +46,19 @@
         </StackPanel>
 
         <StackPanel DataContext="{Binding DeliveryInfromation}" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2cm,9.5cm,0,0">
-            <TextBlock Text="   SHIPPING / DELIVER TO " Background="#4f81bd" Foreground="White" Width="7.5cm" FontSize="16"/>
+            <TextBlock Text="   SHIPPING / DELIVER TO " Background="#4f81bd" Foreground="White" Width="7.5cm" FontSize="16" HorizontalAlignment="Left"/>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="M/s " Width="3.5cm" FontSize="16"/>
+                <TextBlock Text="M/s " Width="2.5cm" FontSize="16"/>
                 <TextBlock Text=": " FontSize="16"/>
                 <TextBlock Text="{Binding CustomerName}" FontSize="16"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Attention " Width="3.5cm" FontSize="16"/>
+                <TextBlock Text="Attention " Width="2.5cm" FontSize="16"/>
                 <TextBlock Text=": " FontSize="16"/>
                 <TextBlock Text="{Binding Attention}" FontSize="16"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Project Name " Width="3.5cm" FontSize="16"/>
+                <TextBlock Text="Project Name " Width="2.5cm" FontSize="16"/>
                 <TextBlock Text=": " FontSize="16"/>
                 <TextBlock Text="{Binding ProjectName}" FontSize="16"/>
             </StackPanel>

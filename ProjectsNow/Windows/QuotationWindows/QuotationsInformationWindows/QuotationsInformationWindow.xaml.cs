@@ -40,7 +40,7 @@ namespace ProjectsNow.Windows.QuotationWindows.QuotationsInformationWindows
             status = Statuses.All;
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                QuotationsData = QuotationController.GetQuotations(connection, DateTime.Today.Year, status);
+                QuotationsData = QuotationController.GetQuotations(connection, DateTime.Now.Year, status);
                 YearsList.ItemsSource = YearsData = QuotationController.UserQuotationsYears(connection, UserData.UserID, status);
             }
             DataContext = new { UserData };
@@ -51,8 +51,8 @@ namespace ProjectsNow.Windows.QuotationWindows.QuotationsInformationWindows
             QuotationsList.ItemsSource = viewData.View;
             viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
 
-            YearsList.SelectedItem = YearsData.Where(item => item.Year == DateTime.Today.Year).FirstOrDefault();
-            YearValue.Text = DateTime.Today.Year.ToString();
+            YearsList.SelectedItem = YearsData.Where(item => item.Year == DateTime.Now.Year).FirstOrDefault();
+            YearValue.Text = DateTime.Now.Year.ToString();
 
             if (QuotationsData.Count == 0)
                 CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
@@ -343,14 +343,14 @@ namespace ProjectsNow.Windows.QuotationWindows.QuotationsInformationWindows
             StatusName.Foreground = YearValue.Foreground = Brushes.Black;
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                viewData.Source = QuotationsData = QuotationController.UserQuotations(connection, UserData.UserID, DateTime.Today.Year, status);
+                viewData.Source = QuotationsData = QuotationController.UserQuotations(connection, UserData.UserID, DateTime.Now.Year, status);
                 YearsData = QuotationController.UserQuotationsYears(connection, UserData.UserID, status);
             }
             QuotationsList.ItemsSource = viewData.View;
             YearsList.ItemsSource = YearsData;
 
-            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Today.Year);
-            YearValue.Text = DateTime.Today.Year.ToString();
+            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Now.Year);
+            YearValue.Text = DateTime.Now.Year.ToString();
 
             CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
@@ -365,14 +365,14 @@ namespace ProjectsNow.Windows.QuotationWindows.QuotationsInformationWindows
             StatusName.Foreground = YearValue.Foreground = Brushes.Green;
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                viewData.Source = QuotationsData = QuotationController.UserQuotations(connection, UserData.UserID, DateTime.Today.Year, status);
+                viewData.Source = QuotationsData = QuotationController.UserQuotations(connection, UserData.UserID, DateTime.Now.Year, status);
                 YearsData = QuotationController.UserQuotationsYears(connection, UserData.UserID, status);
             }
             QuotationsList.ItemsSource = viewData.View;
             YearsList.ItemsSource = YearsData;
 
-            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Today.Year);
-            YearValue.Text = DateTime.Today.Year.ToString();
+            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Now.Year);
+            YearValue.Text = DateTime.Now.Year.ToString();
 
             CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
@@ -387,14 +387,14 @@ namespace ProjectsNow.Windows.QuotationWindows.QuotationsInformationWindows
             StatusName.Foreground = YearValue.Foreground = Brushes.Blue;
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                viewData.Source = QuotationsData = QuotationController.UserQuotations(connection, UserData.UserID, DateTime.Today.Year, status);
+                viewData.Source = QuotationsData = QuotationController.UserQuotations(connection, UserData.UserID, DateTime.Now.Year, status);
                 YearsData = QuotationController.UserQuotationsYears(connection, UserData.UserID, status);
             }
             QuotationsList.ItemsSource = viewData.View;
             YearsList.ItemsSource = YearsData;
 
-            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Today.Year);
-            YearValue.Text = DateTime.Today.Year.ToString();
+            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Now.Year);
+            YearValue.Text = DateTime.Now.Year.ToString();
 
             CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
@@ -409,14 +409,14 @@ namespace ProjectsNow.Windows.QuotationWindows.QuotationsInformationWindows
             StatusName.Foreground = YearValue.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFC800"));
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                viewData.Source = QuotationsData = QuotationController.UserQuotations(connection, UserData.UserID, DateTime.Today.Year, status);
+                viewData.Source = QuotationsData = QuotationController.UserQuotations(connection, UserData.UserID, DateTime.Now.Year, status);
                 YearsData = QuotationController.UserQuotationsYears(connection, UserData.UserID, status);
             }
             QuotationsList.ItemsSource = viewData.View;
             YearsList.ItemsSource = YearsData;
 
-            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Today.Year);
-            YearValue.Text = DateTime.Today.Year.ToString();
+            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Now.Year);
+            YearValue.Text = DateTime.Now.Year.ToString();
 
             CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
@@ -431,14 +431,14 @@ namespace ProjectsNow.Windows.QuotationWindows.QuotationsInformationWindows
             StatusName.Foreground = YearValue.Foreground = Brushes.Red;
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                viewData.Source = QuotationsData = QuotationController.UserQuotations(connection, UserData.UserID, DateTime.Today.Year, status);
+                viewData.Source = QuotationsData = QuotationController.UserQuotations(connection, UserData.UserID, DateTime.Now.Year, status);
                 YearsData = QuotationController.UserQuotationsYears(connection, UserData.UserID, status);
             }
             QuotationsList.ItemsSource = viewData.View;
             YearsList.ItemsSource = YearsData;
 
-            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Today.Year);
-            YearValue.Text = DateTime.Today.Year.ToString();
+            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Now.Year);
+            YearValue.Text = DateTime.Now.Year.ToString();
 
             CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
@@ -565,7 +565,7 @@ namespace ProjectsNow.Windows.QuotationWindows.QuotationsInformationWindows
                         elements.Add(quotationsItems);
                     }
 
-                    Printing.Print.PrintPreview(elements);
+                    Printing.Print.PrintPreview(elements, $"Quotation {quotationData.QuotationCode} Items");
                 }
                 else
                 {

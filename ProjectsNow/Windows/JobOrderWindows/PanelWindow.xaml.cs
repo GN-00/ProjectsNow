@@ -148,7 +148,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
             if(isReadyToPrint == true)
             {
                 FrameworkElement page = new CheckList() { PanelData = this.newPanelData, JobOrderData = this.JobOrderData };
-                Print.PrintPreview(page);
+                Print.PrintPreview(page, $"{JobOrderData.Code}-{PanelData.PanelSN}-{PanelData.PanelName}-CheckList");
             }
         }
     }

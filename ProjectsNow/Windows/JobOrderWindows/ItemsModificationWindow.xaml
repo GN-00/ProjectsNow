@@ -598,7 +598,7 @@
                             </DataGrid.Resources>
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Width="50" Header="SN" Binding="{Binding PanelsSN}">
+                                <DataGridTextColumn Width="50" Header="SN" Binding="{Binding PanelSN}">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="{x:Type TextBlock}">
                                             <Setter Property="HorizontalAlignment" Value="Center"/>

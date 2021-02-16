@@ -107,11 +107,11 @@
                     </Button.Resources>
                 </Button>
             </StackPanel>
-            <!--<StackPanel x:Name="NewStock">
+            <StackPanel x:Name="Statements">
                 <Button>
                     <Button.Resources>
                         <Style TargetType="{x:Type Button}">
-                            <Setter Property="Content" Value="Stock"/>
+                            <Setter Property="Content" Value="Customers Statements"/>
                             <Setter Property="Width" Value="350"/>
                             <Setter Property="Height" Value="100"/>
                             <Setter Property="Margin" Value="20"/>
@@ -121,7 +121,7 @@
                             <Setter Property="FontStyle" Value="Italic"/>
                             <Setter Property="FontWeight" Value="Bold"/>
                             <Setter Property="FontFamily" Value="Times new roman"/>
-                            <EventSetter Event="Click" Handler="Stock_Click"/>
+                            <EventSetter Event="Click" Handler="Statements_Click"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="Button">
@@ -131,7 +131,7 @@
                                                     <ColumnDefinition Width="30*"/>
                                                     <ColumnDefinition Width="70*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Image Grid.Column="0" Source="/Images/Icons/Stock.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="10"/>
+                                                <Image Grid.Column="0" Source="/Images/Icons/Statement.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="10"/>
                                                 <ContentPresenter Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                             </Grid>
                                         </Border>
@@ -152,7 +152,7 @@
                         </Style>
                     </Button.Resources>
                 </Button>
-            </StackPanel>-->
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>

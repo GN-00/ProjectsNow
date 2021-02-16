@@ -26,7 +26,7 @@ namespace ProjectsNow.Database
             set { if (value != this._Number) { this._Number = value; NotifyPropertyChanged(); } }
         }
 
-        private DateTime? _Date = DateTime.Today;
+        private DateTime? _Date = DateTime.Now;
         public DateTime? Date
         {
             get { return this._Date; }

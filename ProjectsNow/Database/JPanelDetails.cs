@@ -21,7 +21,7 @@ namespace ProjectsNow.Database
         private string _PanelName;
         private string _PanelType;
         private string _Status = Statuses.New.ToString();
-        private DateTime? _DateOfCreation = DateTime.Today;
+        private DateTime? _DateOfCreation = DateTime.Now;
         private string _EnclosureIP;
         private double? _EnclosureWidth;
         private double? _EnclosureDepth;

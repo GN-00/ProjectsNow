@@ -18,7 +18,6 @@ namespace ProjectsNow.Windows.UserWindows
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Acknowledgment acknowledgement = new Acknowledgment();
             txtUsername.Focus();
         }
         private void CloseWindow_Click(object sender, RoutedEventArgs e)

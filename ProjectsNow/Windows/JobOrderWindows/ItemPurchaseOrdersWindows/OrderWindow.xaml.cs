@@ -38,7 +38,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.ItemPurchaseOrdersWindows
                 query = "Select * From [Store].[Suppliers] Order By Name";
                 suppliers = connection.Query<Supplier>(query);
 
-                query = $"Select * From [Purchase].[OrderNumber] Where Year = {DateTime.Today.Year}";
+                query = $"Select * From [Purchase].[OrderNumber] Where Year = {DateTime.Now.Year}";
                 numberPO = connection.QueryFirstOrDefault<int>(query);
                 orderData.Number = ++numberPO;
 
@@ -51,9 +51,9 @@ namespace ProjectsNow.Windows.JobOrderWindows.ItemPurchaseOrdersWindows
                 if (ActionData == Actions.New)
                 {
                     if (orderData.Number > 99)
-                        orderData.Code = $"{(DateTime.Today.Year - DatabaseAI.CompanyCreationYear) * 1000 + orderData.Number}/ER-PCAPS/{DateTime.Today.Month:00}/{DateTime.Today.Year}";
+                        orderData.Code = $"{(DateTime.Now.Year - DatabaseAI.CompanyCreationYear) * 1000 + orderData.Number}/ER-PCAPS/{DateTime.Now.Month:00}/{DateTime.Now.Year}";
                     else
-                        orderData.Code = $"{(DateTime.Today.Year - DatabaseAI.CompanyCreationYear) * 100 + orderData.Number}/ER-PCAPS/{DateTime.Today.Month:00}/{DateTime.Today.Year}";
+                        orderData.Code = $"{(DateTime.Now.Year - DatabaseAI.CompanyCreationYear) * 100 + orderData.Number}/ER-PCAPS/{DateTime.Now.Month:00}/{DateTime.Now.Year}";
                 }
             }
             SuppliersList.ItemsSource = suppliers;
@@ -134,7 +134,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.ItemPurchaseOrdersWindows
             DateTime? date = picker.SelectedDate;
 
             if (date == null)
-                picker.SelectedDate = orderData.Date = DateTime.Today;
+                picker.SelectedDate = orderData.Date = DateTime.Now;
             else
                 picker.SelectedDate = orderData.Date = date.Value;
         }

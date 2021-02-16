@@ -43,14 +43,14 @@ namespace ProjectsNow.Database
 			set { if (value != this._ProjectName) { this._ProjectName = value; NotifyPropertyChanged(); } }
 		}
 
-		private DateTime _RegisterDate = DateTime.Today;
+		private DateTime _RegisterDate = DateTime.Now;
 		public DateTime RegisterDate
 		{
 			get { return this._RegisterDate; }
 			set { if (value != this._RegisterDate) { this._RegisterDate = value; NotifyPropertyChanged(); } }
 		}
 
-		private DateTime _DuoDate = DateTime.Today.AddDays(7);
+		private DateTime _DuoDate = DateTime.Now.AddDays(7);
 		public DateTime DuoDate
 		{
 			get { return this._DuoDate; }

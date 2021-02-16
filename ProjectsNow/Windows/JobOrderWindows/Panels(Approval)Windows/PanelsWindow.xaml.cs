@@ -78,8 +78,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Approval_Windows
                     Date = RequestData.Date,
                 };
                 PanelsTransaction.Add(newPanel);
-
-                this.Close();
+                PanelsData.Remove(panelData);
             }
         }
 

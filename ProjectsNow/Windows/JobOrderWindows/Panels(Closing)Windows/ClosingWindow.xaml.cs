@@ -127,7 +127,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Closing_Windows
                         PanelSN = PanelData.PanelSN,
                         EnclosureType = PanelData.EnclosureType,
                         Qty = panelToClose,
-                        Date = DateTime.Today,
+                        Date = DateTime.Now,
                     };
                     PanelsTransaction.Add(newClosedPanel);
 
@@ -169,7 +169,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Closing_Windows
                                          (stockItem.Category == null ? null : $"'{stockItem.Category}', ") +
                                          $"'{stockItem.Code}', " +
                                          $"'{stockItem.Description}', {stockItem.ID}, {stockItem.InvoiceID}, '{stockItem.Unit}', {needQty}, " +
-                                         $"{stockItem.Cost}, '{DateTime.Today:yyyy-MM-dd}', 'Used', '{stockItem.Source}'); ";
+                                         $"{stockItem.Cost}, '{DateTime.Now:yyyy-MM-dd}', 'Used', '{stockItem.Source}'); ";
 
                                 needQty = 0;
                                 break;
@@ -185,7 +185,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Closing_Windows
                                          (stockItem.Category == null ? null : $"'{stockItem.Category}', ") +
                                          $"'{stockItem.Code}', " +
                                          $"'{stockItem.Description}', {stockItem.ID}, {stockItem.InvoiceID}, '{stockItem.Unit}', {stockItem.Qty}, " +
-                                         $"{stockItem.Cost}, '{DateTime.Today:yyyy-MM-dd}', 'Used', '{stockItem.Source}'); ";
+                                         $"{stockItem.Cost}, '{DateTime.Now:yyyy-MM-dd}', 'Used', '{stockItem.Source}'); ";
 
                                 needQty -= stockItem.Qty;
                             }

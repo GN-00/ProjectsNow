@@ -159,7 +159,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Approval_Windows
                 deliveryNumber = connection.QueryFirstOrDefault<int>(query) + 1;
             }
 
-            var newRequest = new ApprovalRequest() { Number = $"{deliveryNumber:000}", Date = DateTime.Today };
+            var newRequest = new ApprovalRequest() { Number = $"{deliveryNumber:000}", Date = DateTime.Now };
             requests.Insert(0, newRequest);
             RequestsList.SelectedItem = newRequest;
 
@@ -283,7 +283,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Approval_Windows
                         elements.Add(requestforShopDrawingApproval);
                     }
 
-                    Print.PrintPreview(elements);
+                    Print.PrintPreview(elements, $"Shop Drawing Approval Request {requestData.Number}");
                 }
                 else
                 {

@@ -153,11 +153,11 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Invoicing_Windows
             int invoiceNumber;
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                string query = $"Select InvoiceNumber From [JobOrder].[InvoiceNumber] Where Year = {DateTime.Today.Year}";
+                string query = $"Select InvoiceNumber From [JobOrder].[InvoiceNumber] Where Year = {DateTime.Now.Year}";
                 invoiceNumber = connection.QueryFirstOrDefault<int>(query) + 1;
             }
 
-            var newInvoice = new Invoice() { Number = $"{DateTime.Today.Year}{DateTime.Today.Month:00}{invoiceNumber:000}", Date = DateTime.Today };
+            var newInvoice = new Invoice() { Number = $"{DateTime.Now.Year}{DateTime.Now.Month:00}{invoiceNumber:000}", Date = DateTime.Now };
             invoices.Insert(0, newInvoice);
             InvoicesList.SelectedItem = newInvoice;
 
@@ -293,7 +293,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Invoicing_Windows
                         elements.Add(invoiceForm);
                     }
 
-                    Print.PrintPreview(elements);
+                    Print.PrintPreview(elements, $"Invoice-{invoiceData.Number}");
                 }
                 else
                 {

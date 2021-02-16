@@ -19,7 +19,7 @@ namespace ProjectsNow.Windows.MainWindows
             List<StackPanel> buttons = new List<StackPanel>();
             if (UserData.AccessCompanyAccount == true) buttons.Add(Accounts);
             if (UserData.AccessJobordersFinance == true) buttons.Add(JobOrders);
-            //if (UserData.AccessQuotations == true) buttons.Add(Quotation);
+            if (UserData.AccessStatements == true) buttons.Add(Statements);
             //if (UserData.AccessCustomers == true) buttons.Add(Customers);
             //if (UserData.AccessConsultants == true) buttons.Add(Consultants);
 
@@ -58,6 +58,12 @@ namespace ProjectsNow.Windows.MainWindows
         {
             FinanceWindows.JobOrdersWindows.JobOrdersWindow jobOrdersWindow = new FinanceWindows.JobOrdersWindows.JobOrdersWindow() { UserData = this.UserData };
             jobOrdersWindow.ShowDialog();
+        }
+
+        private void Statements_Click(object sender, RoutedEventArgs e)
+        {
+            FinanceWindows.CustomersWindows.CustomersWindow customersWindow = new FinanceWindows.CustomersWindows.CustomersWindow() { UserData = UserData };
+            customersWindow.ShowDialog();
         }
     }
 }

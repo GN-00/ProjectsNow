@@ -49,7 +49,7 @@ namespace ProjectsNow.Database
             set { if (value != this._Status) { this._Status = value; NotifyPropertyChanged(); } }
         }
 
-        private DateTime? _DateOfCreation = DateTime.Today;
+        private DateTime? _DateOfCreation = DateTime.Now;
         public DateTime? DateOfCreation
         {
             get { return this._DateOfCreation; }

@@ -24,7 +24,7 @@ namespace ProjectsNow.Windows.FinanceWindows
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            newAccount = new Account() { CreateDate = DateTime.Today };
+            newAccount = new Account() { CreateDate = DateTime.Now };
             newAccount.Update(AccountData);
 
             DataContext = newAccount;

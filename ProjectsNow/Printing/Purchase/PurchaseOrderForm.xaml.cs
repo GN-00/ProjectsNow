@@ -13,7 +13,6 @@ namespace ProjectsNow.Printing.Purchase
         public CompanyPO CompanyPOData { get; set; }
         public List<CompanyPOTransaction> Transactions { get; set; }
 
-
         double subtotal;
         double VAT;
         double grandTotal;
@@ -27,11 +26,6 @@ namespace ProjectsNow.Printing.Purchase
         {
             this.Loaded -= UserControl_Loaded;
 
-            if (Page != Pages)
-                TotalTable.Visibility = Visibility.Collapsed;
-            else
-                grandTotalText = DataInput.Input.NumberToWords(System.Convert.ToInt32(grandTotal));
-
             for (int i = 0; i < Transactions.Count; i++)
             {
                 ItemsTable.RowDefinitions[i+1].Height = new GridLength(0.6 * App.cm);
@@ -40,6 +34,11 @@ namespace ProjectsNow.Printing.Purchase
             subtotal = Transactions.Sum(t => t.Qty * t.Cost);
             VAT = subtotal * (CompanyPOData.VAT / 100);
             grandTotal = subtotal * (1 + (CompanyPOData.VAT / 100));
+
+            if (Page != Pages)
+                TotalTable.Visibility = Visibility.Collapsed;
+            else
+                grandTotalText = DataInput.Input.NumberToWords(System.Convert.ToInt32(grandTotal));
 
             DataContext = new { Page, Pages, Transactions, CompanyPOData, subtotal, VAT, grandTotal, grandTotalText };
         }

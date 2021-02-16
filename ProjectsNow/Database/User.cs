@@ -86,6 +86,7 @@ namespace ProjectsNow.Database
         public bool AccessFinance { get; set; }
         public bool AccessCompanyAccount { get; set; }
         public bool AccessJobordersFinance { get; set; }
+        public bool AccessStatements { get; set; }
         #endregion
 
     }

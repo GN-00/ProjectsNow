@@ -547,7 +547,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
 
-                    <DataGridTextColumn Width="150" Header="Project Amount" Binding="{Binding ProjectPrice}">
+                    <DataGridTextColumn Width="150" Header="Project Amount" Binding="{Binding ProjectPrice, StringFormat=N2}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -555,7 +555,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
 
-                    <DataGridTextColumn Width="150" Header="Paid" Binding="{Binding Paid}">
+                    <DataGridTextColumn Width="150" Header="Paid" Binding="{Binding Paid, StringFormat=N2}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -563,7 +563,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
 
-                    <DataGridTextColumn Width="150" Header="Balance" Binding="{Binding Balance}">
+                    <DataGridTextColumn Width="150" Header="Balance" Binding="{Binding BalanceView}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>

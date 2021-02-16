@@ -2122,7 +2122,7 @@ namespace ProjectsNow.Windows.QuotationWindows
 
 
             if (quotationPages.Count != 0)
-                Print.PrintPreview(quotationPages);
+                Print.PrintPreview(quotationPages, $"Quotation {QuotationData.QuotationCode}");
 
             this.Close();
         }

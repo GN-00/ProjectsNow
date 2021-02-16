@@ -11,10 +11,10 @@ namespace ProjectsNow.Windows.PrintWindows
     public partial class PrintWindow : Window
     {
         public static readonly double cm = 37.7952755905512;
-
         public static readonly double A4Width = 29.7 * cm;
         public static readonly double A4Height = 21 * cm;
 
+        string _documentName { get; set; }
         FixedDocument _fixedDocument;
         public PrintWindow()
         {
@@ -22,8 +22,9 @@ namespace ProjectsNow.Windows.PrintWindows
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight - 15;
         }
 
-        public PrintWindow(FixedDocument fixedDocument)
+        public PrintWindow(FixedDocument fixedDocument, string documentName)
         {
+            _documentName = documentName;
             _fixedDocument = fixedDocument;
             InitializeComponent();
             PrintView.Document = fixedDocument;
@@ -97,7 +98,8 @@ namespace ProjectsNow.Windows.PrintWindows
                                          PrintView.MasterPageNumber);
                     }
                     _fixedDocument.PrintTicket = printDialog.PrintTicket;
-                    printDialog.PrintDocument(paginator, "Quotation Printing");
+                    _documentName = _documentName.Replace("/", "-");
+                    printDialog.PrintDocument(paginator, _documentName);
                 }
             }
             catch (Exception e)

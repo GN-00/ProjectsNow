@@ -120,7 +120,7 @@ namespace ProjectsNow.Printing.Finance
                 //Column 5
                 textBlock = new TextBlock()
                 {
-                    Text = statement.Balance.ToString(),
+                    Text = statement.BalanceView,
                     FontSize = 12,
                     Foreground = Brushes.Black,
                     Margin = new Thickness(5, 0, 5, 0),

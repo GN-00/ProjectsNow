@@ -41,7 +41,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
             {
                 QuotationsYearsData = JobOrderController.QuotationsWaitingPOYears(connection);
 
-                QuotationsData = JobOrderController.QuotationsWaitPO(connection, DateTime.Today.Year);
+                QuotationsData = JobOrderController.QuotationsWaitPO(connection, DateTime.Now.Year);
             }
             DataContext = new { UserData };
 
@@ -51,8 +51,8 @@ namespace ProjectsNow.Windows.JobOrderWindows
 
             QuotationsList.ItemsSource = viewData.View;
             YearsList.ItemsSource = QuotationsYearsData;
-            YearsList.Text = DateTime.Today.Year.ToString();
-            YearValue.Text = DateTime.Today.Year.ToString();
+            YearsList.Text = DateTime.Now.Year.ToString();
+            YearValue.Text = DateTime.Now.Year.ToString();
 
             viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
 
@@ -137,14 +137,14 @@ namespace ProjectsNow.Windows.JobOrderWindows
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
                 QuotationsYearsData = JobOrderController.QuotationsWaitingPOYears(connection);
-                viewData.Source = QuotationsData = JobOrderController.QuotationsWaitPO(connection, DateTime.Today.Year);
+                viewData.Source = QuotationsData = JobOrderController.QuotationsWaitPO(connection, DateTime.Now.Year);
             }
             QuotationsList.ItemsSource = viewData.View;
 
             YearsList.ItemsSource = QuotationsYearsData;
 
-            YearsList.SelectedItem = QuotationsYearsData.FirstOrDefault(i => i.Year == DateTime.Today.Year);
-            YearValue.Text = DateTime.Today.Year.ToString();
+            YearsList.SelectedItem = QuotationsYearsData.FirstOrDefault(i => i.Year == DateTime.Now.Year);
+            YearValue.Text = DateTime.Now.Year.ToString();
 
             CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
@@ -164,13 +164,13 @@ namespace ProjectsNow.Windows.JobOrderWindows
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
                 JobOrdersYearsData = JobOrderController.JobOrdersYears(connection);
-                viewData.Source = JobOrdersData = JobOrderController.JobOrders(connection, DateTime.Today.Year);
+                viewData.Source = JobOrdersData = JobOrderController.JobOrders(connection, DateTime.Now.Year);
             }
             QuotationsList.ItemsSource = viewData.View;
 
             YearsList.ItemsSource = JobOrdersYearsData;
-            YearsList.SelectedItem = JobOrdersYearsData.FirstOrDefault(i => i.Year == DateTime.Today.Year);
-            YearValue.Text = DateTime.Today.Year.ToString();
+            YearsList.SelectedItem = JobOrdersYearsData.FirstOrDefault(i => i.Year == DateTime.Now.Year);
+            YearValue.Text = DateTime.Now.Year.ToString();
 
             CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
@@ -195,10 +195,10 @@ namespace ProjectsNow.Windows.JobOrderWindows
                     jobOrder = new JobOrder()
                     {
                         QuotationID = quotationData.QuotationID,
-                        Date = DateTime.Today,
+                        Date = DateTime.Now,
                         CodeNumber = JobOrderController.GetCodeNumber(connection),
-                        CodeMonth = DateTime.Today.Month,
-                        CodeYear = DateTime.Today.Year,
+                        CodeMonth = DateTime.Now.Month,
+                        CodeYear = DateTime.Now.Year,
                     };
 
                     if (jobOrder.CodeNumber != 0)

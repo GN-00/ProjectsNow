@@ -84,7 +84,7 @@ namespace ProjectsNow.Windows.FinanceWindows
 
         private void New_Click(object sender, RoutedEventArgs e)
         {
-            Account account = new Account() { CreateDate = DateTime.Today };
+            Account account = new Account() { CreateDate = DateTime.Now };
             CompanyAccountWindow companyAccountWindow = new CompanyAccountWindow()
             {
                 ActionData = Actions.New,

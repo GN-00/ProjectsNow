@@ -124,7 +124,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                 using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
                 {
                     QuotationData.QuotationStatus = Statuses.Submitted.ToString();
-                    QuotationData.SubmitDate = DateTime.Today;
+                    QuotationData.SubmitDate = DateTime.Now;
                     var query = DatabaseAI.UpdateRecord<Quotation>();
                     connection.Execute(query, QuotationData);
                 }
@@ -498,7 +498,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                     elements.Add(quotationsItems);
                 }
 
-                Printing.Print.PrintPreview(elements);
+                Printing.Print.PrintPreview(elements, $"Quotation {QuotationData.QuotationCode} Items");
             }
             else
             {
@@ -551,7 +551,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                         elements.Add(panelsItems);
                     }
 
-                    Printing.Print.PrintPreview(elements);
+                    Printing.Print.PrintPreview(elements, $"Panel {panel.PanelSN}-{panel.PanelName} Items");
                 }
                 else
                 {

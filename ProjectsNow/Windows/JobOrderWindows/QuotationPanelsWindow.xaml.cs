@@ -85,7 +85,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
                     query = DatabaseAI.UpdateRecord<QPanel>();
                     connection.Execute(query, panelData);
 
-                    query = $"Select DrawingNo From [JobOrder].[DrawingNo] Where Year = {DateTime.Today.Year}";
+                    query = $"Select DrawingNo From [JobOrder].[DrawingNo] Where Year = {DateTime.Now.Year}";
                     int? drawingNo = connection.QueryFirstOrDefault<int?>(query);
                     if (drawingNo == null) newPanelData.DrawingNo = 1;
                     else newPanelData.DrawingNo = ++drawingNo;

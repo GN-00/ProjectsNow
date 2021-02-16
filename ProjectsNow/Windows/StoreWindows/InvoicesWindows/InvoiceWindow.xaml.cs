@@ -114,7 +114,7 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
             DateTime? date = picker.SelectedDate;
 
             if (date == null)
-                picker.SelectedDate = supplierInvoice.Date = DateTime.Today;
+                picker.SelectedDate = supplierInvoice.Date = DateTime.Now;
             else
                 picker.SelectedDate = supplierInvoice.Date = date.Value;
         }

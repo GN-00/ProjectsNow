@@ -36,7 +36,7 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
             string query;
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                query = $"Select * From [Finance].[JobOrdersDetails] Where Year = {DateTime.Today.Year}";
+                query = $"Select * From [Finance].[JobOrdersDetails] Where Year = {DateTime.Now.Year}";
                 jobOrders = new ObservableCollection<JobOrderFinance>(connection.Query<JobOrderFinance>(query));
                 
                 query = $"Select * From [JobOrder].[JobOrdersYears]";
@@ -96,13 +96,13 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
         //    using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
         //    {
         //        YearsData = JobOrderController.JobOrdersYears(connection);
-        //        viewData.Source = jobOrders = JobOrderController.JobOrders(connection, DateTime.Today.Year);
+        //        viewData.Source = jobOrders = JobOrderController.JobOrders(connection, DateTime.Now.Year);
         //    }
         //    YearsList.ItemsSource = YearsData;
         //    JobOrdersList.ItemsSource = viewData.View;
 
-        //    YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Today.Year);
-        //    YearValue.Text = DateTime.Today.Year.ToString();
+        //    YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Now.Year);
+        //    YearValue.Text = DateTime.Now.Year.ToString();
 
         //    CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         //    viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
@@ -119,13 +119,13 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
         //    using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
         //    {
         //        YearsData = JobOrderController.GetRunningJobOrdersYears(connection);
-        //        viewData.Source = jobOrders = JobOrderController.GetRunningJobOrders(connection, DateTime.Today.Year);
+        //        viewData.Source = jobOrders = JobOrderController.GetRunningJobOrders(connection, DateTime.Now.Year);
         //    }
         //    YearsList.ItemsSource = YearsData;
         //    JobOrdersList.ItemsSource = viewData.View;
 
-        //    YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Today.Year);
-        //    YearValue.Text = DateTime.Today.Year.ToString();
+        //    YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Now.Year);
+        //    YearValue.Text = DateTime.Now.Year.ToString();
 
         //    CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         //    viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
@@ -142,13 +142,13 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
         //    using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
         //    {
         //        YearsData = JobOrderController.GetClosedJobOrdersYears(connection);
-        //        viewData.Source = jobOrders = JobOrderController.GetClosedJobOrders(connection, DateTime.Today.Year);
+        //        viewData.Source = jobOrders = JobOrderController.GetClosedJobOrders(connection, DateTime.Now.Year);
         //    }
         //    YearsList.ItemsSource = YearsData;
         //    JobOrdersList.ItemsSource = viewData.View;
 
-        //    YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Today.Year);
-        //    YearValue.Text = DateTime.Today.Year.ToString();
+        //    YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Now.Year);
+        //    YearValue.Text = DateTime.Now.Year.ToString();
 
         //    CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         //    viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);

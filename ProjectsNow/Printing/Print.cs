@@ -10,7 +10,7 @@ namespace ProjectsNow.Printing
 {
     class Print
     {
-        public static void PrintPreview(FrameworkElement Page)
+        public static void PrintPreview(FrameworkElement Page, string documentName)
         {
             if (System.IO.File.Exists("PrintPreview.xps"))
             { System.IO.File.Delete("PrintPreview.xps"); }
@@ -33,12 +33,12 @@ namespace ProjectsNow.Printing
 
             writer.Write(fixedDocument);
 
-            var printWindow = new PrintWindow(fixedDocument);
+            var printWindow = new PrintWindow(fixedDocument, documentName);
             printWindow.ShowDialog();
             xpsDocument.Close();
         }
 
-        public static void PrintPreview(List<FrameworkElement> Pages)
+        public static void PrintPreview(List<FrameworkElement> Pages, string documentName)
         {
             if (System.IO.File.Exists("PrintPreview.xps"))
             { System.IO.File.Delete("PrintPreview.xps"); }
@@ -62,7 +62,7 @@ namespace ProjectsNow.Printing
 
             writer.Write(fixedDocument);
 
-            var printWindow = new PrintWindow(fixedDocument);
+            var printWindow = new PrintWindow(fixedDocument, documentName);
             printWindow.Show();
             xpsDocument.Close();
         }

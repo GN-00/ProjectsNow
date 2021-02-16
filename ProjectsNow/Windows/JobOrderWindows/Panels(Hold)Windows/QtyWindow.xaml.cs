@@ -48,7 +48,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Hold_Windows
                         PanelName = PanelData.PanelName,
                         EnclosureType = PanelData.EnclosureType,
                         Qty = qty,
-                        Date = DateTime.Today,
+                        Date = DateTime.Now,
                     };
 
                     newPanel.TransactionID = (int)(decimal)connection.ExecuteScalar(query, newPanel);

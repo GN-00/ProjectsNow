@@ -60,7 +60,7 @@ namespace ProjectsNow.Windows.StoreWindows.TransferWindows
                         Unit = ItemData.Unit,
                         Qty = qty,
                         Cost = ItemData.Cost,
-                        Date = DateTime.Today,
+                        Date = DateTime.Now,
                         VAT = ItemData.VAT,
                         OriginalInvoiceID = ItemData.OriginalInvoiceID,
                     };
@@ -81,13 +81,13 @@ namespace ProjectsNow.Windows.StoreWindows.TransferWindows
                         Unit = ItemData.Unit,
                         Qty = qty,
                         Cost = ItemData.Cost,
-                        Date = DateTime.Today,
+                        Date = DateTime.Now,
                         TransferInvoiceID = transferData.ID,
                         VAT = ItemData.VAT,
                         OriginalInvoiceID = ItemData.OriginalInvoiceID,
                     };
                     query = $"{DatabaseAI.InsertRecord<ItemTransaction>()}";
-                    connection.Execute(query, newItem);
+                    newItem.ID = (int)(decimal)connection.ExecuteScalar(query, newItem);
 
                     ItemsData.Add(newItem);
                     this.Close();

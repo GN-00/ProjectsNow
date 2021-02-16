@@ -73,13 +73,13 @@
                     <TextBlock Text="Closing Balance  " FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
                 <Border Grid.Row="0" Grid.Column="4" BorderThickness="0,0,1,1" BorderBrush="Black" >
-                    <TextBlock Text="{Binding Debit}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding Debit, StringFormat=N2}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
                 <Border Grid.Row="1" Grid.Column="4" BorderThickness="0,0,1,1" BorderBrush="Black" >
-                    <TextBlock Text="{Binding Credit}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding Credit, StringFormat=N2}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
                 <Border Grid.Row="2" Grid.Column="4" BorderThickness="0,0,1,1" BorderBrush="Black" >
-                    <TextBlock Text="{Binding BalanceView}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding BalanceView, StringFormat=N2}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
             </Grid>
         </StackPanel>

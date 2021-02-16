@@ -67,12 +67,12 @@ namespace ProjectsNow.Windows.QuotationWindows
 
                     if (usedBy == null)
                     {
-                        quotationData.QuotationNumber = QuotationController.NewQuotationNumber(connection, DateTime.Today.Year);
-                        quotationData.QuotationYear = DateTime.Today.Year;
-                        quotationData.QuotationMonth = DateTime.Today.Month;
+                        quotationData.QuotationNumber = QuotationController.NewQuotationNumber(connection, DateTime.Now.Year);
+                        quotationData.QuotationYear = DateTime.Now.Year;
+                        quotationData.QuotationMonth = DateTime.Now.Month;
                         quotationData.QuotationCode =
                             $"ER-{quotationData.QuotationNumber:000}/{UserData.UserCode}/{quotationData.QuotationMonth}/{quotationData.QuotationYear}/R00";
-                        quotationData.QuotationReviseDate = DateTime.Today;
+                        quotationData.QuotationReviseDate = DateTime.Now;
 
                         var query = DatabaseAI.InsertRecord<Quotation>();
                         quotationData.QuotationID = (int)(decimal)connection.ExecuteScalar(query, quotationData);

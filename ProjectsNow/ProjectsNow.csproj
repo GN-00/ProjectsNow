@@ -266,6 +266,9 @@
     <Compile Include="Windows\FinanceWindows\CustomersWindows\StatementWindow.xaml.cs">
       <DependentUpon>StatementWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\FinanceWindows\JobAnalysisWindows\JobAnalysisWindow.xaml.cs">
+      <DependentUpon>JobAnalysisWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\FinanceWindows\JobOrdersWindows\JobOrdersWindow.xaml.cs">
       <DependentUpon>JobOrdersWindow.xaml</DependentUpon>
     </Compile>
@@ -712,6 +715,10 @@
     <Page Include="Windows\FinanceWindows\CustomersWindows\StatementWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\FinanceWindows\JobAnalysisWindows\JobAnalysisWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\FinanceWindows\JobOrdersWindows\JobOrdersWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -452,7 +452,7 @@
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
 
-                                <DataGridTextColumn Width="150" Header="Balance" Binding="{Binding CreateDate, StringFormat=dd/MM/yyyy}">
+                                <DataGridTextColumn Width="150" Header="Balance" Binding="{Binding Balance}">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="{x:Type TextBlock}">
                                             <Setter Property="HorizontalAlignment" Value="Center"/>

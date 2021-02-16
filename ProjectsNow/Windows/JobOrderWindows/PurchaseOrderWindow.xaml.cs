@@ -39,7 +39,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
 
             if (date == null)
             {
-                picker.SelectedDate = DateTime.Today;
+                picker.SelectedDate = DateTime.Now;
             }
             else
             {

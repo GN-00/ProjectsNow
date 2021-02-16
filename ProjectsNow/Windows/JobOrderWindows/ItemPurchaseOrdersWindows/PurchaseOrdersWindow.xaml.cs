@@ -155,7 +155,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.ItemPurchaseOrdersWindows
 
         private void NewPO_Click(object sender, RoutedEventArgs e)
         {
-            CompanyPO order = new CompanyPO() { Date = DateTime.Today, JobOrderID = JobOrderData.ID, VAT = App.VAT };
+            CompanyPO order = new CompanyPO() { Date = DateTime.Now, JobOrderID = JobOrderData.ID, VAT = App.VAT };
             OrderWindow purchaseOrderWindow = new OrderWindow()
             {
                 ActionData = Actions.New,
@@ -366,7 +366,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.ItemPurchaseOrdersWindows
                         elements.Add(purchaseOrderForm);
                     }
 
-                    Printing.Print.PrintPreview(elements);
+                    Printing.Print.PrintPreview(elements, $"Purchase Order {companyPO.Number}");
                 }
                 else
                 {

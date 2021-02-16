@@ -23,15 +23,15 @@ namespace ProjectsNow.Windows.FinanceWindows.CustomersWindows
         {
             get
             {
-                if (Balance > 0) return "Cr";
-                else if (Balance < 0) return "Dr";
+                if (Math.Round(Balance) > 0) return "Cr";
+                else if (Math.Round(Balance) < 0) return "Dr";
                 else return null;
             }
         }
 
         public string BalanceView
         {
-            get { return $"{Math.Abs(Balance)} {Sign}"; }
+            get { return $"{Math.Abs(Balance):N2} {Sign}"; }
         }
     }
 }

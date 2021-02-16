@@ -46,7 +46,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
 
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                JobOrdersData = JobOrderController.GetRunningJobOrders(connection, DateTime.Today.Year);
+                JobOrdersData = JobOrderController.GetRunningJobOrders(connection, DateTime.Now.Year);
                 YearsData = JobOrderController.GetRunningJobOrdersYears(connection);
             }
             
@@ -188,7 +188,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
 
                 OrderAcknowledgement acknowledgementForm = new OrderAcknowledgement() { AcknowledgementInformationData = acknowledgementInformationData };
                 FrameworkElement element = acknowledgementForm;
-                Print.PrintPreview(element);
+                Print.PrintPreview(element, $"Order Acknowledgement-{jobOrderData.Code}");
             }
         }
         private void PO_ClicK(object sender, RoutedEventArgs e)
@@ -264,13 +264,13 @@ namespace ProjectsNow.Windows.JobOrderWindows
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
                 YearsData = JobOrderController.JobOrdersYears(connection);
-                viewData.Source = JobOrdersData = JobOrderController.JobOrders(connection, DateTime.Today.Year);
+                viewData.Source = JobOrdersData = JobOrderController.JobOrders(connection, DateTime.Now.Year);
             }
             YearsList.ItemsSource = YearsData;
             JobOrdersList.ItemsSource = viewData.View;
 
-            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Today.Year);
-            YearValue.Text = DateTime.Today.Year.ToString();
+            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Now.Year);
+            YearValue.Text = DateTime.Now.Year.ToString();
 
             CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
@@ -287,13 +287,13 @@ namespace ProjectsNow.Windows.JobOrderWindows
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
                 YearsData = JobOrderController.GetRunningJobOrdersYears(connection);
-                viewData.Source = JobOrdersData = JobOrderController.GetRunningJobOrders(connection, DateTime.Today.Year);
+                viewData.Source = JobOrdersData = JobOrderController.GetRunningJobOrders(connection, DateTime.Now.Year);
             }
             YearsList.ItemsSource = YearsData;
             JobOrdersList.ItemsSource = viewData.View;
 
-            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Today.Year);
-            YearValue.Text = DateTime.Today.Year.ToString();
+            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Now.Year);
+            YearValue.Text = DateTime.Now.Year.ToString();
 
             CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
@@ -310,13 +310,13 @@ namespace ProjectsNow.Windows.JobOrderWindows
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
                 YearsData = JobOrderController.GetClosedJobOrdersYears(connection);
-                viewData.Source = JobOrdersData = JobOrderController.GetClosedJobOrders(connection, DateTime.Today.Year);
+                viewData.Source = JobOrdersData = JobOrderController.GetClosedJobOrders(connection, DateTime.Now.Year);
             }
             YearsList.ItemsSource = YearsData;
             JobOrdersList.ItemsSource = viewData.View;
 
-            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Today.Year);
-            YearValue.Text = DateTime.Today.Year.ToString();
+            YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Now.Year);
+            YearValue.Text = DateTime.Now.Year.ToString();
 
             CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);

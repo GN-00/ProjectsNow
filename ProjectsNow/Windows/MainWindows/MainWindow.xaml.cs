@@ -26,7 +26,7 @@ namespace ProjectsNow.Windows.MainWindows
         {
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                DateTime date = DateTime.Today;
+                DateTime date = DateTime.Now;
                 App.VAT = connection.QueryFirstOrDefault<double>($"Select MAX(VAT) AS VAT From [Finance].[VAT] Where Date <= @date", date);
             }
 

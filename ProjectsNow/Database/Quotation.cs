@@ -23,8 +23,8 @@ namespace ProjectsNow.Database
         public int QuotationNumber { get; set; }
         public int QuotationRevise { get; set; } = 0;
         public DateTime? QuotationReviseDate { get; set; }
-        public int QuotationYear { get; set; } = DateTime.Today.Year;
-        public int QuotationMonth { get; set; } = DateTime.Today.Month;
+        public int QuotationYear { get; set; } = DateTime.Now.Year;
+        public int QuotationMonth { get; set; } = DateTime.Now.Month;
 
         private string _QuotationStatus = Statuses.Running.ToString();
         public string QuotationStatus
@@ -148,7 +148,7 @@ namespace ProjectsNow.Database
             set { if (value != this._ProjectName) { this._ProjectName = value; NotifyPropertyChanged(); } }
         }
 
-        private DateTime _RegisterDate = DateTime.Today;
+        private DateTime _RegisterDate = DateTime.Now;
         [DontWrite]
         public DateTime RegisterDate
         {
@@ -156,7 +156,7 @@ namespace ProjectsNow.Database
             set { if (value != this._RegisterDate) { this._RegisterDate = value; NotifyPropertyChanged(); } }
         }
 
-        private DateTime _DuoDate = DateTime.Today.AddDays(7);
+        private DateTime _DuoDate = DateTime.Now.AddDays(7);
         [DontWrite]
         public DateTime DuoDate
         {

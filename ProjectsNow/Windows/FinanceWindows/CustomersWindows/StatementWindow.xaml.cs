@@ -40,10 +40,10 @@ namespace ProjectsNow.Windows.FinanceWindows.CustomersWindows
             List<Statement> creditLastYears;
 
             if (StartDatePicker.SelectedDate is DateTime firstDate) stratDate = firstDate;
-            else stratDate = new DateTime(DateTime.Today.Year, 1, 1);
+            else stratDate = new DateTime(DateTime.Now.Year, 1, 1);
 
             if (EndDatePicker.SelectedDate is DateTime lastDate) endDate = lastDate;
-            else endDate = new DateTime(DateTime.Today.Year, 12, 31);
+            else endDate = new DateTime(DateTime.Now.Year, 12, 31);
 
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
@@ -83,9 +83,9 @@ namespace ProjectsNow.Windows.FinanceWindows.CustomersWindows
             EndDatePicker.SelectedDate = endDate;
 
             CustomerName.Text = CustomerInformation.CustomerName;
-            TotalCredit.Text = statements.Sum(s => s.Credit).ToString();
-            TotalDebit.Text = statements.Sum(s => s.Debit).ToString();
-            ClosingBalance.Text = (statements.Sum(s => s.Credit).GetValueOrDefault() - statements.Sum(s => s.Debit).GetValueOrDefault()).ToString();
+            TotalCredit.Text = statements.Sum(s => s.Credit).GetValueOrDefault().ToString("N2");
+            TotalDebit.Text = statements.Sum(s => s.Debit).GetValueOrDefault().ToString("N2");
+            ClosingBalance.Text = (statements.Sum(s => s.Credit).GetValueOrDefault() - statements.Sum(s => s.Debit).GetValueOrDefault()).ToString("N2");
             DataContext = new { UserData };
 
             viewData = new CollectionViewSource() { Source = statements };
@@ -213,7 +213,7 @@ namespace ProjectsNow.Windows.FinanceWindows.CustomersWindows
                     elements.Add(statement);
                 }
 
-                Printing.Print.PrintPreview(elements);
+                Printing.Print.PrintPreview(elements, $"Statement-{Info.CustomerName}");
             }
             else
             {
