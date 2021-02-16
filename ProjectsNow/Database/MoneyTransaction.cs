@@ -9,10 +9,10 @@ namespace ProjectsNow.Database
     {
 		[ID] public int ID { get; set; }
 		public int AccountID { get; set; }
-		public int EmployeeID { get; set; }
-		public int JobOrderID { get; set; }
-		public int CustomerID { get; set; }
-		public int SupplierID { get; set; }
+		public int? EmployeeID { get; set; }
+		public int? JobOrderID { get; set; }
+		public int? CustomerID { get; set; }
+		public int? SupplierID { get; set; }
 		public string ItemsPO { get; set; }
 		public string ItemsInvoiceID { get; set; }
 		public DateTime Date { get; set; }

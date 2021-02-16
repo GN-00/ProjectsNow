@@ -1,11 +1,11 @@
-﻿<Window x:Class="ProjectsNow.Windows.FinanceWindows.JobOrdersWindows.JobOrdersWindow"
+﻿<Window x:Class="ProjectsNow.Windows.FinanceWindows.SuppliersInvoicesWindows.InvoicesWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Job Orders"
+        Title="Invoices"
         BorderBrush="DimGray"
         BorderThickness="1"
         WindowStyle="None"
@@ -17,30 +17,14 @@
     <Window.Resources>
 
         <ContextMenu x:Key="RowsContextMenu" FontFamily="Times New Roman">
-            <MenuItem Click="Transactions_ClicK">
+            <!--<MenuItem Click="PO_ClicK">
                 <MenuItem.Header>
-                    <TextBlock Text="Transactions"/>
+                    <TextBlock Text="Purchase Orders"/>
                 </MenuItem.Header>
                 <MenuItem.Icon>
-                    <Image Source="/Images/Icons/Wallet.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <Image Source="/Images/Icons/purchase-orders.png" RenderOptions.BitmapScalingMode="HighQuality"/>
                 </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Click="PostingItems_ClicK">
-                <MenuItem.Header>
-                    <TextBlock Text="Posting Items"/>
-                </MenuItem.Header>
-                <MenuItem.Icon>
-                    <Image Source="/Images/Icons/PostItems.png" RenderOptions.BitmapScalingMode="HighQuality"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Click="Invoicing_Click">
-                <MenuItem.Header>
-                    <TextBlock Text="Invoicing"/>
-                </MenuItem.Header>
-                <MenuItem.Icon>
-                    <Image Source="/Images/Icons/Invoicing.png" RenderOptions.BitmapScalingMode="HighQuality"/>
-                </MenuItem.Icon>
-            </MenuItem>
+            </MenuItem>-->
         </ContextMenu>
 
         <Style x:Key="YearsStyle" BasedOn="{StaticResource ComboBoxFlatStyle}" TargetType="{x:Type ComboBox}">
@@ -208,7 +192,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    
+
                     <Button x:Name="Posting">
                         <Button.Resources>
                             <Style TargetType="{x:Type Button}">
@@ -277,8 +261,8 @@
                                 <Setter Property="Height" Value="60"/>
                                 <Setter Property="Width" Value="60"/>
                                 <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="ToolTip" Value="All JobOrders"/>
-                                <EventSetter Event="Click" Handler="AllJobOrders_Click"/>
+                                <Setter Property="ToolTip" Value="All Invoices"/>
+                                <EventSetter Event="Click" Handler="AllInvoices_Click"/>
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="Button">
@@ -305,8 +289,8 @@
                                 <Setter Property="Height" Value="60"/>
                                 <Setter Property="Width" Value="60"/>
                                 <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="ToolTip" Value="Running JobOrders"/>
-                                <EventSetter Event="Click" Handler="RunningJobOrders_Click"/>
+                                <Setter Property="ToolTip" Value="Running Invoices"/>
+                                <EventSetter Event="Click" Handler="RunningInvoices_Click"/>
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="Button">
@@ -334,7 +318,7 @@
                                 <Setter Property="Width" Value="60"/>
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="ToolTip" Value="Closed Job Orders"/>
-                                <EventSetter Event="Click" Handler="ClosedJobOrders_Click"/>
+                                <EventSetter Event="Click" Handler="ClosedInvoices_Click"/>
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="Button">
@@ -467,7 +451,7 @@
                 </Border>
             </Grid>
 
-            <DataGrid x:Name="JobOrdersList"
+            <DataGrid x:Name="InvoicesList"
                       FontSize="14" 
                       FontWeight="Bold" 
                       FontFamily="Times New Roman"
@@ -488,7 +472,7 @@
                       VerticalGridLinesBrush="Transparent"
                       VerticalScrollBarVisibility="Visible"
                       HorizontalScrollBarVisibility="Disabled"
-                      SelectedCellsChanged="JobOrdersList_SelectedCellsChanged">
+                      SelectedCellsChanged="InvoicesList_SelectedCellsChanged">
 
                 <DataGrid.Resources>
 
@@ -546,7 +530,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
 
-                    <DataGridTextColumn Width="160" Header="Quotation Code" Binding="{Binding QuotationCode}">
+                    <DataGridTextColumn Width="160" Header="Invoice Number" Binding="{Binding QuotationCode}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -562,7 +546,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
 
-                    <DataGridTextColumn Width="150" Header="Project Amount" Binding="{Binding ProjectPrice, StringFormat=N2}">
+                    <DataGridTextColumn Width="150" Header="Amount" Binding="{Binding ProjectPrice, StringFormat=N2}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
