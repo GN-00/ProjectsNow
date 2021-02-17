@@ -153,6 +153,98 @@
                     </Button.Resources>
                 </Button>
             </StackPanel>
+            <StackPanel x:Name="SuppliersInvoices">
+                <Button>
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Content" Value="Suppliers Invoices"/>
+                            <Setter Property="Width" Value="350"/>
+                            <Setter Property="Height" Value="100"/>
+                            <Setter Property="Margin" Value="20"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontSize" Value="24"/>
+                            <Setter Property="FontStyle" Value="Italic"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="FontFamily" Value="Times new roman"/>
+                            <EventSetter Event="Click" Handler="SuppliersInvoices_Click"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Name="border" Background="White" CornerRadius="5" Margin="0,0,0,0">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="30*"/>
+                                                    <ColumnDefinition Width="70*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Grid.Column="0" Source="/Images/Icons/Invoice.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="10"/>
+                                                <ContentPresenter Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="border" Property="BorderBrush" Value="DarkGray" />
+                                                <Setter Property="Foreground" Value="Black" />
+                                                <Setter Property="Button.Effect">
+                                                    <Setter.Value>
+                                                        <DropShadowEffect Color="Black" Direction="-90" ShadowDepth="1" BlurRadius="5" Opacity="0.8" />
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+            <StackPanel x:Name="Transportation">
+                <Button>
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Content" Value="Transportation"/>
+                            <Setter Property="Width" Value="350"/>
+                            <Setter Property="Height" Value="100"/>
+                            <Setter Property="Margin" Value="20"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontSize" Value="24"/>
+                            <Setter Property="FontStyle" Value="Italic"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="FontFamily" Value="Times new roman"/>
+                            <EventSetter Event="Click" Handler="Transportation_Click"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Name="border" Background="White" CornerRadius="5" Margin="0,0,0,0">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="30*"/>
+                                                    <ColumnDefinition Width="70*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Grid.Column="0" Source="/Images/Icons/Transportation.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="10"/>
+                                                <ContentPresenter Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="border" Property="BorderBrush" Value="DarkGray" />
+                                                <Setter Property="Foreground" Value="Black" />
+                                                <Setter Property="Button.Effect">
+                                                    <Setter.Value>
+                                                        <DropShadowEffect Color="Black" Direction="-90" ShadowDepth="1" BlurRadius="5" Opacity="0.8" />
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>

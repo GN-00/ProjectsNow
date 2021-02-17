@@ -175,6 +175,7 @@
     <Compile Include="Database\Supplier.cs" />
     <Compile Include="Database\SupplierInvoice.cs" />
     <Compile Include="Database\Suppliers\Contact.cs" />
+    <Compile Include="Database\Suppliers\SupplierInvoice.cs" />
     <Compile Include="Database\Term.cs" />
     <Compile Include="Database\TPanel.cs" />
     <Compile Include="Database\User.cs" />
@@ -286,6 +287,9 @@
     </Compile>
     <Compile Include="Windows\FinanceWindows\SuppliersInvoicesWindows\TransactionWindow.xaml.cs">
       <DependentUpon>TransactionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FinanceWindows\TransportationWindows\TransportationWindow.xaml.cs">
+      <DependentUpon>TransportationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\InquiryWindows\AssignWindow.xaml.cs">
       <DependentUpon>AssignWindow.xaml</DependentUpon>
@@ -750,6 +754,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\FinanceWindows\SuppliersInvoicesWindows\TransactionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\FinanceWindows\TransportationWindows\TransportationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1593,6 +1601,11 @@
   <ItemGroup>
     <Resource Include="Images\Icons\Zoom.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Icons\Invoice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\Transportation.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

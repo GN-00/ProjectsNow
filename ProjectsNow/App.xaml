@@ -4,11 +4,11 @@
              Startup="Application_Startup"
              StartupUri="Windows/UserWindows/LoginWindow.xaml">
 
-    <!--<Application x:Class="ProjectsNow.App"
-            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-            Startup="Application_Startup"
-            StartupUri="Windows/JobOrderWindows/ItemPurchaseOrdersWindows/PurchaseOrdersWindow.xaml">-->
+<!--<Application x:Class="ProjectsNow.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Startup="Application_Startup"
+             StartupUri="Windows/FinanceWindows/SuppliersInvoicesWindows/InvoicesWindow.xaml">-->
 
     <!--<Application x:Class="ProjectsNow.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

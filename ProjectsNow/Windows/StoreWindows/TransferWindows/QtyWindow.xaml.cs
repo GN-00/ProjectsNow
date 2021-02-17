@@ -76,7 +76,7 @@ namespace ProjectsNow.Windows.StoreWindows.TransferWindows
                         Category = ItemData.Category,
                         Code = ItemData.Code,
                         Description = ItemData.Description,
-                        Source = JobOrderData.Code,
+                        Source = "0",
                         Type = "Stock",
                         Unit = ItemData.Unit,
                         Qty = qty,

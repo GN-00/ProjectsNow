@@ -1,7 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using ProjectsNow.Attributes;
 using System.Runtime.CompilerServices;
-using System;
 
 namespace ProjectsNow.Database
 {
@@ -42,7 +42,7 @@ namespace ProjectsNow.Database
 		[DontWrite]public double Paid
 		{
 			get { return this._Paid; }
-			set { if (value != this._Paid) { this._Paid = value; NotifyPropertyChanged(); NotifyPropertyChanged("Balance"); } }
+			set { if (value != this._Paid) { this._Paid = value; NotifyPropertyChanged(); NotifyPropertyChanged("Balance"); NotifyPropertyChanged("BalanceView"); } }
 		}
 
 		public double Balance

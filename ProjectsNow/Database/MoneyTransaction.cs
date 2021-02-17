@@ -14,7 +14,7 @@ namespace ProjectsNow.Database
 		public int? CustomerID { get; set; }
 		public int? SupplierID { get; set; }
 		public string ItemsPO { get; set; }
-		public string ItemsInvoiceID { get; set; }
+		public int? SupplierInvoiceID { get; set; }
 		public DateTime Date { get; set; }
 		public string Description { get; set; }
 		public double Amount { get; set; }

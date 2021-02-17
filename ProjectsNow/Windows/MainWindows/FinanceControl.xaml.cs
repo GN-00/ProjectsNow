@@ -20,8 +20,8 @@ namespace ProjectsNow.Windows.MainWindows
             if (UserData.AccessCompanyAccount == true) buttons.Add(Accounts);
             if (UserData.AccessJobordersFinance == true) buttons.Add(JobOrders);
             if (UserData.AccessStatements == true) buttons.Add(Statements);
-            //if (UserData.AccessCustomers == true) buttons.Add(Customers);
-            //if (UserData.AccessConsultants == true) buttons.Add(Consultants);
+            if (UserData.AccessSuppliersInvoices == true) buttons.Add(SuppliersInvoices);
+            if (UserData.AccessTransportation == true) buttons.Add(Transportation);
 
             if (buttons.Count == 4)
             {
@@ -64,6 +64,18 @@ namespace ProjectsNow.Windows.MainWindows
         {
             FinanceWindows.CustomersWindows.CustomersWindow customersWindow = new FinanceWindows.CustomersWindows.CustomersWindow() { UserData = UserData };
             customersWindow.ShowDialog();
+        }
+
+        private void SuppliersInvoices_Click(object sender, RoutedEventArgs e)
+        {
+            FinanceWindows.SuppliersInvoicesWindows.InvoicesWindow invoicesWindow = new FinanceWindows.SuppliersInvoicesWindows.InvoicesWindow() { UserData = UserData };
+            invoicesWindow.ShowDialog();
+        }
+
+        private void Transportation_Click(object sender, RoutedEventArgs e)
+        {
+            FinanceWindows.TransportationWindows.TransportationWindow transportationWindow = new FinanceWindows.TransportationWindows.TransportationWindow() { UserData = UserData };
+            transportationWindow.ShowDialog();
         }
     }
 }

@@ -301,28 +301,19 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Column="0" Grid.Row="0" Text="Project Price" Style="{StaticResource LableStyle}"/>
-                <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <TextBlock  Text="Discount " Style="{StaticResource LableStyle}"/>
-                    <TextBlock  Text="{Binding Discount, StringFormat=N2}" Style="{StaticResource LableStyle}"/>
-                    <TextBlock  Text=" %" Style="{StaticResource LableStyle}"/>
-                </StackPanel>
-                <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <TextBlock  Text="VAT " Style="{StaticResource LableStyle}"/>
-                    <TextBlock  Text="{Binding VATPercentage, StringFormat=N2}" Style="{StaticResource LableStyle}"/>
-                    <TextBlock  Text=" %" Style="{StaticResource LableStyle}"/>
-                </StackPanel>
-                <TextBlock Grid.Column="2" Grid.Row="0" Text="Final Price" Style="{StaticResource LableStyle}"/>
-                <TextBlock Grid.Column="2" Grid.Row="1" Text="Paid" Style="{StaticResource LableStyle}"/>
-                <TextBlock Grid.Column="2" Grid.Row="2" Text="Balance" Style="{StaticResource LableStyle}"/>
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="Amount" Style="{StaticResource LableStyle}"/>
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="VAT" Style="{StaticResource LableStyle}"/>
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Invoice Total" Style="{StaticResource LableStyle}"/>
 
-                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding QuotationCost, StringFormat=N3}" Style="{StaticResource Lable1Style}"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding DiscountPrice, StringFormat=N3}" Style="{StaticResource Lable1Style}"/>
-                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding VATPrice, StringFormat=N3}" Style="{StaticResource Lable1Style}"/>
-                <TextBlock Grid.Column="3" Grid.Row="0" Text="{Binding ProjectPrice, StringFormat=N3}" Style="{StaticResource Lable1Style}"/>
-                <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding Paid, StringFormat=N3}" Style="{StaticResource Lable1Style}"/>
-                <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding Balance, StringFormat=N3}" Style="{StaticResource Lable1Style}"/>
+                <TextBlock Grid.Column="2" Grid.Row="0" Text="Paid" Style="{StaticResource LableStyle}"/>
+                <TextBlock Grid.Column="2" Grid.Row="1" Text="Balance" Style="{StaticResource LableStyle}"/>
 
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Amount, StringFormat=N2}" Style="{StaticResource Lable1Style}"/>
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding VAT, StringFormat=N2}" Style="{StaticResource Lable1Style}"/>
+                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding InvoiceTotal, StringFormat=N2}" Style="{StaticResource Lable1Style}"/>
+
+                <TextBlock Grid.Column="3" Grid.Row="0" Text="{Binding Paid, StringFormat=N2}" Style="{StaticResource Lable1Style}"/>
+                <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding BalanceView, StringFormat=N2}" Style="{StaticResource Lable1Style}"/>
             </Grid>
             <Grid Margin="15,100,15,20" >
                 <Grid.Effect>
@@ -353,7 +344,6 @@
                                   HorizontalScrollBarVisibility="Disabled"
                                   ContextMenu="{StaticResource GridContextMenu}"
                                   SelectedCellsChanged="TransactionsList_SelectedCellsChanged">
-
                             <DataGrid.Resources>
 
                                 <Style TargetType="{x:Type DataGridColumnHeader}">

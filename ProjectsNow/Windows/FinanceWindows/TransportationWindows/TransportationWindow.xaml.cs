@@ -1,0 +1,26 @@
+﻿using ProjectsNow.Database;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace ProjectsNow.Windows.FinanceWindows.TransportationWindows
+{
+    public partial class TransportationWindow : Window
+    {
+        public User UserData { get; set; }
+        public TransportationWindow()
+        {
+            InitializeComponent();
+        }
+    }
+}

@@ -265,6 +265,36 @@
                         </Button.Resources>
                     </Button>
 
+
+                    <Button x:Name="SuppliersInvoices">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Height" Value="60"/>
+                                <Setter Property="Width" Value="60"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="ToolTip" Value="Suppliers Invoices"/>
+                                <EventSetter Event="Click" Handler="SuppliersInvoices_Click"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
+                                                <Image Source="/Images/Icons/Invoice.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="5"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGray"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+
                 </StackPanel>
             </TabItem>
 
@@ -361,8 +391,6 @@
                         <ComboBox Name="YearsList" 
                                   Width="80"
                                   Style="{StaticResource YearsStyle}" 
-                                  DisplayMemberPath="Year"
-                                  SelectedValuePath="Year"
                                   SelectionChanged="Years_SelectionChanged" 
                                   VerticalAlignment="Center">
                         </ComboBox>

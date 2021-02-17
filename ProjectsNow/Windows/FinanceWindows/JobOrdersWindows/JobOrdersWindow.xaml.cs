@@ -3,11 +3,8 @@ using Dapper;
 using System.Linq;
 using System.Windows;
 using System.Reflection;
-using ProjectsNow.Enums;
 using System.Windows.Data;
-using ProjectsNow.Printing;
 using System.Windows.Input;
-using System.Windows.Media;
 using ProjectsNow.Database;
 using System.Data.SqlClient;
 using System.Windows.Controls;
@@ -16,7 +13,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using ProjectsNow.Windows.MessageWindows;
-using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
 {
@@ -160,7 +156,7 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
             if (isLoading)
                 return;
 
-            if (YearsList.SelectedItem is QuotationsYear year)
+            if (YearsList.SelectedItem is int year)
             {
                 string query;
                 DeleteFilter_Click(sender, e);
@@ -319,6 +315,19 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
                 {
                     CMessageBox.Show($"Access", $"This job order underwork by {usedBy.UserName}!", CMessageBoxButton.OK, CMessageBoxImage.Warning);
                 }
+            }
+        }
+
+        private void SuppliersInvoices_Click(object sender, RoutedEventArgs e)
+        {
+            if (JobOrdersList.SelectedItem is JobOrderFinance jobOrder)
+            {
+                SuppliersInvoicesWindows.InvoicesWindow invoicesWindow = new SuppliersInvoicesWindows.InvoicesWindow()
+                {
+                    UserData = UserData,
+                    JobOrderData = jobOrder,
+                };
+                invoicesWindow.ShowDialog();
             }
         }
     }

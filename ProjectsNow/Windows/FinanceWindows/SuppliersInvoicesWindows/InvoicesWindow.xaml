@@ -13,18 +13,35 @@
         Loaded="Window_Loaded"
         WindowStartupLocation="CenterScreen"
         Height="700"
-        Width="1129">
+        Width="1229">
     <Window.Resources>
 
         <ContextMenu x:Key="RowsContextMenu" FontFamily="Times New Roman">
-            <!--<MenuItem Click="PO_ClicK">
+            <MenuItem Click="Transactions_ClicK">
                 <MenuItem.Header>
-                    <TextBlock Text="Purchase Orders"/>
+                    <TextBlock Text="Transactions"/>
                 </MenuItem.Header>
                 <MenuItem.Icon>
-                    <Image Source="/Images/Icons/purchase-orders.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <Image Source="/Images/Icons/Wallet.png" RenderOptions.BitmapScalingMode="HighQuality"/>
                 </MenuItem.Icon>
-            </MenuItem>-->
+            </MenuItem>
+            <MenuItem Click="PostingItems_ClicK">
+                <MenuItem.Header>
+                    <TextBlock Text="Posting Items"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/PostItems.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Click="Invoicing_Click">
+                <MenuItem.Header>
+                    <TextBlock Text="Invoicing"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/Invoicing.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            
         </ContextMenu>
 
         <Style x:Key="YearsStyle" BasedOn="{StaticResource ComboBoxFlatStyle}" TargetType="{x:Type ComboBox}">
@@ -345,8 +362,7 @@
                         <ComboBox Name="YearsList" 
                                   Width="80"
                                   Style="{StaticResource YearsStyle}" 
-                                  DisplayMemberPath="Year"
-                                  SelectedValuePath="Year"
+
                                   SelectionChanged="Years_SelectionChanged" 
                                   VerticalAlignment="Center">
                         </ComboBox>
@@ -358,28 +374,28 @@
                 <StackPanel Orientation="Horizontal"
                             VerticalAlignment="Center"
                             DataContext="{Binding UserData}"
-                            Height="65" Margin="15,0,0,0">
+                            Height="65" Margin="20,0,0,0">
                     <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,5">
                         <TextBox x:Name="Code"
+                                 Width="138" 
+                                 Style="{StaticResource FilterInput}">
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,5">
+                        <TextBox x:Name="InvoiceNumber"
                                  Width="158" 
                                  Style="{StaticResource FilterInput}">
                         </TextBox>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,5">
-                        <TextBox x:Name="QuotationCode"
-                                 Width="158" 
-                                 Style="{StaticResource FilterInput}">
-                        </TextBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,5">
-                        <TextBox x:Name="CustomerName" 
+                        <TextBox x:Name="SupplierName" 
                                  Width="298" 
                                  Style="{StaticResource FilterInput}">
                         </TextBox>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,5">
-                        <TextBox x:Name="ProjectPrice" 
-                                 Width="298" 
+                        <TextBox x:Name="InvoiceTotal"
+                                 Width="148" 
                                  Style="{StaticResource FilterInput}">
                         </TextBox>
                     </StackPanel>
@@ -390,8 +406,14 @@
                         </TextBox>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,5">
-                        <TextBox x:Name="Balance"
+                        <TextBox x:Name="BalanceView"
                                  Width="148" 
+                                 Style="{StaticResource FilterInput}">
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,5">
+                        <TextBox x:Name="Status"
+                                 Width="105" 
                                  Style="{StaticResource FilterInput}">
                         </TextBox>
                     </StackPanel>
@@ -522,7 +544,7 @@
 
                 <DataGrid.Columns>
 
-                    <DataGridTextColumn Width="160" Header="Job Order Code" Binding="{Binding Code}">
+                    <DataGridTextColumn Width="140" Header="Job Order Code" Binding="{Binding Code}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -530,7 +552,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
 
-                    <DataGridTextColumn Width="160" Header="Invoice Number" Binding="{Binding QuotationCode}">
+                    <DataGridTextColumn Width="160" Header="Invoice Number" Binding="{Binding InvoiceNumber}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -538,7 +560,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
 
-                    <DataGridTextColumn Width="300" Header="Customer Name" Binding="{Binding CustomerName}">
+                    <DataGridTextColumn Width="300" Header="Supplier Name" Binding="{Binding SupplierName}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -546,7 +568,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
 
-                    <DataGridTextColumn Width="150" Header="Amount" Binding="{Binding ProjectPrice, StringFormat=N2}">
+                    <DataGridTextColumn Width="150" Header="Invoice Total" Binding="{Binding InvoiceTotal, StringFormat=N2}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -563,6 +585,14 @@
                     </DataGridTextColumn>
 
                     <DataGridTextColumn Width="150" Header="Balance" Binding="{Binding BalanceView}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    
+                    <DataGridTextColumn Width="110" Header="Status" Binding="{Binding Status}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="HorizontalAlignment" Value="Center"/>

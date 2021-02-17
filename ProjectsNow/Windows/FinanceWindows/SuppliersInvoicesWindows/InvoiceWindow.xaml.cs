@@ -17,7 +17,7 @@ namespace ProjectsNow.Windows.FinanceWindows.SuppliersInvoicesWindows
     public partial class InvoiceWindow : Window
     {
         public User UserData { get; set; }
-        public JobOrderFinance JobOrderData { get; set; }
+        public Database.Suppliers.SupplierInvoice SupplierInvoice { get; set; }
 
         CollectionViewSource viewData;
         ObservableCollection<MoneyTransaction> transactions;
@@ -30,10 +30,10 @@ namespace ProjectsNow.Windows.FinanceWindows.SuppliersInvoicesWindows
         {
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                string query = $"Select * From [Finance].[ProjectsTransactions] Where JobOrderID = {JobOrderData.ID} And Type ='{MoneyTransactionTypes.Project}'";
+                string query = $"Select * From [Finance].[SuppliersInvoicesTransactions] Where SupplierInvoiceID = {SupplierInvoice.ID} And Type ='{MoneyTransactionTypes.SupplierInvoice}'";
                 transactions = new ObservableCollection<MoneyTransaction>(connection.Query<MoneyTransaction>(query));
             }
-            DataContext = JobOrderData;
+            DataContext = SupplierInvoice;
 
             viewData = new CollectionViewSource() { Source = transactions };
 
@@ -64,7 +64,7 @@ namespace ProjectsNow.Windows.FinanceWindows.SuppliersInvoicesWindows
                 NavigationPanel.Text = $"Transaction: {selectedIndex + 1} / {viewData.View.Cast<object>().Count()}";
 
             if (transactions != null)
-                JobOrderData.Paid = transactions.Sum(t => t.Amount);
+                SupplierInvoice.Paid = transactions.Sum(t => t.Amount);
         }
         private void TransactionsList_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
@@ -77,12 +77,12 @@ namespace ProjectsNow.Windows.FinanceWindows.SuppliersInvoicesWindows
 
         private void New_Click(object sender, RoutedEventArgs e)
         {
-            var jobOrder = new MoneyTransaction() { JobOrderID = JobOrderData.ID, CustomerID = JobOrderData.CustomerID, Date = DateTime.Now, Type = MoneyTransactionTypes.Project.ToString() };
-            JobOrderTransactionWindow jobOrderTransactionWindow = new JobOrderTransactionWindow()
+            var transaction = new MoneyTransaction() { SupplierInvoiceID = SupplierInvoice.ID, SupplierID = SupplierInvoice.SupplierID, JobOrderID = SupplierInvoice.JobOrderID, CustomerID = SupplierInvoice.CustomerID, Date = DateTime.Now, Type = MoneyTransactionTypes.SupplierInvoice.ToString() };
+            TransactionWindow jobOrderTransactionWindow = new TransactionWindow()
             {
                 UserData = UserData,
                 ActionData = Actions.New,
-                TransactionData = jobOrder,
+                TransactionData = transaction,
                 TransactionsData = transactions,
             };
             jobOrderTransactionWindow.ShowDialog();
@@ -92,19 +92,17 @@ namespace ProjectsNow.Windows.FinanceWindows.SuppliersInvoicesWindows
         {
             if (TransactionsList.SelectedItem is MoneyTransaction transaction)
             {
-                JobOrderTransactionWindow jobOrderTransactionWindow = new JobOrderTransactionWindow()
+                TransactionWindow jobOrderTransactionWindow = new TransactionWindow()
                 {
                     UserData = UserData,
-                    ActionData = Actions.Edit,
+                    ActionData = Actions.New,
                     TransactionData = transaction,
-                    TransactionsData = null,
+                    TransactionsData = transactions,
                 };
-                this.Visibility = Visibility.Collapsed;
                 jobOrderTransactionWindow.ShowDialog();
-                this.Visibility = Visibility.Visible;
 
                 if (transactions != null)
-                    JobOrderData.Paid = transactions.Sum(t => t.Amount);
+                    SupplierInvoice.Paid = transactions.Sum(t => t.Amount);
             }
         }
 
