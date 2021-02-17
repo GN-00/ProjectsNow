@@ -279,6 +279,9 @@
     <Compile Include="Windows\FinanceWindows\JobOrdersWindows\JobOrderTransactionWindow.xaml.cs">
       <DependentUpon>JobOrderTransactionWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\FinanceWindows\JobOrdersWindows\SupplierInvoicesWindow.xaml.cs">
+      <DependentUpon>SupplierInvoicesWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\FinanceWindows\SuppliersInvoicesWindows\InvoicesWindow.xaml.cs">
       <DependentUpon>InvoicesWindow.xaml</DependentUpon>
     </Compile>
@@ -744,6 +747,10 @@
     <Page Include="Windows\FinanceWindows\JobOrdersWindows\JobOrderTransactionWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\FinanceWindows\JobOrdersWindows\SupplierInvoicesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\FinanceWindows\SuppliersInvoicesWindows\InvoicesWindow.xaml">
       <SubType>Designer</SubType>

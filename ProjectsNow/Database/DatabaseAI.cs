@@ -12,6 +12,7 @@ namespace ProjectsNow.Database
         public static readonly int CompanyCreationYear = 2015;
         public static readonly long CompanyVAT = 300108673800003;
         public static readonly JobOrder store = new JobOrder() { ID = 0, Code = "Factory Store", CustomerName = "Factory Store", ProjectName = "Factory Store" };
+        public static readonly string FactoryStoreName =  "Factory Store";
 
         public static string ConnectionString
         {

@@ -21,5 +21,10 @@ namespace ProjectsNow.Windows.FinanceWindows.JobAnalysisWindows
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

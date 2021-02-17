@@ -82,75 +82,6 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
                 NavigationPanel.Text = $"Job Order: {selectedIndex + 1} / {viewData.View.Cast<object>().Count()}";
         }
 
-        //private void AllJobOrders_Click(object sender, RoutedEventArgs e)
-        //{
-        //    DeleteFilter_Click(sender, e);
-        //    isLoading = true;
-        //    status = Statuses.All;
-        //    StatusName.Text = $"All Job Orders";
-        //    StatusName.Foreground = YearValue.Foreground = Brushes.Black;
-        //    using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
-        //    {
-        //        YearsData = JobOrderController.JobOrdersYears(connection);
-        //        viewData.Source = jobOrders = JobOrderController.JobOrders(connection, DateTime.Now.Year);
-        //    }
-        //    YearsList.ItemsSource = YearsData;
-        //    JobOrdersList.ItemsSource = viewData.View;
-
-        //    YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Now.Year);
-        //    YearValue.Text = DateTime.Now.Year.ToString();
-
-        //    CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-        //    viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
-
-        //    isLoading = false;
-        //}
-        //private void RunningJobOrders_Click(object sender, RoutedEventArgs e)
-        //{
-        //    DeleteFilter_Click(sender, e);
-        //    isLoading = true;
-        //    status = Statuses.Running;
-        //    StatusName.Text = $"Running Job Orders";
-        //    StatusName.Foreground = YearValue.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF9211E8"));
-        //    using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
-        //    {
-        //        YearsData = JobOrderController.GetRunningJobOrdersYears(connection);
-        //        viewData.Source = jobOrders = JobOrderController.GetRunningJobOrders(connection, DateTime.Now.Year);
-        //    }
-        //    YearsList.ItemsSource = YearsData;
-        //    JobOrdersList.ItemsSource = viewData.View;
-
-        //    YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Now.Year);
-        //    YearValue.Text = DateTime.Now.Year.ToString();
-
-        //    CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-        //    viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
-
-        //    isLoading = false;
-        //}
-        //private void ClosedJobOrders_Click(object sender, RoutedEventArgs e)
-        //{
-        //    DeleteFilter_Click(sender, e);
-        //    isLoading = true;
-        //    status = Statuses.Closed;
-        //    StatusName.Text = $"Closed Job Orders";
-        //    StatusName.Foreground = YearValue.Foreground = Brushes.Gray;
-        //    using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
-        //    {
-        //        YearsData = JobOrderController.GetClosedJobOrdersYears(connection);
-        //        viewData.Source = jobOrders = JobOrderController.GetClosedJobOrders(connection, DateTime.Now.Year);
-        //    }
-        //    YearsList.ItemsSource = YearsData;
-        //    JobOrdersList.ItemsSource = viewData.View;
-
-        //    YearsList.SelectedItem = YearsData.FirstOrDefault(i => i.Year == DateTime.Now.Year);
-        //    YearValue.Text = DateTime.Now.Year.ToString();
-
-        //    CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-        //    viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
-
-        //    isLoading = false;
-        //}
         private void Years_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (isLoading)
@@ -322,12 +253,12 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
         {
             if (JobOrdersList.SelectedItem is JobOrderFinance jobOrder)
             {
-                SuppliersInvoicesWindows.InvoicesWindow invoicesWindow = new SuppliersInvoicesWindows.InvoicesWindow()
+                SupplierInvoicesWindow supplierInvoicesWindow = new SupplierInvoicesWindow()
                 {
                     UserData = UserData,
                     JobOrderData = jobOrder,
                 };
-                invoicesWindow.ShowDialog();
+                supplierInvoicesWindow.ShowDialog();
             }
         }
     }
