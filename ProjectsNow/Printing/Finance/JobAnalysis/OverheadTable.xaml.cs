@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProjectsNow.Printing.Finance
+namespace ProjectsNow.Printing.Finance.JobAnalysis
 {
     /// <summary>
-    /// Interaction logic for JobAnalysis.xaml
+    /// Interaction logic for OverheadTable.xaml
     /// </summary>
-    public partial class JobAnalysis : UserControl
+    public partial class OverheadTable : UserControl
     {
-        public JobAnalysis()
+        public OverheadTable()
         {
             InitializeComponent();
         }

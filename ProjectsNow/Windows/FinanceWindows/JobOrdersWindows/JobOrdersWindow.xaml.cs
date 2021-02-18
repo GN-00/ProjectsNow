@@ -261,5 +261,79 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
                 supplierInvoicesWindow.ShowDialog();
             }
         }
+
+        private void JobAnalysis_Click(object sender, RoutedEventArgs e)
+        {
+            if(JobOrdersList.SelectedItem is JobOrderFinance jobOrder)
+            {
+                string query;
+                List<string> POs;
+                JobAnalysisWindows.Overhead overhead;
+                JobAnalysisWindows.SalesOrder salesOrder;
+                JobAnalysisWindows.Transportation transportation;
+                List<JobAnalysisWindows.CustomerInvoice> customerInvoices;
+                List<JobAnalysisWindows.SupplierInvoice> supplierInvoices;
+                List<JobAnalysisWindows.OriginalInvoice> originalInvoices;
+
+                using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
+                {
+                    query = $"Select * From [Finance].[JobAnalysis(ProjectsInformation)] Where ID = {jobOrder.ID}";
+                    salesOrder = connection.QueryFirstOrDefault<JobAnalysisWindows.SalesOrder>(query);
+
+                    query = $"Select PurchaseOrdersNumber From [JobOrder].[Panels] Where JobOrderID = {jobOrder.ID} Group By PurchaseOrdersNumber";
+                    POs = connection.Query<string>(query).ToList();
+
+                    query = $"Select * From [Finance].[JobAnalysis(CustomersInvoices)] Where JobOrderID = {jobOrder.ID}";
+                    customerInvoices = connection.Query<JobAnalysisWindows.CustomerInvoice>(query).ToList();
+                    
+                    query = $"Select* From[Finance].[JobAnalysis(JobOrdersInvoices)] Where JobOrderID = { jobOrder.ID }";
+                    supplierInvoices = connection.Query<JobAnalysisWindows.SupplierInvoice>(query).ToList();
+
+                    query = $"Select * From[Finance].[JobAnalysis(JobOrdersInvoicesPaid)] Where JobOrderID = { jobOrder.ID }";
+                    originalInvoices = connection.Query<JobAnalysisWindows.OriginalInvoice>(query).ToList();
+                }
+
+                foreach (string po in POs)
+                    salesOrder.POs += $"{po}, ";
+
+                salesOrder.POs = salesOrder.POs.Substring(0, salesOrder.POs.Length - 2);
+
+                double paid = customerInvoices[0].Paid;
+                foreach (JobAnalysisWindows.CustomerInvoice invoice in customerInvoices)
+                {
+                    if(paid > 0)
+                    {
+                        if (paid > invoice.InvoiceTotal) invoice.Paid = invoice.InvoiceTotal;
+                        else invoice.Paid = paid;
+                    }
+                    else
+                    {
+                        invoice.Paid = 0;
+                    }
+                    paid = Math.Round(paid - invoice.InvoiceTotal, 6);
+                }
+
+                foreach (JobAnalysisWindows.SupplierInvoice invoice in supplierInvoices)
+                {
+                    invoice.Balance = originalInvoices.Where(i => i.InvoiceID == invoice.ID).Sum(i => i.Balance);
+                    invoice.Paid = invoice.InvoiceTotal - invoice.Balance;
+                }
+
+
+                Printing.Finance.JobAnalysis.SalesOrderTable salesOrderTable = new Printing.Finance.JobAnalysis.SalesOrderTable(salesOrder);
+                //{
+                //    SalesOrder = salesOrder
+                //};
+                Printing.Finance.JobAnalysis.CustomerTable customerTable = new Printing.Finance.JobAnalysis.CustomerTable(customerInvoices);
+                Printing.Print.PrintPreview(customerTable, "");
+
+
+                //Printing.Finance.JobAnalysis jobAnalysis = new Printing.Finance.JobAnalysis()
+                //{
+
+                //};
+                
+            }
+        }
     }
 }

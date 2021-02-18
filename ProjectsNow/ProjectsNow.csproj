@@ -202,8 +202,26 @@
     <Compile Include="Printing\Finance\CustomerStatement.xaml.cs">
       <DependentUpon>CustomerStatement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Printing\Finance\JobAnalysis.xaml.cs">
-      <DependentUpon>JobAnalysis.xaml</DependentUpon>
+    <Compile Include="Printing\Finance\JobAnalysis\CustomerTable.xaml.cs">
+      <DependentUpon>CustomerTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\Finance\JobAnalysis\JobAnalysisForm.xaml.cs">
+      <DependentUpon>JobAnalysisForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\Finance\JobAnalysis\OverheadTable.xaml.cs">
+      <DependentUpon>OverheadTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\Finance\JobAnalysis\ProfitTable.xaml.cs">
+      <DependentUpon>ProfitTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\Finance\JobAnalysis\SalesOrderTable.xaml.cs">
+      <DependentUpon>SalesOrderTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\Finance\JobAnalysis\SupplierTable.xaml.cs">
+      <DependentUpon>SupplierTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\Finance\JobAnalysis\TransportationTable.xaml.cs">
+      <DependentUpon>TransportationTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="Printing\InvoiceForm.xaml.cs">
       <DependentUpon>InvoiceForm.xaml</DependentUpon>
@@ -267,9 +285,16 @@
     <Compile Include="Windows\FinanceWindows\CustomersWindows\StatementWindow.xaml.cs">
       <DependentUpon>StatementWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\FinanceWindows\JobAnalysisWindows\OriginalInvoice.cs" />
+    <Compile Include="Windows\FinanceWindows\JobAnalysisWindows\Profit.cs" />
+    <Compile Include="Windows\FinanceWindows\JobAnalysisWindows\SupplierInvoice.cs" />
+    <Compile Include="Windows\FinanceWindows\JobAnalysisWindows\Transportation.cs" />
+    <Compile Include="Windows\FinanceWindows\JobAnalysisWindows\CustomerInvoice.cs" />
     <Compile Include="Windows\FinanceWindows\JobAnalysisWindows\JobAnalysisWindow.xaml.cs">
       <DependentUpon>JobAnalysisWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\FinanceWindows\JobAnalysisWindows\Overead.cs" />
+    <Compile Include="Windows\FinanceWindows\JobAnalysisWindows\SalesOrder.cs" />
     <Compile Include="Windows\FinanceWindows\JobOrdersWindows\JobOrdersWindow.xaml.cs">
       <DependentUpon>JobOrdersWindow.xaml</DependentUpon>
     </Compile>
@@ -652,9 +677,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Printing\Finance\JobAnalysis.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Printing\Finance\JobAnalysis\CustomerTable.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Printing\Finance\JobAnalysis\JobAnalysisForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Printing\Finance\JobAnalysis\OverheadTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Printing\Finance\JobAnalysis\ProfitTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Printing\Finance\JobAnalysis\SalesOrderTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Printing\Finance\JobAnalysis\SupplierTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Printing\Finance\JobAnalysis\TransportationTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Printing\InvoiceForm.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -1614,5 +1663,6 @@
   <ItemGroup>
     <Resource Include="Images\Icons\Transportation.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -265,7 +265,6 @@
                         </Button.Resources>
                     </Button>
 
-
                     <Button x:Name="SuppliersInvoices">
                         <Button.Resources>
                             <Style TargetType="{x:Type Button}">
@@ -294,7 +293,33 @@
                         </Button.Resources>
                     </Button>
 
+                    <Button x:Name="JobAnalysis">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Height" Value="60"/>
+                                <Setter Property="Width" Value="60"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="ToolTip" Value="Job Analysis"/>
+                                <EventSetter Event="Click" Handler="JobAnalysis_Click"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
+                                                <Image Source="/Images/Icons/BlueFolderSearch.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="5"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
 
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGray"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Resources>
+                    </Button>
                 </StackPanel>
             </TabItem>
 

@@ -1,14 +1,14 @@
-﻿<Application x:Class="ProjectsNow.App"
+﻿<!--<Application x:Class="ProjectsNow.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Startup="Application_Startup"
-             StartupUri="Windows/UserWindows/LoginWindow.xaml">
+             StartupUri="Windows/UserWindows/LoginWindow.xaml">-->
 
-<!--<Application x:Class="ProjectsNow.App"
+<Application x:Class="ProjectsNow.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Startup="Application_Startup"
-             StartupUri="Windows/FinanceWindows/SuppliersInvoicesWindows/InvoicesWindow.xaml">-->
+             StartupUri="Windows/FinanceWindows/JobOrdersWindows/JobOrdersWindow.xaml">
 
     <!--<Application x:Class="ProjectsNow.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
