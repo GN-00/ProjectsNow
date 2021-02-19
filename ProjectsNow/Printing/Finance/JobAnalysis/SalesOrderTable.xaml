@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             HorizontalAlignment="Left"
              mc:Ignorable="d" 
              Width="20cm"
              Height="2cm">
@@ -55,13 +56,13 @@
             <TextBlock Text="{Binding CustomerName}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
         <Border Grid.Row="2" Grid.Column="3" BorderBrush="Black" BorderThickness="0,0,1,1">
-            <TextBlock Text="{Binding QuotationAmount}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding QuotationAmount, StringFormat=N}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
         <Border Grid.Row="2" Grid.Column="4" BorderBrush="Black" BorderThickness="0,0,1,1">
-            <TextBlock Text="{Binding QuotationVAT}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding QuotationVAT, StringFormat=N}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
         <Border Grid.Row="2" Grid.Column="5" BorderBrush="Black" BorderThickness="0,0,1,1">
-            <TextBlock Text="{Binding QuotationInvoiceTotal}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding QuotationInvoiceTotal, StringFormat=N}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
 
         <Border Grid.Row="3" Grid.Column="1" BorderBrush="Black" BorderThickness="0,0,1,0"/>
@@ -69,13 +70,13 @@
             <TextBlock Text="Total" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
         <Border Grid.Row="3" Grid.Column="3" BorderBrush="Black" BorderThickness="0,0,1,1">
-            <TextBlock Text="{Binding QuotationAmount}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding QuotationAmount, StringFormat=N}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
         <Border Grid.Row="3" Grid.Column="4" BorderBrush="Black" BorderThickness="0,0,1,1">
-            <TextBlock Text="{Binding QuotationVAT}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding QuotationVAT, StringFormat=N}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
         <Border Grid.Row="3" Grid.Column="5" BorderBrush="Black" BorderThickness="0,0,1,1">
-            <TextBlock Text="{Binding QuotationInvoiceTotal}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding QuotationInvoiceTotal, StringFormat=N}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
 
     </Grid>

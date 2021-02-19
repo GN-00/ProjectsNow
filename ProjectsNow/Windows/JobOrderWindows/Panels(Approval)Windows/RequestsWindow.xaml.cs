@@ -295,6 +295,14 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Approval_Windows
         {
             if (RequestsList.SelectedItem is ApprovalRequest delivery)
             {
+                //var tempPanels = new ObservableCollection<JPanel>();
+                //foreach (JPanel panel in tempPanelsData)
+                //{
+                //    JPanel newPanel = new JPanel();
+                //    newPanel.Update(panel);
+                //    tempPanels.Add(newPanel);
+                //}
+
                 var window = new PanelsWindow()
                 {
                     RequestData = delivery,
@@ -322,7 +330,6 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Approval_Windows
                 JPanel checkPanelData1 = tempPanelsData.Single(p => p.PanelID == panelData.PanelID);
                 if (checkPanelData.Status == Statuses.Waiting_Approval.ToString())
                 {
-                    
                     checkPanelData.Status = checkPanelData1.Status = Statuses.Designing.ToString();
                     checkPanelData.Revision++;
                     checkPanelData1.Revision++;

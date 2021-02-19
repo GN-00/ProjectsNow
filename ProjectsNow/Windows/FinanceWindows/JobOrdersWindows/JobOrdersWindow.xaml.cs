@@ -268,6 +268,8 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
             {
                 string query;
                 List<string> POs;
+                
+                JobAnalysisWindows.Profit profit;
                 JobAnalysisWindows.Overhead overhead;
                 JobAnalysisWindows.SalesOrder salesOrder;
                 JobAnalysisWindows.Transportation transportation;
@@ -291,6 +293,9 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
 
                     query = $"Select * From[Finance].[JobAnalysis(JobOrdersInvoicesPaid)] Where JobOrderID = { jobOrder.ID }";
                     originalInvoices = connection.Query<JobAnalysisWindows.OriginalInvoice>(query).ToList();
+
+                    overhead = new JobAnalysisWindows.Overhead(); // need work
+                    transportation = new JobAnalysisWindows.Transportation(); // need work
                 }
 
                 foreach (string po in POs)
@@ -319,20 +324,84 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
                     invoice.Paid = invoice.InvoiceTotal - invoice.Balance;
                 }
 
+                profit = new JobAnalysisWindows.Profit();
+                profit.CostAmount = supplierInvoices.Sum(i => i.Amount);
+                profit.CostVAT = supplierInvoices.Sum(i => i.VAT);
+                profit.CostInvoiceTotal = supplierInvoices.Sum(i => i.InvoiceTotal);
 
-                Printing.Finance.JobAnalysis.SalesOrderTable salesOrderTable = new Printing.Finance.JobAnalysis.SalesOrderTable(salesOrder);
-                //{
-                //    SalesOrder = salesOrder
-                //};
-                Printing.Finance.JobAnalysis.CustomerTable customerTable = new Printing.Finance.JobAnalysis.CustomerTable(customerInvoices);
-                Printing.Print.PrintPreview(customerTable, "");
+                profit.NetMarginAmount = salesOrder.QuotationAmount - profit.CostAmount;
+                profit.NetMarginVAT = salesOrder.QuotationVAT - profit.CostVAT;
+                profit.NetMarginInvoiceTotal = salesOrder.QuotationInvoiceTotal - profit.CostInvoiceTotal;
 
+                profit.NetMarginAmountPercentage = (profit.NetMarginAmount / salesOrder.QuotationAmount) * 100;
+                profit.NetMarginVATPercentage = (profit.NetMarginVAT / salesOrder.QuotationVAT) * 100;
+                profit.NetMarginInvoiceTotalPercentage = (profit.NetMarginInvoiceTotal / salesOrder.QuotationInvoiceTotal) * 100;
 
-                //Printing.Finance.JobAnalysis jobAnalysis = new Printing.Finance.JobAnalysis()
-                //{
-
-                //};
+                //int page = 1;
+                //double rows;
+                //double cm = App.cm;
+                //double BodyHeight = 670;
+                Printing.Finance.JobAnalysis.JobAnalysisForm jobAnalysis = new Printing.Finance.JobAnalysis.JobAnalysisForm(jobOrder.Code, jobOrder.CustomerName);
                 
+                Printing.Finance.JobAnalysis.SalesOrderTable salesOrderTable = new Printing.Finance.JobAnalysis.SalesOrderTable(salesOrder);
+                jobAnalysis.Body.Children.Add(salesOrderTable);
+
+                Printing.Finance.JobAnalysis.CustomerTable customerTable = new Printing.Finance.JobAnalysis.CustomerTable(customerInvoices)
+                { Margin = new Thickness(0, 5, 0, 0) };
+                jobAnalysis.Body.Children.Add(customerTable);
+
+                Printing.Finance.JobAnalysis.SupplierTable supplierTable = new Printing.Finance.JobAnalysis.SupplierTable(supplierInvoices)
+                { Margin = new Thickness(0, 5, 0, 0) };
+                jobAnalysis.Body.Children.Add(supplierTable);
+
+                Printing.Finance.JobAnalysis.OverheadTable overheadTable = new Printing.Finance.JobAnalysis.OverheadTable(overhead)
+                { Margin = new Thickness(0, 5, 0, 0) };
+                jobAnalysis.Body.Children.Add(overheadTable);
+
+                Printing.Finance.JobAnalysis.TransportationTable transportationTable = new Printing.Finance.JobAnalysis.TransportationTable(transportation)
+                { Margin = new Thickness(0, 5, 0, 0) };
+                jobAnalysis.Body.Children.Add(transportationTable);
+
+
+                Printing.Finance.JobAnalysis.ProfitTable profitTable = new Printing.Finance.JobAnalysis.ProfitTable(profit)
+                { Margin = new Thickness(0, 5, 0, 0) };
+                jobAnalysis.Body.Children.Add(profitTable);
+
+
+                //rows = (BodyHeight - (1 * cm)) / (0.5 * cm);
+                //if(rows > customerInvoices.Count)
+                //{
+                //    Printing.Finance.JobAnalysis.CustomerTable customerTable = new Printing.Finance.JobAnalysis.CustomerTable(customerInvoices)
+                //    { Margin = new Thickness(0, 5, 0, 0) }; 
+                //    jobAnalysis.Body.Children.Add(customerTable);
+                //    BodyHeight -= (1 + customerInvoices.Count * 0.5) * cm;
+                //}
+                //else
+                //{
+                //    //Printing.Finance.JobAnalysis.CustomerTable customerTable = 
+                //    //    new Printing.Finance.JobAnalysis.CustomerTable(customerInvoices.Where(i => customerInvoices.IndexOf(i) < (Convert.ToInt32(rows) - 1)).ToList());
+                //    //jobAnalysis.Body.Children.Add(customerTable);
+                //    //BodyHeight -= 2 * cm;
+                //}
+
+                //rows = (BodyHeight - (1 * cm)) / (0.5 * cm);
+                //if (rows > supplierInvoices.Count)
+                //{
+                //    Printing.Finance.JobAnalysis.SupplierTable supplierTable = new Printing.Finance.JobAnalysis.SupplierTable(supplierInvoices) 
+                //    { Margin = new Thickness(0, 5, 0, 0) };
+                //    jobAnalysis.Body.Children.Add(supplierTable);
+                //    BodyHeight -= 2 * cm;
+                //}
+                //else
+                //{
+                //    //Printing.Finance.JobAnalysis.CustomerTable customerTable = 
+                //    //    new Printing.Finance.JobAnalysis.CustomerTable(customerInvoices.Where(i => customerInvoices.IndexOf(i) < (Convert.ToInt32(rows) - 1)).ToList());
+                //    //jobAnalysis.Body.Children.Add(customerTable);
+                //    //BodyHeight -= 2 * cm;
+                //}
+
+                Printing.Print.PrintPreview(jobAnalysis, $"Job Analysis {jobOrder.Code}");
+
             }
         }
     }

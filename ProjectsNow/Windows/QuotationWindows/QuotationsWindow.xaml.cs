@@ -453,11 +453,11 @@ namespace ProjectsNow.Windows.QuotationWindows
 
                     query = $"Select (Max(QuotationRevise) + 1) as QuotationRevise From [Quotation].[Quotations] " +
                             $"Where QuotationYear = {quotationData.QuotationYear} " +
-                            $"And QuotationMonth = {quotationData.RegisterMonth} " +
+                            $"And QuotationMonth = {quotationData.QuotationMonth} " +
                             $"And QuotationNumber = {quotationData.QuotationNumber}";
 
                     reviseQuotationData.QuotationReviseDate = DateTime.Now;
-                    reviseQuotationData.QuotationRevise = connection.QuerySingle<int>(query);
+                    reviseQuotationData.QuotationRevise = connection.QueryFirstOrDefault<int>(query);
                     reviseQuotationData.QuotationStatus = Statuses.Running.ToString();
                     reviseQuotationData.QuotationCode = $"{reviseQuotationData.QuotationCode.Substring(0, 17)}/R{reviseQuotationData.QuotationRevise:00}";
 

@@ -36,7 +36,7 @@ namespace ProjectsNow.Windows.FinanceWindows.SuppliersInvoicesWindows
                 query = $"Select * From [Finance].[JobAnalysis(OriginalsInvoices)] Where Year(Date) = {DateTime.Now.Year} Order By InvoiceNumber, JobOrderID";
                 supplierInvoices = new ObservableCollection<Database.Suppliers.SupplierInvoice>(connection.Query<Database.Suppliers.SupplierInvoice>(query));
 
-                query = $"Select * From [Finance].[JobAnalysis(OriginalsInvoicesYear))]";
+                query = $"Select * From [Finance].[JobAnalysis(OriginalsInvoicesYear)]";
                 years = connection.Query<int>(query).ToList();
             }
             DataContext = new { UserData };

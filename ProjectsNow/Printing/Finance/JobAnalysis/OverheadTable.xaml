@@ -3,10 +3,87 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ProjectsNow.Printing.Finance.JobAnalysis"
+             HorizontalAlignment="Left"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+             Width="25cm"
+             Height="1.0cm">
+    <StackPanel Orientation="Vertical">
+        <Grid x:Name="Table">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3cm"/>
+                <ColumnDefinition Width="3cm"/>
+                <ColumnDefinition Width="6cm"/>
+                <ColumnDefinition Width="2.75cm"/>
+                <ColumnDefinition Width="2.5cm"/>
+                <ColumnDefinition Width="2.75cm"/>
+                <ColumnDefinition Width="2.5cm"/>
+                <ColumnDefinition Width="2.5cm"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5cm"/>
+                <!--<RowDefinition Height="0.5cm"/>-->
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" Background="Black" BorderBrush="Black" BorderThickness="1">
+                <TextBlock Text="Overhead" FontSize="12" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <!--<Border Grid.Row="1" Grid.Column="0" Background="Black" BorderBrush="Black" BorderThickness="1,0,1,1">
+            </Border>
+            <Border Grid.Row="1" Grid.Column="1" Background="Black" BorderBrush="Black" BorderThickness="0,0,1,1">
+            </Border>
+            <Border Grid.Row="1" Grid.Column="2" Background="Black" BorderBrush="Black" BorderThickness="0,0,1,1">
+            </Border>
+            <Border Grid.Row="1" Grid.Column="3" Background="Black" BorderBrush="Black" BorderThickness="0,0,1,1">
+                <TextBlock Text="Amount" FontSize="12" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="4" Background="Black" BorderBrush="Black" BorderThickness="0,0,1,1">
+                <TextBlock Text="VAT" FontSize="12" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="5" Background="Black" BorderBrush="Black" BorderThickness="0,0,1,1">
+                <TextBlock Text="Invoice Total" FontSize="12" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="6" Background="Black" BorderBrush="Black" BorderThickness="0,0,1,1">
+                <TextBlock Text="Balance" FontSize="12" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="7" Background="Black" BorderBrush="Black" BorderThickness="0,0,1,1">
+                <TextBlock Text="Status" FontSize="12" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>-->
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3cm"/>
+                <ColumnDefinition Width="3cm"/>
+                <ColumnDefinition Width="6cm"/>
+                <ColumnDefinition Width="2.75cm"/>
+                <ColumnDefinition Width="2.5cm"/>
+                <ColumnDefinition Width="2.75cm"/>
+                <ColumnDefinition Width="2.5cm"/>
+                <ColumnDefinition Width="2.5cm"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5cm"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="0,0,1,0"/>
+            <Border Grid.Column="2" BorderBrush="Black" BorderThickness="0,0,1,1">
+                <TextBlock Text="Total" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border Grid.Column="3" BorderBrush="Black" BorderThickness="0,0,1,1">
+                <TextBlock x:Name="Amount" Text="{Binding Amount}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border Grid.Column="4" BorderBrush="Black" BorderThickness="0,0,1,1">
+                <TextBlock x:Name="VAT" Text="{Binding VAT}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border Grid.Column="5" BorderBrush="Black" BorderThickness="0,0,1,1">
+                <TextBlock x:Name="InvoiceTotal" Text="{Binding InvoiceTotal}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border Grid.Column="6" BorderBrush="Black" BorderThickness="0,0,1,1">
+                <TextBlock x:Name="Balance" Text="{Binding Balance}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border Grid.Column="7" BorderBrush="Black" BorderThickness="0,0,1,1">
+                <TextBlock Text="{Binding Status}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+
+        </Grid>
+    </StackPanel>
 </UserControl>

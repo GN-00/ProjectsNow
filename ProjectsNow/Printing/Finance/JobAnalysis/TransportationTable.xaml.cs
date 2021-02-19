@@ -1,28 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
+using ProjectsNow.Windows.FinanceWindows.JobAnalysisWindows;
 
 namespace ProjectsNow.Printing.Finance.JobAnalysis
 {
-    /// <summary>
-    /// Interaction logic for TransportationTable.xaml
-    /// </summary>
     public partial class TransportationTable : UserControl
     {
-        public TransportationTable()
+        public TransportationTable(Transportation transportation)
         {
             InitializeComponent();
+            DataContext = transportation;
         }
     }
 }

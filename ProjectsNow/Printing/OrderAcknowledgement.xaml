@@ -79,19 +79,19 @@
                 <Grid Width="580">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <TextBlock Text="1-Amount: " HorizontalAlignment="Left" FontSize="16"/>
-                        <TextBlock Text="R " FontWeight="Bold" HorizontalAlignment="Left" FontSize="16"/>
+                        <TextBlock Text="SR " FontWeight="Bold" HorizontalAlignment="Left" FontSize="16"/>
                         <TextBlock Text="{Binding QuotationPrice}" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <TextBlock Text="VAT " HorizontalAlignment="Left" FontSize="16" Margin="30,0,0,0"/>
                         <TextBlock Text="{Binding VATPercentage}" HorizontalAlignment="Left" FontSize="16"/>
                         <TextBlock Text="%: " HorizontalAlignment="Left" FontSize="16"/>
-                        <TextBlock Text="R " HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock Text="SR " HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
                         <TextBlock Text="{Binding VATPrice}" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <TextBlock Text="Total Amount: " HorizontalAlignment="Left" FontSize="16" Margin="30,0,0,0"/>
-                        <TextBlock Text="R " HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock Text="SR " HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
                         <TextBlock Text="{Binding QuotationPriceWithVAT}" HorizontalAlignment="Left"  FontWeight="Bold" FontSize="16"/>
                     </StackPanel>
                 </Grid>
@@ -119,7 +119,7 @@
                 <TextBlock Text="6-Warranty: " HorizontalAlignment="Left" FontSize="16"/>
                 <TextBlock Text="{Binding Warranty}" HorizontalAlignment="Left" FontSize="16"/>
             </StackPanel>
-            <TextBlock Text="8-Cancellation Policy: " HorizontalAlignment="Left" FontSize="16"/>
+            <TextBlock Text="7-Cancellation Policy: " HorizontalAlignment="Left" FontSize="16"/>
             <StackPanel Orientation="Vertical" Margin="33,0,0,0">
                 <TextBlock Text="• After PO direct before start shop drawing deduction will be: " HorizontalAlignment="Left" FontSize="16"/>
                 <StackPanel Orientation="Horizontal">
