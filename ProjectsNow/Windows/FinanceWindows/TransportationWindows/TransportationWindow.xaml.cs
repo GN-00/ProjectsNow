@@ -1,26 +1,134 @@
-﻿using ProjectsNow.Database;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using Dapper;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
+using ProjectsNow.Enums;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using ProjectsNow.Database;
+using System.Data.SqlClient;
+using System.Windows.Controls;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using ProjectsNow.Windows.MessageWindows;
 
 namespace ProjectsNow.Windows.FinanceWindows.TransportationWindows
 {
     public partial class TransportationWindow : Window
     {
         public User UserData { get; set; }
+        public JobOrderFinance JobOrderData { get; set; }
+
+        CollectionViewSource viewData;
+        ObservableCollection<MoneyTransaction> transactions;
         public TransportationWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
+            {
+                string query = $"Select * From [Finance].[ProjectsTransactions] Where JobOrderID = {JobOrderData.ID} And Type ='{MoneyTransactionTypes.Project}'";
+                transactions = new ObservableCollection<MoneyTransaction>(connection.Query<MoneyTransaction>(query));
+            }
+            DataContext = JobOrderData;
+
+            viewData = new CollectionViewSource() { Source = transactions };
+
+            TransactionsList.ItemsSource = viewData.View;
+            viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
+
+            if (transactions.Count == 0)
+                CollectionChanged(sender, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+        }
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+        private void Minimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+        private void CloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+        private void CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            var selectedIndex = TransactionsList.SelectedIndex;
+            if (selectedIndex == -1)
+                NavigationPanel.Text = $"Transactions: {viewData.View.Cast<object>().Count()}";
+            else
+                NavigationPanel.Text = $"Transaction: {selectedIndex + 1} / {viewData.View.Cast<object>().Count()}";
+
+            if (transactions != null)
+                JobOrderData.Paid = transactions.Sum(t => t.Amount);
+        }
+        private void TransactionsList_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            var selectedIndex = TransactionsList.SelectedIndex;
+            if (selectedIndex == -1)
+                NavigationPanel.Text = $"Transactions: {viewData.View.Cast<object>().Count()}";
+            else
+                NavigationPanel.Text = $"Transaction: {selectedIndex + 1} / {viewData.View.Cast<object>().Count()}";
+        }
+
+        private void New_Click(object sender, RoutedEventArgs e)
+        {
+            var jobOrder = new MoneyTransaction()
+            {
+                Amount = JobOrderData.Balance,
+                JobOrderID = JobOrderData.ID,
+                CustomerID = JobOrderData.CustomerID,
+                Date = DateTime.Now,
+                Type = MoneyTransactionTypes.Project.ToString()
+            };
+            //JobOrderTransactionWindow jobOrderTransactionWindow = new JobOrderTransactionWindow()
+            //{
+            //    UserData = UserData,
+            //    ActionData = Actions.New,
+            //    TransactionData = jobOrder,
+            //    TransactionsData = transactions,
+            //};
+            //jobOrderTransactionWindow.ShowDialog();
+        }
+
+        private void Edit_ClicK(object sender, RoutedEventArgs e)
+        {
+            if (TransactionsList.SelectedItem is MoneyTransaction transaction)
+            {
+                //JobOrderTransactionWindow jobOrderTransactionWindow = new JobOrderTransactionWindow()
+                //{
+                //    UserData = UserData,
+                //    ActionData = Actions.Edit,
+                //    TransactionData = transaction,
+                //    TransactionsData = null,
+                //};
+                //this.Visibility = Visibility.Collapsed;
+                //jobOrderTransactionWindow.ShowDialog();
+                //this.Visibility = Visibility.Visible;
+
+                //if (transactions != null)
+                //    JobOrderData.Paid = transactions.Sum(t => t.Amount);
+            }
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (TransactionsList.SelectedItem is MoneyTransaction transaction)
+            {
+                MessageBoxResult result = CMessageBox.Show("Deleting", $"Do you want to delete: \n{transaction.Description}?", CMessageBoxButton.YesNo, CMessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
+                    {
+                        connection.Execute($"Delete From [Finance].[MoneyTransactions] Where ID = {transaction.ID}");
+                        transactions.Remove(transaction);
+                    }
+                }
+            }
         }
     }
 }

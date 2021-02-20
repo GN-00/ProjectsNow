@@ -12,6 +12,7 @@ namespace ProjectsNow.Windows.StoreWindows.TransferWindows
     {
         public JobOrder JobOrderData { get; set; }
         public ItemTransaction ItemData { get; set; }
+        public ItemPurchased JobOrderItemData { get; set; }
         public SupplierInvoice InvoiceData { get; set; }
         public ObservableCollection<ItemTransaction> ItemsData { get; set; }
 
@@ -21,8 +22,13 @@ namespace ProjectsNow.Windows.StoreWindows.TransferWindows
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ItemsToPostInput.Text = ItemData.FinalQty.ToString();
-            DataContext = JobOrderData ;
+            if (JobOrderItemData.RemainingQty <= ItemData.FinalQty)
+                ItemsToPostInput.Text = $"{JobOrderItemData.RemainingQty}";
+            else
+                ItemsToPostInput.Text = $"{ItemData.FinalQty}";
+
+            InNeed.Text = $"{JobOrderItemData.RemainingQty}/{JobOrderItemData.Qty}";
+            DataContext = JobOrderData;
             ItemsToPostInput.Focus();
         }
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
@@ -44,6 +50,7 @@ namespace ProjectsNow.Windows.StoreWindows.TransferWindows
                 double qty = int.Parse(ItemsToPostInput.Text);
                 if (qty > 0)
                 {
+                    JobOrderItemData.PurchasedQty += qty;
                     ItemData.TransferredQty += qty;
                     ItemTransaction transferData = new ItemTransaction()
                     {
@@ -107,8 +114,8 @@ namespace ProjectsNow.Windows.StoreWindows.TransferWindows
             else
             {
                 int qty = int.Parse(ItemsToPostInput.Text);
-                if (qty > ItemData.FinalQty)
-                    ItemsToPostInput.Text = ItemData.FinalQty.ToString();
+                if (qty > JobOrderItemData.Qty)
+                    ItemsToPostInput.Text = JobOrderItemData.RemainingQty.ToString();
             }
         }
         private void ItemsToPostInput_PreviewKeyDown(object sender, KeyEventArgs e)

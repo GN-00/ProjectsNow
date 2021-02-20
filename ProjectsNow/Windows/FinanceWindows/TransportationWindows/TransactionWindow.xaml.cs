@@ -11,9 +11,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using ProjectsNow.Windows.MessageWindows;
 
-namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
+namespace ProjectsNow.Windows.FinanceWindows.TransportationWindows
 {
-    public partial class JobOrderTransactionWindow : Window
+    public partial class TransactionWindow : Window
     {
         public User UserData { get; set; }
         public Actions ActionData { get; set; }
@@ -22,11 +22,10 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
 
         MoneyTransaction newTransactionData = new MoneyTransaction();
         List<Account> accounts;
-        public JobOrderTransactionWindow()
+        public TransactionWindow()
         {
             InitializeComponent();
         }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
@@ -78,7 +77,7 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
 
                     TransactionsData.Insert(0, newTransactionData);
                 }
-                else 
+                else
                 {
                     using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
                     {
@@ -115,7 +114,7 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
 
         private void AccountsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(AccountsList.SelectedItem is Account account)
+            if (AccountsList.SelectedItem is Account account)
             {
                 newTransactionData.AccountName = account.Name;
             }

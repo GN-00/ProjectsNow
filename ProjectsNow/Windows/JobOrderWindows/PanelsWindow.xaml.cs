@@ -105,6 +105,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
                 JobOrderData = this.JobOrderData,
             };
             window.ShowDialog();
+            this.Window_Loaded(sender, e);
         }
         private void Approval_Click(object sender, RoutedEventArgs e)
         {
@@ -115,6 +116,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
                 JobOrderData = this.JobOrderData,
             };
             window.ShowDialog();
+            this.Window_Loaded(sender, e);
         }
         private void Production_Click(object sender, RoutedEventArgs e)
         {
@@ -125,6 +127,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
                 JobOrderData = this.JobOrderData,
             };
             window.ShowDialog();
+            this.Window_Loaded(sender, e);
         }
         private void Close_Click(object sender, RoutedEventArgs e)
         {
@@ -135,6 +138,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
                 JobOrderData = this.JobOrderData,
             };
             window.ShowDialog();
+            this.Window_Loaded(sender, e);
         }
         private void Invoicing_Click(object sender, RoutedEventArgs e)
         {
@@ -145,6 +149,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
                 JobOrderData = this.JobOrderData,
             };
             window.ShowDialog();
+            this.Window_Loaded(sender, e);
         }
         private void Delivery_Click(object sender, RoutedEventArgs e)
         {
@@ -155,6 +160,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
                 JobOrderData = this.JobOrderData,
             };
             window.ShowDialog();
+            this.Window_Loaded(sender, e);
         }
         private void Hold_Click(object sender, RoutedEventArgs e)
         {
@@ -165,6 +171,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
                 JobOrderData = this.JobOrderData,
             };
             window.ShowDialog();
+            this.Window_Loaded(sender, e);
         }
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
@@ -175,6 +182,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
                 JobOrderData = this.JobOrderData,
             };
             window.ShowDialog();
+            this.Window_Loaded(sender, e);
         }
 
         private void Material_Click(object sender, RoutedEventArgs e)

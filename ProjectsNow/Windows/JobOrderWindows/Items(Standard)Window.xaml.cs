@@ -43,6 +43,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
 
                 PartNumbersList.Text = newItemData.PartNumber;
                 Qty.Text = newItemData.ItemQty.ToString();
+                Table.Text = newItemData.ItemTable;
             }
             else
             {
@@ -119,6 +120,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             MItem updateItem;
+            int updateItemCount;
             bool isReady = true;
             string message = "Please select correct reference!";
 
@@ -128,9 +130,15 @@ namespace ProjectsNow.Windows.JobOrderWindows
                 newItemData.Code = referenceData.Code;
                 newItemData.Description = Description.Text;
                 newItemData.Brand = Brand.Text;
+                updateItemCount = JobOrderItemsData.Count(i => i.PartNumber.Equals(newItemData.PartNumber));
                 updateItem = JobOrderItemsData.FirstOrDefault(i => i.PartNumber.Equals(newItemData.PartNumber));
                 if (updateItem != null)
                 {
+                    //if (updateItemCount == 1 && updateItem.ItemID == 0)
+                    //    newItemData.ItemTable = Table.Text;
+                    //else
+                    //    newItemData.ItemTable = updateItem.ItemTable;
+
                     newItemData.ItemSort = updateItem.ItemSort;
                     newItemData.ItemTable = updateItem.ItemTable;
                     newItemData.ItemType = updateItem.ItemType;

@@ -17,7 +17,117 @@
         Width="1300">
     <Window.Resources>
 
-        <ContextMenu x:Key="InvoicesListContextMenu">
+        <!--Stock-->
+        <ContextMenu x:Key="InvoicesListContextMenu1">
+            <MenuItem Click="New_Click">
+                <MenuItem.Header>
+                    <TextBlock Text="New Invoice"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/NewFile.png" 
+                           SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality">
+                    </Image>
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="InvoiceContextMenu1">
+            <MenuItem Click="New_Click">
+                <MenuItem.Header>
+                    <TextBlock Text="New"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/NewFile.png" 
+                           SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality">
+                    </Image>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Click="Edit_Click">
+                <MenuItem.Header>
+                    <TextBlock Text="Edit"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/Edit1.png" 
+                           SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality">
+                    </Image>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Click="Print_Click">
+                <MenuItem.Header>
+                    <TextBlock Text="Print"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/printer.png" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <Separator/>
+            <MenuItem Click="Delete_Click">
+                <MenuItem.Header>
+                    <TextBlock Text="Delete" Foreground="Red"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/Error.png" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="ItemsListContextMenu1">
+            <MenuItem Click="AddItems_Click">
+                <MenuItem.Header>
+                    <TextBlock Text="Add Item"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/AddItem.png" 
+                           SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality">
+                    </Image>
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="ItemsContextMenu1">
+            <MenuItem Click="AddItems_Click">
+                <MenuItem.Header>
+                    <TextBlock Text="Add Item"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/AddItem.png" 
+                           SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality">
+                    </Image>
+                </MenuItem.Icon>
+            </MenuItem>
+            <Separator/>
+            <MenuItem Click="DeleteItems_Click">
+                <MenuItem.Header>
+                    <TextBlock Text="Delete" Foreground="Red"/>
+                </MenuItem.Header>
+                <MenuItem.Icon>
+                    <Image Source="/Images/Icons/Error.png" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
+        <Style x:Key="RowStyle1" TargetType="{x:Type DataGridRow}">
+            <Setter Property="ContextMenu" Value="{StaticResource InvoiceContextMenu1}"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Gray"/>
+                </Trigger>
+
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="LightGray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ItemsRow1" TargetType="{x:Type DataGridRow}">
+            <Setter Property="ContextMenu" Value="{StaticResource ItemsContextMenu1}"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Gray"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="LightGray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!--Other-->
+        <ContextMenu x:Key="InvoicesListContextMenu2">
             <MenuItem Click="New_Click">
                 <MenuItem.Header>
                     <TextBlock Text="New Invoice"/>
@@ -37,19 +147,9 @@
                            SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality">
                     </Image>
                 </MenuItem.Icon>
-                <MenuItem.Resources>
-                    <Style TargetType="MenuItem">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding JobOrderData.ID}" Value="0">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </MenuItem.Resources>
             </MenuItem>
         </ContextMenu>
-
-        <ContextMenu x:Key="InvoiceContextMenu1">
+        <ContextMenu x:Key="InvoiceContextMenu2">
             <MenuItem Click="New_Click">
                 <MenuItem.Header>
                     <TextBlock Text="New"/>
@@ -108,58 +208,7 @@
                 </MenuItem.Icon>
             </MenuItem>
         </ContextMenu>
-
-        <ContextMenu x:Key="InvoiceContextMenu2">
-            <MenuItem Click="New_Click">
-                <MenuItem.Header>
-                    <TextBlock Text="New"/>
-                </MenuItem.Header>
-                <MenuItem.Icon>
-                    <Image Source="/Images/Icons/NewFile.png" 
-                           SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality">
-                    </Image>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Click="Edit_Click">
-                <MenuItem.Header>
-                    <TextBlock Text="Edit"/>
-                </MenuItem.Header>
-                <MenuItem.Icon>
-                    <Image Source="/Images/Icons/Edit1.png" 
-                           SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality">
-                    </Image>
-                </MenuItem.Icon>
-                <MenuItem.Resources>
-                    <Style TargetType="MenuItem">
-                        <Setter Property="Visibility" Value="Visible"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding SupplierID}" Value="0">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </MenuItem.Resources>
-            </MenuItem>
-            <MenuItem Click="Print_Click">
-                <MenuItem.Header>
-                    <TextBlock Text="Print"/>
-                </MenuItem.Header>
-                <MenuItem.Icon>
-                    <Image Source="/Images/Icons/printer.png" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <Separator/>
-            <MenuItem Click="Delete_Click">
-                <MenuItem.Header>
-                    <TextBlock Text="Delete" Foreground="Red"/>
-                </MenuItem.Header>
-                <MenuItem.Icon>
-                    <Image Source="/Images/Icons/Error.png" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality"/>
-                </MenuItem.Icon>
-            </MenuItem>
-        </ContextMenu>
-
-        <ContextMenu x:Key="ItemsListContextMenu">
+        <ContextMenu x:Key="ItemsListContextMenu2">
             <MenuItem Click="StockItems_Click">
                 <MenuItem.Header>
                     <TextBlock Text="Add Items"/>
@@ -175,28 +224,6 @@
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding SupplierID}" Value="0">
                                 <Setter Property="Visibility" Value="Visible" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding JobOrderData.ID}" Value="0">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </MenuItem.Resources>
-            </MenuItem>
-            <MenuItem Click="AddItems_Click">
-                <MenuItem.Header>
-                    <TextBlock Text="Add Item"/>
-                </MenuItem.Header>
-                <MenuItem.Icon>
-                    <Image Source="/Images/Icons/AddItem.png" 
-                           SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality">
-                    </Image>
-                </MenuItem.Icon>
-                <MenuItem.Resources>
-                    <Style TargetType="MenuItem">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding SupplierID}" Value="0">
-                                <Setter Property="Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
@@ -247,8 +274,7 @@
                 </MenuItem.Resources>
             </MenuItem>
         </ContextMenu>
-
-        <ContextMenu x:Key="ItemsContextMenu">
+        <ContextMenu x:Key="ItemsContextMenu2">
             <MenuItem Click="StockItems_Click">
                 <MenuItem.Header>
                     <TextBlock Text="Add Items"/>
@@ -265,51 +291,10 @@
                             <DataTrigger Binding="{Binding SupplierID}" Value="0">
                                 <Setter Property="Visibility" Value="Visible" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding JobOrderData.ID}" Value="0">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </MenuItem.Resources>
             </MenuItem>
-            <MenuItem Click="AddItems_Click">
-                <MenuItem.Header>
-                    <TextBlock Text="Add Item"/>
-                </MenuItem.Header>
-                <MenuItem.Icon>
-                    <Image Source="/Images/Icons/AddItem.png" 
-                           SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality">
-                    </Image>
-                </MenuItem.Icon>
-                <MenuItem.Resources>
-                    <Style TargetType="MenuItem">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding SupplierID}" Value="0">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </MenuItem.Resources>
-            </MenuItem>
-            <!--<MenuItem Click="EditItems_Click">
-                <MenuItem.Header>
-                    <TextBlock Text="Edit Item"/>
-                </MenuItem.Header>
-                <MenuItem.Icon>
-                    <Image Source="/Images/Icons/Item!.png" 
-                           SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality">
-                    </Image>
-                </MenuItem.Icon>
-                <MenuItem.Resources>
-                    <Style TargetType="MenuItem">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding SupplierID}" Value="0">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </MenuItem.Resources>
-            </MenuItem>-->
             <Separator/>
             <MenuItem Click="JobOrderItems_Click">
                 <MenuItem.Header>
@@ -325,9 +310,6 @@
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding SupplierID}" Value="0">
                                 <Setter Property="Visibility" Value="Collapsed" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding JobOrderData.ID}" Value="0">
-                                <Setter Property="Visibility" Value="Collapsed"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
@@ -348,9 +330,6 @@
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding SupplierID}" Value="0">
                                 <Setter Property="Visibility" Value="Collapsed" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding JobOrderData.ID}" Value="0">
-                                <Setter Property="Visibility" Value="Collapsed"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
@@ -366,39 +345,6 @@
                 </MenuItem.Icon>
             </MenuItem>
         </ContextMenu>
-
-        <Style x:Key="NavigationStyle" TargetType="{x:Type TextBlock}">
-            <Setter Property="FontSize" Value="18"/>
-            <Setter Property="FontFamily" Value="Times New Roman"/>
-            <Setter Property="Foreground" Value="Blue"/>
-            <Setter Property="FontWeight" Value="Light"/>
-        </Style>
-
-        <Style x:Key="Items" TargetType="{x:Type DataGridRow}">
-            <Setter Property="ContextMenu" Value="{StaticResource ItemsContextMenu}"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="Gray"/>
-                </Trigger>
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="LightGray"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="RowStyle1" TargetType="{x:Type DataGridRow}">
-            <Setter Property="ContextMenu" Value="{StaticResource InvoiceContextMenu1}"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="Gray"/>
-                </Trigger>
-
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="LightGray"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
         <Style x:Key="RowStyle2" TargetType="{x:Type DataGridRow}">
             <Setter Property="ContextMenu" Value="{StaticResource InvoiceContextMenu2}"/>
             <Style.Triggers>
@@ -410,6 +356,24 @@
                     <Setter Property="Background" Value="LightGray"/>
                 </Trigger>
             </Style.Triggers>
+        </Style>
+        <Style x:Key="ItemsRow2" TargetType="{x:Type DataGridRow}">
+            <Setter Property="ContextMenu" Value="{StaticResource ItemsContextMenu2}"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Gray"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="LightGray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="NavigationStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="Foreground" Value="Blue"/>
+            <Setter Property="FontWeight" Value="Light"/>
         </Style>
 
     </Window.Resources>
@@ -841,7 +805,6 @@
                                   VerticalScrollBarVisibility="Visible"
                                   HorizontalScrollBarVisibility="Disabled"
                                   RowStyle="{StaticResource RowStyle1}"
-                                  ContextMenu="{StaticResource InvoicesListContextMenu}"
                                   SelectedCellsChanged="InvoicesList_SelectedCellsChanged">
 
                             <DataGrid.Resources>
@@ -952,8 +915,6 @@
                                   VerticalGridLinesBrush="Transparent"
                                   VerticalScrollBarVisibility="Visible"
                                   HorizontalScrollBarVisibility="Disabled"
-                                  ContextMenu="{StaticResource ItemsListContextMenu}"
-                                  RowStyle="{StaticResource Items}"
                                   SelectedCellsChanged="ItemsList_SelectedCellsChanged">
 
                             <DataGrid.Resources>

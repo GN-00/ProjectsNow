@@ -400,8 +400,7 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
                 //    //BodyHeight -= 2 * cm;
                 //}
 
-                Printing.Print.PrintPreview(jobAnalysis, $"Job Analysis {jobOrder.Code}");
-
+                Printing.Print.PrintPreview(jobAnalysis, $"Job Analysis {jobOrder.Code}", System.Printing.PageOrientation.Landscape);
             }
         }
     }

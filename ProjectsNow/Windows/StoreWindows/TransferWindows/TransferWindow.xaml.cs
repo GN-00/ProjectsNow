@@ -1,15 +1,12 @@
 ﻿using Dapper;
-using System;
 using System.Linq;
 using System.Windows;
-using ProjectsNow.Events;
 using System.Windows.Data;
 using System.Windows.Input;
 using ProjectsNow.Database;
 using System.Data.SqlClient;
-using System.ComponentModel;
 using System.Windows.Controls;
-using ProjectsNow.Database.Store;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
@@ -25,6 +22,7 @@ namespace ProjectsNow.Windows.StoreWindows.TransferWindows
 
         CollectionViewSource viewData;
         ObservableCollection<ItemTransaction> itemsData;
+        IEnumerable<ItemPurchased> jobOrderItems;
         public TransferWindow()
         {
             InitializeComponent();
@@ -36,6 +34,10 @@ namespace ProjectsNow.Windows.StoreWindows.TransferWindows
             {
                 string query = $"Select * From [Store].[TransactionsView] Where JobOrderID = 0";
                 itemsData = new ObservableCollection<ItemTransaction>(connection.Query<ItemTransaction>(query));
+
+                query = $"Select * From [Store].[JobOrdersItems(PurchaseDetails)] Where JobOrderID = {JobOrderData.ID}";
+                jobOrderItems = connection.Query<ItemPurchased>(query);
+                jobOrderItems = jobOrderItems.Where(i => i.RemainingQty > 0);
             }
             viewData = new CollectionViewSource() { Source = itemsData };
             viewData.Filter += DataFilter;
@@ -85,6 +87,7 @@ namespace ProjectsNow.Windows.StoreWindows.TransferWindows
                     InvoiceData = InvoiceData,
                     JobOrderData = JobOrderData,
                     ItemsData = ItemsData,
+                    JobOrderItemData = jobOrderItems.FirstOrDefault(i => i.Code == item.Code),
                 };
                 qtyWindow.ShowDialog();
                 viewData.View.Refresh();
@@ -99,6 +102,12 @@ namespace ProjectsNow.Windows.StoreWindows.TransferWindows
                 e.Accepted = true;
                 if (e.Item is ItemTransaction item)
                 {
+                    var checkJobOrderItem = jobOrderItems.FirstOrDefault(i => i.Code == item.Code);
+                    if(checkJobOrderItem == null)
+                    {
+                        e.Accepted = false;
+                        return;
+                    }
                     if (item.FinalQty < 1)
                     {
                         e.Accepted = false;

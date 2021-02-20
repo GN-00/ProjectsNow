@@ -16,6 +16,7 @@ namespace ProjectsNow.Windows.PrintWindows
 
         string _documentName { get; set; }
         FixedDocument _fixedDocument;
+        PageOrientation _pageOrientation = PageOrientation.Portrait;
         public PrintWindow()
         {
             InitializeComponent();
@@ -24,6 +25,16 @@ namespace ProjectsNow.Windows.PrintWindows
 
         public PrintWindow(FixedDocument fixedDocument, string documentName)
         {
+            _documentName = documentName;
+            _fixedDocument = fixedDocument;
+            InitializeComponent();
+            PrintView.Document = fixedDocument;
+            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight - 15;
+        }
+
+        public PrintWindow(FixedDocument fixedDocument, string documentName, PageOrientation pageOrientation)
+        {
+            _pageOrientation = pageOrientation;
             _documentName = documentName;
             _fixedDocument = fixedDocument;
             InitializeComponent();
@@ -66,7 +77,7 @@ namespace ProjectsNow.Windows.PrintWindows
                 PrintDialog printDialog = new PrintDialog();
                 printDialog.PrintQueue = LocalPrintServer.GetDefaultPrintQueue();
                 printDialog.PrintTicket = printDialog.PrintQueue.DefaultPrintTicket;
-                printDialog.PrintTicket.PageOrientation = PageOrientation.Portrait;
+                printDialog.PrintTicket.PageOrientation = _pageOrientation;
                 printDialog.PrintTicket.PageScalingFactor = 100;
                 printDialog.PrintTicket.PageMediaSize = new PageMediaSize(PageMediaSizeName.ISOA4);
                 printDialog.PrintTicket.PageBorderless = PageBorderless.None;

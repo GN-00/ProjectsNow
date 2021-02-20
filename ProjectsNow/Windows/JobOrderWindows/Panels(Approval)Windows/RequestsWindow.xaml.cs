@@ -199,6 +199,14 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Approval_Windows
                 PanelsList.ContextMenu = null;
                 PanelsList.RowStyle = (Style)this.Resources["Panels"];
 
+                tempPanelsData = new ObservableCollection<JPanel>();
+                foreach (JPanel panel in PanelsData)
+                {
+                    JPanel newPanel = new JPanel();
+                    newPanel.Update(panel);
+                    tempPanelsData.Add(newPanel);
+                }
+
                 LoadingControl.Visibility = Visibility.Collapsed;
             }
         }
@@ -295,14 +303,6 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Approval_Windows
         {
             if (RequestsList.SelectedItem is ApprovalRequest delivery)
             {
-                //var tempPanels = new ObservableCollection<JPanel>();
-                //foreach (JPanel panel in tempPanelsData)
-                //{
-                //    JPanel newPanel = new JPanel();
-                //    newPanel.Update(panel);
-                //    tempPanels.Add(newPanel);
-                //}
-
                 var window = new PanelsWindow()
                 {
                     RequestData = delivery,

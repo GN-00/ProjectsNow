@@ -45,7 +45,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.ItemPurchaseOrdersWindows
                 double cost = double.Parse(CostInput.Text);
                 if (qty > 0)
                 {
-                    ItemData.PurchasedQty += qty;
+                    ItemData.InOrderQty += qty;
 
                     CompanyPOTransactionData.Qty = qty;
                     CompanyPOTransactionData.Cost = cost;
@@ -65,7 +65,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.ItemPurchaseOrdersWindows
                 double cost = double.Parse(CostInput.Text);
                 if (qty > 0)
                 {
-                    ItemData.PurchasedQty += qty;
+                    ItemData.InOrderQty += qty;
 
                     CompanyPOTransaction newItem = new CompanyPOTransaction()
                     {

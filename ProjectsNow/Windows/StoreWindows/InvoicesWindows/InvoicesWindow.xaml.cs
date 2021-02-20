@@ -66,7 +66,21 @@ namespace ProjectsNow.Windows.StoreWindows.InvoicesWindows
                 DataContext = new { JobOrderData, UserData, SupplierID };
 
             if (JobOrderData.ID == 0)
+            {
+                InvoicesList.ContextMenu = (ContextMenu)this.Resources["InvoicesListContextMenu1"];
+                InvoicesList.RowStyle = (Style)this.Resources["RowStyle1"];
+
+                ItemsList.ContextMenu = (ContextMenu)this.Resources["ItemsListContextMenu1"];
+                ItemsList.RowStyle = (Style)this.Resources["ItemsRow1"];
+            }
+            else
+            {
+                InvoicesList.ContextMenu = (ContextMenu)this.Resources["InvoicesListContextMenu2"];
                 InvoicesList.RowStyle = (Style)this.Resources["RowStyle2"];
+
+                ItemsList.ContextMenu = (ContextMenu)this.Resources["ItemsListContextMenu2"];
+                ItemsList.RowStyle = (Style)this.Resources["ItemsRow2"];
+            }
         }
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {

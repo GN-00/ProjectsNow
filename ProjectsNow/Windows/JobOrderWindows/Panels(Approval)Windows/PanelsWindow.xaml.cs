@@ -79,7 +79,6 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Approval_Windows
                 };
                 PanelsTransaction.Add(newPanel);
                 PanelsData.Remove(panelData);
-                //viewData.View.Refresh();
             }
         }
 
