@@ -32,10 +32,17 @@ namespace ProjectsNow.Windows.FinanceWindows.SuppliersInvoicesWindows
             {
                 string query = $"Select * From [Finance].[CompanyAccountsBalancesView]";
                 accounts = connection.Query<Account>(query).ToList();
+
+                DescriptionsList.ItemsSource = connection.Query($"Select Description From [Finance].[MoneyTransactions] Where Description Is Not Null And Type = '{MoneyTransactionTypes.SupplierInvoice}' Group By Description");
             }
 
-            AccountsList.ItemsSource = accounts;
             newTransactionData.Update(TransactionData);
+            AccountsList.ItemsSource = accounts;
+
+            if (TransactionData.AccountID == 0)
+                if (accounts.Count != 0)
+                    newTransactionData.AccountID = accounts[0].ID;
+
             DataContext = newTransactionData;
         }
         private void Minimize_Click(object sender, RoutedEventArgs e)

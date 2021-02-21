@@ -321,7 +321,11 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
                 foreach (JobAnalysisWindows.SupplierInvoice invoice in supplierInvoices)
                 {
                     invoice.Balance = originalInvoices.Where(i => i.InvoiceID == invoice.ID).Sum(i => i.Balance);
+                    invoice.InvoiceTotal = originalInvoices.Where(i => i.InvoiceID == invoice.ID).Sum(i => i.InvoiceTotal);
                     invoice.Paid = invoice.InvoiceTotal - invoice.Balance;
+                    double percentage = Math.Round((invoice.Paid / invoice.InvoiceTotal) * 100);
+                    if (percentage >= 100) invoice.Status = "Paid in Full";
+                    else invoice.Status = $"Paid {percentage:N2}%";
                 }
 
                 profit = new JobAnalysisWindows.Profit();

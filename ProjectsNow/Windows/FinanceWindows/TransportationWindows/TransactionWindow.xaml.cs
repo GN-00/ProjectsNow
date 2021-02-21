@@ -20,8 +20,10 @@ namespace ProjectsNow.Windows.FinanceWindows.TransportationWindows
         public MoneyTransaction TransactionData { get; set; }
         public ObservableCollection<MoneyTransaction> TransactionsData { get; set; }
 
-        MoneyTransaction newTransactionData = new MoneyTransaction();
+
         List<Account> accounts;
+        List<JobOrderFinance> jobOrders;
+        MoneyTransaction newTransactionData = new MoneyTransaction();
         public TransactionWindow()
         {
             InitializeComponent();
@@ -30,17 +32,29 @@ namespace ProjectsNow.Windows.FinanceWindows.TransportationWindows
         {
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                string query = $"Select * From [Finance].[CompanyAccountsBalancesView]";
+                string query = $"Select * From [Finance].[CompanyAccountsBalancesView] Order By Date Desc";
                 accounts = connection.Query<Account>(query).ToList();
+
+                query = "Select * From[Finance].[JobOrdersDetails]";
+                jobOrders = connection.Query<JobOrderFinance>(query).ToList();
             }
 
             newTransactionData.Update(TransactionData);
 
             AccountsList.ItemsSource = accounts;
+            JobOrdersList.ItemsSource = jobOrders;
 
             if (TransactionData.AccountID == 0)
                 if (accounts.Count != 0)
                     newTransactionData.AccountID = accounts[0].ID;
+
+
+            if (!string.IsNullOrWhiteSpace(newTransactionData.Description))
+            {
+                string code = newTransactionData.Description.Substring(0, 9);
+                newTransactionData.JobOrderID = jobOrders.FirstOrDefault(j => j.Code == code).ID;
+                InvoiceNumber.Text = newTransactionData.Description.Substring(32, newTransactionData.Description.Length - 33);
+            }
 
             DataContext = newTransactionData;
         }
@@ -123,6 +137,30 @@ namespace ProjectsNow.Windows.FinanceWindows.TransportationWindows
         private void AccountsList_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             DataInput.Input.ArrowsOnly(e);
+        }
+
+        private void JobOrdersList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(JobOrdersList.SelectedItem is JobOrderFinance jobOrder)
+            {
+                newTransactionData.JobOrderID = jobOrder.ID;
+                newTransactionData.Code = jobOrder.Code;
+
+                string invoiceNumber = InvoiceNumber.Text;
+                newTransactionData.Description = $"{jobOrder.Code}-Transportation Invoice {invoiceNumber}";
+            }
+        }
+
+        private void InvoiceNumber_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (JobOrdersList.SelectedItem is JobOrderFinance jobOrder)
+            {
+                newTransactionData.JobOrderID = jobOrder.ID;
+                newTransactionData.Code = jobOrder.Code;
+
+                string invoiceNumber = InvoiceNumber.Text;
+                newTransactionData.Description = $"{jobOrder.Code}-Transportation Invoice {invoiceNumber}";
+            }
         }
     }
 }

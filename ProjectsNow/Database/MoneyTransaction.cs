@@ -50,5 +50,13 @@ namespace ProjectsNow.Database
 			get { return this._AccountName; }
 			set { if (value != this._AccountName) { this._AccountName = value; NotifyPropertyChanged(); } }
 		}
+
+		private string _Code;
+		[DontWrite]
+		public string Code
+		{
+			get { return this._Code; }
+			set { if (value != this._Code) { this._Code = value; NotifyPropertyChanged(); } }
+		}
 	}
 }

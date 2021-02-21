@@ -13,9 +13,18 @@
         Loaded="Window_Loaded"
         WindowStartupLocation="CenterScreen"
         Height="550"
-        Width="789">
+        Width="909">
     <Window.Resources>
 
+        <Style x:Key="FilterInput" BasedOn="{StaticResource TextBoxFlatStyle}" TargetType="{x:Type TextBox}">
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="1,0"/>
+            <EventSetter Event="KeyUp" Handler="ApplyFilter"/>
+        </Style>
+        
         <ContextMenu x:Key="GridContextMenu" FontFamily="Times New Roman">
             <MenuItem Click="New_Click">
                 <MenuItem.Header>
@@ -281,6 +290,75 @@
                 </StackPanel>
             </TabItem>
 
+
+            <TabItem Header="Filters" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            DataContext="{Binding UserData}"
+                            Height="65" Margin="15,0,0,0">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,5">
+                        <TextBox x:Name="Code"
+                                 Width="118" 
+                                 Style="{StaticResource FilterInput}">
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,5">
+                        <TextBox x:Name="Date"
+                                 Width="98" 
+                                 Style="{StaticResource FilterInput}">
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,5">
+                        <TextBox x:Name="Amount" 
+                                 Width="118" 
+                                 Style="{StaticResource FilterInput}">
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,5">
+                        <TextBox x:Name="Description" 
+                                 Width="348" 
+                                 Style="{StaticResource FilterInput}">
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="0,5">
+                        <TextBox x:Name="AccountName"
+                                 Width="138" 
+                                 Style="{StaticResource FilterInput}">
+                        </TextBox>
+                    </StackPanel>
+
+                    <Button Margin="2.5,0,0,5">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Height" Value="30"/>
+                                <Setter Property="Width" Value="30"/>
+                                <Setter Property="VerticalAlignment" Value="Bottom"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="ToolTip" Value="Remove Filters"/>
+                                <EventSetter Event="Click" Handler="DeleteFilter_Click"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
+                                                <Image Source="/Images/Icons/DeleteFilter.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="5"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGray"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </StackPanel>
+            </TabItem>
+
+            
             <TabItem Header="Help" HorizontalAlignment="Right">
 
             </TabItem>
@@ -288,43 +366,7 @@
         </TabControl>
 
         <Grid  Margin="0,110,0.4,25.4">
-            <Grid Margin="0,10,0,325">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="15*"/>
-                    <ColumnDefinition Width="35*"/>
-                    <ColumnDefinition Width="15*"/>
-                    <ColumnDefinition Width="35*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Column="0" Grid.Row="0" Text="Project Price" Style="{StaticResource LableStyle}"/>
-                <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <TextBlock  Text="Discount " Style="{StaticResource LableStyle}"/>
-                    <TextBlock  Text="{Binding Discount, StringFormat=N2}" Style="{StaticResource LableStyle}"/>
-                    <TextBlock  Text=" %" Style="{StaticResource LableStyle}"/>
-                </StackPanel>
-                <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <TextBlock  Text="VAT " Style="{StaticResource LableStyle}"/>
-                    <TextBlock  Text="{Binding VATPercentage, StringFormat=N2}" Style="{StaticResource LableStyle}"/>
-                    <TextBlock  Text=" %" Style="{StaticResource LableStyle}"/>
-                </StackPanel>
-                <TextBlock Grid.Column="2" Grid.Row="0" Text="Final Price" Style="{StaticResource LableStyle}"/>
-                <TextBlock Grid.Column="2" Grid.Row="1" Text="Paid" Style="{StaticResource LableStyle}"/>
-                <TextBlock Grid.Column="2" Grid.Row="2" Text="Balance" Style="{StaticResource LableStyle}"/>
-
-                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding QuotationCost, StringFormat=N3}" Style="{StaticResource Lable1Style}"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding DiscountPrice, StringFormat=N3}" Style="{StaticResource Lable1Style}"/>
-                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding VATPrice, StringFormat=N3}" Style="{StaticResource Lable1Style}"/>
-                <TextBlock Grid.Column="3" Grid.Row="0" Text="{Binding ProjectPrice, StringFormat=N3}" Style="{StaticResource Lable1Style}"/>
-                <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding Paid, StringFormat=N3}" Style="{StaticResource Lable1Style}"/>
-                <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding Balance, StringFormat=N3}" Style="{StaticResource Lable1Style}"/>
-
-            </Grid>
-            <Grid Margin="15,100,15,20" >
+            <Grid Margin="15,20,15,20" >
                 <Grid.Effect>
                     <DropShadowEffect BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="2"/>
                 </Grid.Effect>
@@ -401,6 +443,14 @@
                             </DataGrid.Resources>
 
                             <DataGrid.Columns>
+
+                                <DataGridTextColumn Width="120" Header="Job Order" Binding="{Binding Code}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
 
                                 <DataGridTextColumn Width="100" Header="Date" Binding="{Binding Date, StringFormat=dd/MM/yyyy}">
                                     <DataGridTextColumn.ElementStyle>

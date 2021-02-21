@@ -77,7 +77,15 @@ namespace ProjectsNow.Windows.FinanceWindows.SuppliersInvoicesWindows
 
         private void New_Click(object sender, RoutedEventArgs e)
         {
-            var transaction = new MoneyTransaction() { SupplierInvoiceID = SupplierInvoice.ID, SupplierID = SupplierInvoice.SupplierID, JobOrderID = SupplierInvoice.JobOrderID, CustomerID = SupplierInvoice.CustomerID, Date = DateTime.Now, Type = MoneyTransactionTypes.SupplierInvoice.ToString() };
+            var transaction = new MoneyTransaction() 
+            {
+                SupplierInvoiceID = SupplierInvoice.ID, 
+                SupplierID = SupplierInvoice.SupplierID,
+                JobOrderID = SupplierInvoice.JobOrderID, 
+                CustomerID = SupplierInvoice.CustomerID, 
+                Date = DateTime.Now, Type = MoneyTransactionTypes.SupplierInvoice.ToString(),
+                Amount = SupplierInvoice.Balance,
+            };
             TransactionWindow jobOrderTransactionWindow = new TransactionWindow()
             {
                 UserData = UserData,

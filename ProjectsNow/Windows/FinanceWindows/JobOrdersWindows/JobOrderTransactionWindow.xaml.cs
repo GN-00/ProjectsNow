@@ -33,6 +33,8 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
             {
                 string query = $"Select * From [Finance].[CompanyAccountsBalancesView]";
                 accounts = connection.Query<Account>(query).ToList();
+
+                DescriptionsList.ItemsSource = connection.Query($"Select Description From [Finance].[MoneyTransactions] Where Description Is Not Null And Type = '{MoneyTransactionTypes.Project}' Group By Description");
             }
 
             newTransactionData.Update(TransactionData);

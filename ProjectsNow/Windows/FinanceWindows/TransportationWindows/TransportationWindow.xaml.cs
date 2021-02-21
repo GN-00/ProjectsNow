@@ -3,11 +3,13 @@ using Dapper;
 using System.Linq;
 using System.Windows;
 using ProjectsNow.Enums;
+using System.Reflection;
 using System.Windows.Data;
 using System.Windows.Input;
 using ProjectsNow.Database;
 using System.Data.SqlClient;
 using System.Windows.Controls;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using ProjectsNow.Windows.MessageWindows;
@@ -28,14 +30,19 @@ namespace ProjectsNow.Windows.FinanceWindows.TransportationWindows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            string query;
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                string query = $"Select * From [Finance].[ProjectsTransactions] Where JobOrderID = {JobOrderData.ID} And Type ='{MoneyTransactionTypes.Project}'";
+                if (JobOrderData != null)
+                    query = $"Select * From [Finance].[TransportationView] Where JobOrderID = {JobOrderData.ID} And Type ='{MoneyTransactionTypes.Transportation}'";
+                else
+                    query = $"Select * From [Finance].[TransportationView] Where Type ='{MoneyTransactionTypes.Transportation}'";
+               
                 transactions = new ObservableCollection<MoneyTransaction>(connection.Query<MoneyTransaction>(query));
             }
-            DataContext = JobOrderData;
 
             viewData = new CollectionViewSource() { Source = transactions };
+            viewData.Filter += DataFilter;
 
             TransactionsList.ItemsSource = viewData.View;
             viewData.View.CollectionChanged += new NotifyCollectionChangedEventHandler(CollectionChanged);
@@ -63,8 +70,6 @@ namespace ProjectsNow.Windows.FinanceWindows.TransportationWindows
             else
                 NavigationPanel.Text = $"Transaction: {selectedIndex + 1} / {viewData.View.Cast<object>().Count()}";
 
-            if (transactions != null)
-                JobOrderData.Paid = transactions.Sum(t => t.Amount);
         }
         private void TransactionsList_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
@@ -77,41 +82,33 @@ namespace ProjectsNow.Windows.FinanceWindows.TransportationWindows
 
         private void New_Click(object sender, RoutedEventArgs e)
         {
-            var jobOrder = new MoneyTransaction()
+            var transaction = new MoneyTransaction()
             {
-                Amount = JobOrderData.Balance,
-                JobOrderID = JobOrderData.ID,
-                CustomerID = JobOrderData.CustomerID,
                 Date = DateTime.Now,
-                Type = MoneyTransactionTypes.Project.ToString()
+                Type = MoneyTransactionTypes.Transportation.ToString()
             };
-            //JobOrderTransactionWindow jobOrderTransactionWindow = new JobOrderTransactionWindow()
-            //{
-            //    UserData = UserData,
-            //    ActionData = Actions.New,
-            //    TransactionData = jobOrder,
-            //    TransactionsData = transactions,
-            //};
-            //jobOrderTransactionWindow.ShowDialog();
+            TransactionWindow transactionWindow = new TransactionWindow()
+            {
+                UserData = UserData,
+                ActionData = Actions.New,
+                TransactionData = transaction,
+                TransactionsData = transactions,
+            };
+            transactionWindow.ShowDialog();
         }
 
         private void Edit_ClicK(object sender, RoutedEventArgs e)
         {
             if (TransactionsList.SelectedItem is MoneyTransaction transaction)
             {
-                //JobOrderTransactionWindow jobOrderTransactionWindow = new JobOrderTransactionWindow()
-                //{
-                //    UserData = UserData,
-                //    ActionData = Actions.Edit,
-                //    TransactionData = transaction,
-                //    TransactionsData = null,
-                //};
-                //this.Visibility = Visibility.Collapsed;
-                //jobOrderTransactionWindow.ShowDialog();
-                //this.Visibility = Visibility.Visible;
-
-                //if (transactions != null)
-                //    JobOrderData.Paid = transactions.Sum(t => t.Amount);
+                TransactionWindow transactionWindow = new TransactionWindow()
+                {
+                    UserData = UserData,
+                    ActionData = Actions.Edit,
+                    TransactionData = transaction,
+                    TransactionsData = null,
+                };
+                transactionWindow.ShowDialog();
             }
         }
 
@@ -130,5 +127,61 @@ namespace ProjectsNow.Windows.FinanceWindows.TransportationWindows
                 }
             }
         }
+
+        #region Filters
+
+        private readonly List<PropertyInfo> filterProperties = new List<PropertyInfo>()
+        {
+            typeof(MoneyTransaction).GetProperty("Code"),
+            typeof(MoneyTransaction).GetProperty("Date"),
+            typeof(MoneyTransaction).GetProperty("Amount"),
+            typeof(MoneyTransaction).GetProperty("Description"),
+            typeof(MoneyTransaction).GetProperty("AccountName"),
+        };
+        private void DataFilter(object sender, FilterEventArgs e)
+        {
+            try
+            {
+                e.Accepted = true;
+                if (e.Item is MoneyTransaction record)
+                {
+                    string columnName;
+                    foreach (PropertyInfo property in filterProperties)
+                    {
+                        columnName = property.Name;
+                        string value;
+                        if (property.PropertyType == typeof(DateTime))
+                            value = $"{record.GetType().GetProperty(columnName).GetValue(record):dd/MM/yyyy}";
+                        else
+                            value = $"{record.GetType().GetProperty(columnName).GetValue(record)}".ToUpper();
+
+                        if (!value.Contains(((TextBox)FindName(property.Name)).Text.ToUpper()))
+                        {
+                            e.Accepted = false;
+                            return;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                e.Accepted = true;
+            }
+        }
+        private void ApplyFilter(object sender, KeyEventArgs e)
+        {
+            viewData.View.Refresh();
+        }
+        private void DeleteFilter_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (PropertyInfo property in filterProperties)
+            {
+                ((TextBox)FindName(property.Name)).Text = null;
+            }
+            viewData.View.Refresh();
+        }
+
+        #endregion
+
     }
 }

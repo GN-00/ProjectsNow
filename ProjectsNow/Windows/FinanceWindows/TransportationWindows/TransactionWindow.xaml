@@ -13,7 +13,7 @@
         Loaded="Window_Loaded"
         FontFamily="Times New Roman"
         WindowStartupLocation="CenterScreen"
-        Height="260"
+        Height="300"
         Width="550">
     <Window.Resources>
 
@@ -114,8 +114,23 @@
 
             <StackPanel Orientation="Vertical" Margin="25,80,10,10">
                 <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Job Order " Width="80" Style="{StaticResource LabelStyle}"/>
+                    <ComboBox x:Name="JobOrdersList"
+                              Width="100" 
+                              IsEditable="True"
+                              SelectedValuePath="ID"
+                              DisplayMemberPath="Code"
+                              SelectedValue="{Binding JobOrderID}"
+                              SelectionChanged="JobOrdersList_SelectionChanged"
+                              PreviewKeyDown="AccountsList_PreviewKeyDown"
+                              Style="{StaticResource InputComboBoxStyle}">
+                    </ComboBox>
+                    <TextBlock Text="Invoice " Width="60" Style="{StaticResource LabelStyle}"/>
+                    <TextBox x:Name="InvoiceNumber" Width="235" Style="{StaticResource InputStyle}" PreviewKeyDown="InvoiceNumber_PreviewKeyDown"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                     <TextBlock Text="Description " Width="80" Style="{StaticResource LabelStyle}"/>
-                    <TextBox Text="{Binding Description}" Width="400" Style="{StaticResource InputStyle}" />
+                    <TextBox Text="{Binding Description}" Width="400" Style="{StaticResource InputStyle}" IsReadOnly="True"/>
                 </StackPanel>
                 <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                     <TextBlock Text="Date " Width="80" Style="{StaticResource LabelStyle}"/>

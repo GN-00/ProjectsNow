@@ -115,7 +115,16 @@
             <StackPanel Orientation="Vertical" Margin="25,80,10,10">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Description " Width="80" Style="{StaticResource LabelStyle}"/>
-                    <TextBox Text="{Binding Description}" Width="400" Style="{StaticResource InputStyle}" />
+                    <ComboBox x:Name="DescriptionsList"
+                              Width="400"
+                              IsEditable="True"
+                              DisplayMemberPath="Description"
+                              Text="{Binding Description}"
+                              SelectedValuePath="Text"
+                              SelectedValue="{Binding Description}"
+                              Style="{StaticResource InputComboBoxStyle}" >
+                    </ComboBox>
+                    <!--<TextBox Text="{Binding Description}" Width="400" Style="{StaticResource InputStyle}" />-->
                 </StackPanel>
                 <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                     <TextBlock Text="Date " Width="80" Style="{StaticResource LabelStyle}"/>

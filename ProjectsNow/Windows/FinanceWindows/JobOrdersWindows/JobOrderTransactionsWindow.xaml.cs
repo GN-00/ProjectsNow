@@ -78,7 +78,7 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
 
         private void New_Click(object sender, RoutedEventArgs e)
         {
-            var jobOrder = new MoneyTransaction()
+            var transaction = new MoneyTransaction()
             {
                 Amount = JobOrderData.Balance,
                 JobOrderID = JobOrderData.ID, 
@@ -89,7 +89,7 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
             {
                 UserData = UserData,
                 ActionData = Actions.New,
-                TransactionData = jobOrder,
+                TransactionData = transaction,
                 TransactionsData = transactions,
             };
             jobOrderTransactionWindow.ShowDialog();
@@ -106,9 +106,7 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
                     TransactionData = transaction,
                     TransactionsData = null,
                 };
-                this.Visibility = Visibility.Collapsed;
                 jobOrderTransactionWindow.ShowDialog();
-                this.Visibility = Visibility.Visible;
 
                 if (transactions != null)
                     JobOrderData.Paid = transactions.Sum(t => t.Amount);
