@@ -295,7 +295,8 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
                     originalInvoices = connection.Query<JobAnalysisWindows.OriginalInvoice>(query).ToList();
 
                     overhead = new JobAnalysisWindows.Overhead(); // need work
-                    transportation = new JobAnalysisWindows.Transportation(); // need work
+                    query = $"Select * From[Finance].[JobOrdersTransportation] Where JobOrderID = { jobOrder.ID }";
+                    transportation = connection.QueryFirstOrDefault<JobAnalysisWindows.Transportation>(query); 
                 }
 
                 foreach (string po in POs)
@@ -329,9 +330,9 @@ namespace ProjectsNow.Windows.FinanceWindows.JobOrdersWindows
                 }
 
                 profit = new JobAnalysisWindows.Profit();
-                profit.CostAmount = supplierInvoices.Sum(i => i.Amount);
-                profit.CostVAT = supplierInvoices.Sum(i => i.VAT);
-                profit.CostInvoiceTotal = supplierInvoices.Sum(i => i.InvoiceTotal);
+                profit.CostAmount = supplierInvoices.Sum(i => i.Amount) + transportation.Amount + overhead.Amount;
+                profit.CostVAT = supplierInvoices.Sum(i => i.VAT) + transportation.VAT + overhead.VAT;
+                profit.CostInvoiceTotal = supplierInvoices.Sum(i => i.InvoiceTotal) + transportation.InvoiceTotal + overhead.InvoiceTotal;
 
                 profit.NetMarginAmount = salesOrder.QuotationAmount - profit.CostAmount;
                 profit.NetMarginVAT = salesOrder.QuotationVAT - profit.CostVAT;
