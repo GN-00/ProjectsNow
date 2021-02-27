@@ -24,6 +24,17 @@
 
     <Application.Resources>
 
+        <Style x:Key="WindowStyle" TargetType="{x:Type Window}">
+            <Setter Property="WindowState" Value="Normal"/>
+            <Setter Property="WindowStyle" Value="None"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="AllowsTransparency" Value="True"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+        </Style>
+
         <!--#region Filter Button-->
         <Style x:Key="FilterButton" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="Transparent"/>

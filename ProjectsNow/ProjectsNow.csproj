@@ -149,6 +149,9 @@
     <Compile Include="Controls\Generale\LoadingControl.xaml.cs">
       <DependentUpon>LoadingControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\WindowControls.xaml.cs">
+      <DependentUpon>WindowControls.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Database\Account.cs" />
     <Compile Include="Database\Acknowledgment.cs" />
     <Compile Include="Database\AcknowledgmentInformation.cs" />
@@ -692,6 +695,10 @@
     <Page Include="Controls\Generale\LoadingControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\WindowControls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Printing\CheckList.xaml">
       <Generator>MSBuild:Compile</Generator>

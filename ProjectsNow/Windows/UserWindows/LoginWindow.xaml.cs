@@ -20,19 +20,6 @@ namespace ProjectsNow.Windows.UserWindows
         {
             txtUsername.Focus();
         }
-        private void CloseWindow_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-        private void Minimize_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
-
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
@@ -59,13 +46,10 @@ namespace ProjectsNow.Windows.UserWindows
             if (e.Key == Key.Enter)
                 txtPassword.Focus();
         }
-
         private void Password_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
                 Login_Click(sender, e);
         }
-
-
     }
 }
