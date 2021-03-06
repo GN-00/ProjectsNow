@@ -32,7 +32,7 @@ namespace ProjectsNow.Windows.FinanceWindows.TransportationWindows
         {
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
-                string query = $"Select * From [Finance].[CompanyAccountsBalancesView] Order By Date Desc";
+                string query = $"Select * From [Finance].[CompanyAccountsBalancesView] Order By CreateDate Desc";
                 accounts = connection.Query<Account>(query).ToList();
 
                 query = "Select * From[Finance].[JobOrdersDetails]";
