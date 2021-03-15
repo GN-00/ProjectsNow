@@ -36,6 +36,8 @@ namespace ProjectsNow.Database
                     return "لوحة توزيع كهربائية";
                 else if (PanelType == "Junction Box")
                     return "لوحة توزيع كهربائية";
+                else if (PanelType == "Label")
+                    return "لوحة توزيع كهربائية";
                 else
                     return null;
             }

@@ -229,6 +229,7 @@
                             <ComboBoxItem>Synchronizing Panel</ComboBoxItem>
                             <ComboBoxItem>Fuse Panel</ComboBoxItem>
                             <ComboBoxItem>Junction Box</ComboBoxItem>
+                            <ComboBoxItem>Label</ComboBoxItem>
                         </ComboBox>
                     </StackPanel>
 

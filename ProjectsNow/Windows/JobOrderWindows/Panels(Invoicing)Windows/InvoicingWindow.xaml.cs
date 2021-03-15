@@ -270,7 +270,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Invoicing_Windows
                             invoiceForm = new InvoiceForm()
                             {
                                 VATPercentage = panels.Max(p => p.VAT) * 100,
-                                TotalCost = panels.Sum(p => p.PanelEstimatedPrice),
+                                TotalCost = panels.Sum(p => p.PanelsEstimatedPrice),
                                 TotalVAT = panels.Sum(p => p.VATValue),
                                 TotalPrice = panels.Sum(p => p.FinalPrice),
                                 Page = i,

@@ -194,16 +194,16 @@
                     <TextBlock Grid.Row="0" Text="{Binding Qty}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[0]}" Grid.Row="1" Grid.Column="3" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding Cost}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding Cost, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[0]}" Grid.Row="1" Grid.Column="4" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding TotalCost}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding TotalCost, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[0]}" Grid.Row="1" Grid.Column="5" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding VATValue}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding VATValue, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[0]}" Grid.Row="1" Grid.Column="6" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding TotalPrice}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding TotalPrice, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
 
                 <Border DataContext="{Binding ItemsData[1]}" Grid.Row="2" Grid.Column="0" BorderThickness="1,0,1,1" BorderBrush="Black" Background="#4f81bd">
@@ -235,16 +235,16 @@
                     <TextBlock Grid.Row="0" Text="{Binding Qty}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[1]}" Grid.Row="2" Grid.Column="3" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding Cost}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding Cost, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[1]}" Grid.Row="2" Grid.Column="4" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding TotalCost}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding TotalCost, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[1]}" Grid.Row="2" Grid.Column="5" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding VATValue}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding VATValue, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[1]}" Grid.Row="2" Grid.Column="6" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding TotalPrice}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding TotalPrice, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
 
                 <Border DataContext="{Binding ItemsData[2]}" Grid.Row="3" Grid.Column="0" BorderThickness="1,0,1,1" BorderBrush="Black" Background="#4f81bd">
@@ -276,16 +276,16 @@
                     <TextBlock Grid.Row="0" Text="{Binding Qty}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[2]}" Grid.Row="3" Grid.Column="3" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding Cost}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding Cost, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[2]}" Grid.Row="3" Grid.Column="4" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding TotalCost}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding TotalCost, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[2]}" Grid.Row="3" Grid.Column="5" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding VATValue}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding VATValue, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[2]}" Grid.Row="3" Grid.Column="6" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding TotalPrice}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding TotalPrice, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
 
                 <Border DataContext="{Binding ItemsData[3]}" Grid.Row="4" Grid.Column="0" BorderThickness="1,0,1,1" BorderBrush="Black" Background="#4f81bd">
@@ -317,16 +317,16 @@
                     <TextBlock Grid.Row="0" Text="{Binding Qty}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[3]}" Grid.Row="4" Grid.Column="3" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding Cost}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding Cost, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[3]}" Grid.Row="4" Grid.Column="4" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding TotalCost}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding TotalCost, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[3]}" Grid.Row="4" Grid.Column="5" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding VATValue}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding VATValue, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[3]}" Grid.Row="4" Grid.Column="6" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding TotalPrice}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding TotalPrice, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
 
                 <Border DataContext="{Binding ItemsData[4]}" Grid.Row="5" Grid.Column="0" BorderThickness="1,0,1,1" BorderBrush="Black" Background="#4f81bd">
@@ -358,16 +358,16 @@
                     <TextBlock Grid.Row="0" Text="{Binding Qty}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[4]}" Grid.Row="5" Grid.Column="3" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding Cost}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding Cost, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[4]}" Grid.Row="5" Grid.Column="4" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding TotalCost}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding TotalCost, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[4]}" Grid.Row="5" Grid.Column="5" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding VATValue}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding VATValue, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[4]}" Grid.Row="5" Grid.Column="6" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding TotalPrice}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding TotalPrice, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
 
                 <Border DataContext="{Binding ItemsData[5]}" Grid.Row="6" Grid.Column="0" BorderThickness="1,0,1,1" BorderBrush="Black" Background="#4f81bd">
@@ -399,16 +399,16 @@
                     <TextBlock Grid.Row="0" Text="{Binding Qty}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[5]}" Grid.Row="6" Grid.Column="3" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding Cost}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding Cost, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[5]}" Grid.Row="6" Grid.Column="4" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding TotalCost}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding TotalCost, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[5]}" Grid.Row="6" Grid.Column="5" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding VATValue}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding VATValue, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[5]}" Grid.Row="6" Grid.Column="6" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding TotalPrice}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding TotalPrice, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
 
                 <Border DataContext="{Binding ItemsData[6]}" Grid.Row="7" Grid.Column="0" BorderThickness="1,0,1,1" BorderBrush="Black" Background="#4f81bd">
@@ -440,16 +440,16 @@
                     <TextBlock Grid.Row="0" Text="{Binding Qty}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[6]}" Grid.Row="7" Grid.Column="3" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding Cost}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding Cost, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[6]}" Grid.Row="7" Grid.Column="4" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding TotalCost}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding TotalCost, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[6]}" Grid.Row="7" Grid.Column="5" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding VATValue}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding VATValue, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[6]}" Grid.Row="7" Grid.Column="6" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding TotalPrice}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding TotalPrice, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
 
                 <Border DataContext="{Binding ItemsData[7]}" Grid.Row="8" Grid.Column="0" BorderThickness="1,0,1,1" BorderBrush="Black" Background="#4f81bd">
@@ -481,16 +481,16 @@
                     <TextBlock Grid.Row="0" Text="{Binding Qty}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[7]}" Grid.Row="8" Grid.Column="3" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding Cost}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding Cost, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[7]}" Grid.Row="8" Grid.Column="4" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding TotalCost}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding TotalCost, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[7]}" Grid.Row="8" Grid.Column="5" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding VATValue}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding VATValue, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border DataContext="{Binding ItemsData[7]}" Grid.Row="8" Grid.Column="6" BorderThickness="0,0,1,1" BorderBrush="Black">
-                    <TextBlock Grid.Row="0" Text="{Binding TotalPrice}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Grid.Row="0" Text="{Binding TotalPrice, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
 
 
@@ -498,19 +498,19 @@
                     <TextBlock Text="Total" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border Grid.Row="9" Grid.Column="4" BorderThickness="0,0,1,1" BorderBrush="Black" >
-                    <TextBlock Text="{Binding TotalCost}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Text="{Binding TotalCost, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border Grid.Row="9" Grid.Column="5" BorderThickness="0,0,1,1" BorderBrush="Black" >
-                    <TextBlock Text="{Binding TotalVAT}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Text="{Binding TotalVAT, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
                 <Border Grid.Row="9" Grid.Column="6" BorderThickness="0,0,1,1" BorderBrush="Black" >
-                    <TextBlock Text="{Binding TotalPrice}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
+                    <TextBlock Text="{Binding TotalPrice, StringFormat=N2}" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="5,0"/>
                 </Border>
             </Grid>
 
             <Grid x:Name="Total1" Height="20" Margin="0,30,0,0">
                 <TextBlock Text="Total Before VAT" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontSize="14"/>
-                <TextBlock Text="{Binding TotalCost}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontSize="14"/>
+                <TextBlock Text="{Binding TotalCost, StringFormat=N2}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontSize="14"/>
                 <TextBlock Text="المجموع قبل ضريبة القيمة المضافة" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Black" FontSize="14"/>
             </Grid>
             <Grid x:Name="Total2" Height="20" Margin="0,0,0,0">
@@ -519,12 +519,12 @@
                     <TextBlock Text="{Binding VATPercentage}" Foreground="Black" FontSize="14"/>
                     <TextBlock Text="%" Foreground="Black" FontSize="14"/>
                 </StackPanel>
-                <TextBlock Text="{Binding TotalVAT}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontSize="14"/>
+                <TextBlock Text="{Binding TotalVAT, StringFormat=N2}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontSize="14"/>
                 <TextBlock Text="ضريبة القيمة المضافة" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Black" FontSize="14"/>
             </Grid>
             <Grid x:Name="Total3" Height="20" Margin="0,0,0,0">
                 <TextBlock Text="Total Amount" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontSize="14"/>
-                <TextBlock Text="{Binding TotalPrice}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontSize="14"/>
+                <TextBlock Text="{Binding TotalPrice, StringFormat=N2}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontSize="14"/>
                 <TextBlock Text="الإجمالي" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Black" FontSize="14"/>
             </Grid>
 
