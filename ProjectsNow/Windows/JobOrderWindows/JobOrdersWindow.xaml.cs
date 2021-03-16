@@ -328,7 +328,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
             if (isLoading)
                 return;
 
-            if (YearsList.SelectedItem is QuotationsYear yearData)
+            if (YearsList.SelectedItem is JobOrdersYear yearData)
             {
                 DeleteFilter_Click(sender, e);
                 YearValue.Text = yearData.Year.ToString();
