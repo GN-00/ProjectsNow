@@ -94,6 +94,7 @@ namespace ProjectsNow.Windows.QuotationWindows
             {
                 UserData = this.UserData,
                 QuotationData = QuotationData,
+                QuotationPanelsWindowData = this,
             };
             termsAndConditionsWindow.ShowDialog();
         }
@@ -104,6 +105,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                 UserData = this.UserData,
                 QuotationData = QuotationData,
                 ResetUserQuotationID = false,
+                QuotationPanelsWindowData = this,
             };
             quotationPriceWindow.ShowDialog();
         }

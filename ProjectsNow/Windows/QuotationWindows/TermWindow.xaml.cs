@@ -76,9 +76,6 @@ namespace ProjectsNow.Windows.QuotationWindows
                     {
                         var query = DatabaseAI.InsertRecord<Term>();
                         term.TermID = (int)(decimal)connection.ExecuteScalar(query, term);
-
-                        UserData.QuotationID = null;
-                        UserController.UpdateQuotationID(connection, UserData);
                     }
 
                     TermsAndConditionsWindowData.terms.Add(term);
@@ -94,9 +91,6 @@ namespace ProjectsNow.Windows.QuotationWindows
                     {
                         var query = DatabaseAI.UpdateRecord<Term>();
                         connection.Execute(query, TermData);
-
-                        UserData.QuotationID = null;
-                        UserController.UpdateQuotationID(connection, UserData);
                     }
                 }
 

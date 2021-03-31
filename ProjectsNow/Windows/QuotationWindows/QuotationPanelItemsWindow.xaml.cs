@@ -296,7 +296,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                     ItemsData.Move(ItemsData.IndexOf(itemData), ItemsData.IndexOf(itemData) + 1);
                     foreach (QItem item in ItemsData.Where(item => item.ItemSort == itemData.ItemSort && item.ItemID != itemData.ItemID))
                     {
-                        ++item.ItemSort;
+                        --item.ItemSort;
                     }
                     string query = $"Update [Quotation].[QuotationsPanelsItems] Set ItemSort = ItemSort - 1 Where ItemSort = {itemData.ItemSort} And PanelID = {itemData.PanelID} And ItemID != {itemData.ItemID} And ItemTable = '{TableData}'; " +
                                    $"Update [Quotation].[QuotationsPanelsItems] Set ItemSort = ItemSort + 1 Where ItemID = {itemData.ItemID}; ";

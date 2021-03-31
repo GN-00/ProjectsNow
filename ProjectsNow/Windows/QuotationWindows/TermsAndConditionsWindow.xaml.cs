@@ -16,6 +16,7 @@ namespace ProjectsNow.Windows.QuotationWindows
     {
         public User UserData { get; set; }
         public Quotation QuotationData { get; set; }
+        public QuotationPanelsWindow  QuotationPanelsWindowData { get; set; }
 
         ListBox listBox;
         public ObservableCollection<Term> terms;
@@ -194,10 +195,13 @@ namespace ProjectsNow.Windows.QuotationWindows
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
+            if(QuotationPanelsWindowData == null)
             {
-                UserData.QuotationID = null;
-                UserController.UpdateQuotationID(connection, UserData);
+                using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
+                {
+                    UserData.QuotationID = null;
+                    UserController.UpdateQuotationID(connection, UserData);
+                }
             }
         }
     }
