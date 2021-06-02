@@ -6,7 +6,6 @@ using System.Data.SqlClient;
 using ProjectsNow.Windows.MainWindows;
 using ProjectsNow.Windows.MessageWindows;
 
-
 namespace ProjectsNow.Windows.UserWindows
 {
     public partial class LoginWindow : Window
@@ -20,6 +19,7 @@ namespace ProjectsNow.Windows.UserWindows
         {
             txtUsername.Focus();
         }
+
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))

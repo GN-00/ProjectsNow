@@ -1,7 +1,10 @@
 ﻿using Dapper;
 using System;
+using System.Data;
 using System.Linq;
 using System.Windows;
+using Microsoft.Win32;
+using System.Data.OleDb;
 using ProjectsNow.Enums;
 using System.Reflection;
 using System.Windows.Data;
@@ -14,6 +17,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using ProjectsNow.Windows.MessageWindows;
+
 
 namespace ProjectsNow.Windows.ReferencesWindows
 {
@@ -31,6 +35,7 @@ namespace ProjectsNow.Windows.ReferencesWindows
         {
             if (UserData.ReferencesDiscount)
                 DiscountButton.Visibility = Visibility.Visible;
+
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
                 referencesData = new ObservableCollection<Reference>(ReferenceController.GetReferences(connection));
@@ -191,6 +196,74 @@ namespace ProjectsNow.Windows.ReferencesWindows
                 ReferencesWindowData = this,
             };
             categoriesDiscountsWindow.ShowDialog();
+        }
+
+        class ExcelRow
+        {
+            public string Code { get; set; }
+            public double Cost { get; set; }
+        }
+        private void UpdateCost_Click(object sender, RoutedEventArgs e)
+        {
+            var path = new OpenFileDialog() { Filter = "Excel Files|*.xls;*.xlsx;*.xlsm" };
+            path.ShowDialog();
+
+            string filePath = $@"Provider=Microsoft.ACE.OLEDB.12.0; Data Source={path.FileName};" +
+                              $@"Extended Properties='Excel 8.0;HDR=Yes;'";
+
+            try
+            {
+                DataTable excelData = new DataTable();
+                using (OleDbConnection connection = new OleDbConnection(filePath))
+                {
+                    connection.Open();
+                    OleDbDataAdapter oleAdpt = new OleDbDataAdapter("select Code, Cost from [Sheet1$]", connection); //here we read data from sheet1  
+                    oleAdpt.Fill(excelData);
+                }
+
+                if (excelData.Rows.Count == 0)
+                {
+                    CMessageBox.Show("Data Error", "No data!", CMessageBoxButton.OK, CMessageBoxImage.Warning);
+                    return;
+                }
+
+                LoadingControl.Visibility = Visibility.Visible;
+                Events.DoingEvent.DoEvents();
+                List<ExcelRow> excelList = new List<ExcelRow>();
+                for (int i = 0; i < excelData.Rows.Count; i++)
+                {
+                    ExcelRow excelRow = new ExcelRow();
+                    excelRow.Code = excelData.Rows[i]["Code"].ToString();
+                    excelRow.Cost = Convert.ToDouble(excelData.Rows[i]["Cost"]);
+                    excelList.Add(excelRow);
+                }
+
+                int itemsCount = 0;
+                string updateTable = "";
+                foreach(ExcelRow row in excelList)
+                {
+                    var itemsToUpdate = referencesData.Where(r => r.Code == row.Code).ToList();
+                    foreach(Reference reference in itemsToUpdate)
+                    {
+                        reference.Cost = row.Cost;
+                        itemsCount++;
+                        updateTable += $"Update [Reference].[References] Set Cost = {reference.Cost} Where ReferenceID = {reference.ReferenceID}; ";
+                    }
+                }
+
+                using(SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
+                {
+                    connection.Execute(updateTable);
+                }
+
+                LoadingControl.Visibility = Visibility.Collapsed;
+                Events.DoingEvent.DoEvents();
+                CMessageBox.Show("Data", $"({itemsCount}) references updated!", CMessageBoxButton.OK, CMessageBoxImage.Information);
+            }
+            catch (Exception exception)
+            {
+                CMessageBox.Show("Error", exception.Message, CMessageBoxButton.OK, CMessageBoxImage.Warning);
+            }
         }
     }
 }

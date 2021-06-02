@@ -265,6 +265,38 @@
                         </Button.Resources>
                     </Button>
                     <GridSplitter Width="2" Background="DarkGray" Margin="5"/>
+
+                    <Button>
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Height" Value="60"/>
+                                <Setter Property="Width" Value="60"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="ToolTip" Value="Update Cost"/>
+                                <EventSetter Event="Click" Handler="UpdateCost_Click"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
+                                                <Image Source="/Images/Icons/UpdateCost.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="5"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding InquiriesDelete}" Value="false">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGray"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    
                     <Button x:Name="DiscountButton" Visibility="Collapsed">
                         <Button.Resources>
                             <Style TargetType="{x:Type Button}">
