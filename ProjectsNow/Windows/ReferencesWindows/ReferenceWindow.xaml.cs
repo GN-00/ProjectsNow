@@ -61,6 +61,7 @@ namespace ProjectsNow.Windows.ReferencesWindows
             bool isReady = true;
             string message = "Please fill:";
 
+
             if (string.IsNullOrWhiteSpace(referenceData.Category)) { isReady = false; message += $"\nCategory."; }
             if (string.IsNullOrWhiteSpace(referenceData.Code)) { isReady = false; message += $"\nCode."; }
             if (string.IsNullOrWhiteSpace(referenceData.Description)) { isReady = false; message += $"\nDescription."; }
@@ -69,12 +70,31 @@ namespace ProjectsNow.Windows.ReferencesWindows
             if (string.IsNullOrWhiteSpace(referenceData.Unit)) { isReady = false; message += $"\nUnit."; }
             if (string.IsNullOrWhiteSpace(referenceData.Cost.ToString())) { isReady = false; message += $"\nCost."; }
 
+            if(isReady && ActionData == Actions.New)
+            {
+                Reference checkReference;
+                using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
+                {
+                    checkReference = connection.QueryFirstOrDefault<Reference>(
+                        $"Select * From [Reference].[References] Where Hide = 0 And Code = '{referenceData.Code}' And Category = '{referenceData.Category}'");
+                }
+
+                if(checkReference != null)
+                {
+                    CMessageBox.Show("Error", $"{referenceData.Category}{referenceData.Code} already exists!", CMessageBoxButton.OK, CMessageBoxImage.Error);
+                    isReady = false;
+                }
+            }
+
             if (isReady)
             {
                 if (ActionData == Actions.New)
                 {
                     using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
                     {
+                        var checkReference = connection.Query<Reference>(
+                            $"Select * From [Reference].[References] Where Hide = 0 And Code = '{referenceData.Code}' And Category = '{referenceData.Category}'");
+
                         string query = DatabaseAI.InsertRecord<Reference>();
                         referenceData.ReferenceID = (int)(decimal)connection.ExecuteScalar(query, referenceData);
                     }
