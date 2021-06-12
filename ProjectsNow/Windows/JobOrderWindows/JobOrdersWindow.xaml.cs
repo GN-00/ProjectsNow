@@ -41,7 +41,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
             if (UserData.JobOrderAcknowledgement == false) AcknowledgementButton.Visibility = Visibility.Collapsed;
             if (UserData.JobOrderPurchaseOrders == false) PurchaseOrders.Visibility = Visibility.Collapsed;
             if (UserData.JobOrderPanels == false) Panels.Visibility = Visibility.Collapsed;
-            if (UserData.JobOrderPanels == false) Panels.Visibility = Visibility.Collapsed;
+            if (UserData.JobOrderPurchaseItems == false) Purchase.Visibility = Visibility.Collapsed;
             if (UserData.JobOrderPosting == false) Posting.Visibility = Visibility.Collapsed;
             if (UserData.JobOrderInvoicing == false) Invoicing.Visibility = Visibility.Collapsed;
 

@@ -510,7 +510,7 @@
                 </StackPanel>
             </TabItem>
 
-            <TabItem Header="Materials" IsSelected="True">
+            <TabItem x:Name="MaterialsTab" Header="Materials" IsSelected="True">
                 <StackPanel Orientation="Horizontal"
                             VerticalAlignment="Center"
                             DataContext="{Binding UserData}"

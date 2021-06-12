@@ -27,6 +27,9 @@ namespace ProjectsNow.Windows.JobOrderWindows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            if (UserData.JobOrderPanelsToolTab == false) ToolTab.Visibility = Visibility.Collapsed;
+            if (UserData.JobOrderPanelsMaterialsTab == false) MaterialsTab.Visibility = Visibility.Collapsed;
+
             using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
             {
                 panelsData = JPanelController.GetJobOrderPanels(connection, JobOrderData.ID);

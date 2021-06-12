@@ -69,6 +69,9 @@ namespace ProjectsNow.Database
                 public bool JobOrderAcknowledgement { get; set; }
                 public bool JobOrderPurchaseOrders { get; set; }
                 public bool JobOrderPanels { get; set; }
+                    public bool JobOrderPanelsToolTab { get; set; }
+                    public bool JobOrderPanelsMaterialsTab { get; set; }
+
                 public bool JobOrderPurchaseItems { get; set; }
                 public bool JobOrderPosting { get; set; }
                 public bool JobOrderInvoicing { get; set; }
