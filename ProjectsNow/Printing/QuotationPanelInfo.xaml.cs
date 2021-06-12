@@ -246,12 +246,13 @@ namespace ProjectsNow.Printing
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
             };
-            viewbox = new Viewbox() { Child = textBlock, Margin = new Thickness(5, 0, 5, 0) };
+            //viewbox = new Viewbox() { Child = textBlock, Margin = new Thickness(5, 0, 5, 0) };
             border = new Border()
             {
                 BorderBrush = Brushes.Black,
                 BorderThickness = new Thickness(0, 0, 1, 1),
-                Child = viewbox,
+                //Child = viewbox,
+                Child = textBlock,
             };
             table.Details.Children.Add(border);
             Grid.SetRow(border, table.Details.RowDefinitions.Count - 1);

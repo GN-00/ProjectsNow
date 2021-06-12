@@ -951,7 +951,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                     };
                     textBlock = new TextBlock()
                     {
-                        Text = Math.Ceiling(QuotationData.QuotationCost).ToString("N2"),
+                        Text = QuotationData.QuotationCost.ToString("N2"),
                         FontSize = 18,
                         FontWeight = FontWeights.Bold,
                         FontFamily = new FontFamily("Calibri (Body)"),
@@ -994,7 +994,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                     };
                     textBlock = new TextBlock()
                     {
-                        Text = Math.Ceiling(QuotationData.QuotationDiscountValue).ToString("N2"),
+                        Text = QuotationData.QuotationDiscountValue.ToString("N2"),
                         FontSize = 18,
                         FontWeight = FontWeights.Bold,
                         FontFamily = new FontFamily("Calibri (Body)"),
@@ -1037,7 +1037,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                     };
                     textBlock = new TextBlock()
                     {
-                        Text = Math.Ceiling(QuotationData.VATPrice).ToString("N2"),
+                        Text = QuotationData.VATPrice.ToString("N2"),
                         FontSize = 18,
                         FontWeight = FontWeights.Bold,
                         FontFamily = new FontFamily("Calibri (Body)"),
@@ -1081,7 +1081,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                 {
                     textBlock = new TextBlock()
                     {
-                        Text = Math.Ceiling(QuotationData.QuotationPriceWithVAT).ToString("N2"),
+                        Text = QuotationData.QuotationPriceWithVAT.ToString("N2"),
                         FontSize = 18,
                         FontWeight = FontWeights.Bold,
                         FontFamily = new FontFamily("Calibri (Body)"),
@@ -1093,7 +1093,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                 {
                     textBlock = new TextBlock()
                     {
-                        Text = Math.Ceiling(QuotationData.QuotationPrice).ToString("N2"),
+                        Text = QuotationData.QuotationPrice.ToString("N2"),
                         FontSize = 18,
                         FontWeight = FontWeights.Bold,
                         FontFamily = new FontFamily("Calibri (Body)"),
@@ -1108,7 +1108,7 @@ namespace ProjectsNow.Windows.QuotationWindows
 
                 textBlock = new TextBlock()
                 {
-                    Text = $"Only {DataInput.Input.NumberToWords((int)Math.Ceiling(QuotationData.QuotationPrice))} Saudi Riyals ",
+                    Text = $"Only {DataInput.Input.NumberToWords((int)(QuotationData.QuotationPrice))} Saudi Riyals ",
                     FontSize = 18,
                     Width = 670,
                     TextWrapping = TextWrapping.Wrap,
