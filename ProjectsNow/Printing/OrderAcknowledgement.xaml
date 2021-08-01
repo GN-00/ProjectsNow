@@ -84,7 +84,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <TextBlock Text="VAT " HorizontalAlignment="Left" FontSize="16" Margin="30,0,0,0"/>
-                        <TextBlock Text="{Binding VATPercentage, StringFormat=N2}" HorizontalAlignment="Left" FontSize="16"/>
+                        <TextBlock Text="{Binding VATPercentage}" HorizontalAlignment="Left" FontSize="16"/>
                         <TextBlock Text="%: " HorizontalAlignment="Left" FontSize="16"/>
                         <TextBlock Text="SR " HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
                         <TextBlock Text="{Binding VATPrice, StringFormat=N2}" HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
@@ -92,7 +92,7 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <TextBlock Text="Total Amount: " HorizontalAlignment="Left" FontSize="16" Margin="30,0,0,0"/>
                         <TextBlock Text="SR " HorizontalAlignment="Left" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding QuotationPriceWithVAT}" HorizontalAlignment="Left"  FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="{Binding QuotationPriceWithVAT, StringFormat=N2}" HorizontalAlignment="Left"  FontWeight="Bold" FontSize="16"/>
                     </StackPanel>
                 </Grid>
             </StackPanel>
