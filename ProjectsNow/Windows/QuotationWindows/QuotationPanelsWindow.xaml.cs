@@ -111,11 +111,14 @@ namespace ProjectsNow.Windows.QuotationWindows
         }
         private void Printer_Click(object sender, RoutedEventArgs e)
         {
+            var result = CMessageBox.Show("Printing", "Print with watermark?", CMessageBoxButton.YesNo, CMessageBoxImage.Question);
+
             PrintQuotationWindow printQuotationWindow = new PrintQuotationWindow()
             {
                 QuotationData = QuotationData,
                 UserData = this.UserData,
             };
+            if (result == MessageBoxResult.Yes) printQuotationWindow.Background.IsChecked = true;
             printQuotationWindow.ShowDialog();
         }
         private void Submit_Click(object sender, RoutedEventArgs e)

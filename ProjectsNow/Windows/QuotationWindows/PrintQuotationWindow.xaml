@@ -12,7 +12,7 @@
         Loaded="Window_Loaded"
         FontFamily="Times New Roman"
         WindowStartupLocation="CenterScreen"
-        Height="400"
+        Height="430"
         Width="720">
     <Window.Resources>
 
@@ -24,8 +24,8 @@
     </Window.Resources>
     <Grid Background="#FFF1F1F1">
         <Grid.RowDefinitions>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="360"/>
+            <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
 
         <CheckBox x:Name="CoverCheck" IsChecked="False" Visibility="Collapsed"/>
@@ -216,92 +216,94 @@
             <TextBlock Text="{Binding QuotationCode}" FontStyle="Italic" Foreground="#FF9211E8" FontSize="38" />
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="60,0,0,0">
-            <ToggleButton x:Name="ShowVATToggleButton" IsChecked="False" Margin="10,0,20,0" Width="38" Height="20" Style="{StaticResource SwitchTypeToggleButton}" Checked="ShowVATToggleButton_Checked" Unchecked="ShowVATToggleButton_Unchecked"/>
-            <TextBlock Text="Show VAT." Foreground="Blue" FontSize="18" VerticalAlignment="Center"/>
-        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="60,0,0,0" VerticalAlignment="Center">
+            <StackPanel  Orientation="Horizontal" >
+                <ToggleButton x:Name="ShowVATToggleButton" IsChecked="False" Margin="10,0,20,0" Width="38" Height="20" Style="{StaticResource SwitchTypeToggleButton}" Checked="ShowVATToggleButton_Checked" Unchecked="ShowVATToggleButton_Unchecked"/>
+                <TextBlock Text="Show VAT." Foreground="Blue" FontSize="18" VerticalAlignment="Center"/>
+            </StackPanel>
 
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <ToggleButton x:Name="Background" IsChecked="False" Margin="10,0,20,0" Width="38" Height="20" Style="{StaticResource SwitchTypeToggleButton}" IsEnabled="False"/>
+                <TextBlock Text="Background" Foreground="Blue" FontSize="18" VerticalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
         <!--<Style x:Key="DataNameStyle" TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="Foreground" Value="Blue"/>
         </Style>-->
-        <Button x:Name="Accept"
-                Grid.Row="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Margin="490,0,0,0"
-                Click="Accept_Click" Height="35" Width="100">
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
+            <Button x:Name="Accept"
+                    Margin="5,0"
+                    Click="Accept_Click" Height="35" Width="100">
 
-            <Button.Resources>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="Gray"/>
-                    <Setter Property="Foreground" Value="Black"/>
-                    <Setter Property="Content" Value="Accept"/>
-                    <Setter Property="FontSize" Value="16"/>
-                    <Setter Property="FontFamily" Value="Times New Roman"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image x:Name="ButtonImage" Margin="10,5,5,5" Source="/Images/Icons/Accept.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
+                <Button.Resources>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Gray"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="Content" Value="Accept"/>
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="FontFamily" Value="Times New Roman"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image x:Name="ButtonImage" Margin="10,5,5,5" Source="/Images/Icons/Accept.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
 
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="DarkGray"/>
-                            <Setter Property="Foreground" Value="White"/>
-                        </Trigger>
-                    </Style.Triggers>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="DarkGray"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </Style.Triggers>
 
-                </Style>
+                    </Style>
 
-            </Button.Resources>
-        </Button>
+                </Button.Resources>
+            </Button>
 
-        <Button x:Name="Cancel"
-                Grid.Row="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Margin="608,0,0,0"
-                Click="Cancel_Click" Height="35" Width="100">
+            <Button x:Name="Cancel"
+                    Margin="5,0,20,0"
+                    Click="Cancel_Click" Height="35" Width="100">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="DarkRed"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="Content" Value="Cancel"/>
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="FontFamily" Value="Times New Roman"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image x:Name="ButtonImage" Margin="5" Source="pack://application:,,,/Images/Icons/Error.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
 
-            <Button.Resources>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="DarkRed"/>
-                    <Setter Property="Foreground" Value="Black"/>
-                    <Setter Property="Content" Value="Cancel"/>
-                    <Setter Property="FontSize" Value="16"/>
-                    <Setter Property="FontFamily" Value="Times New Roman"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="Gray" Margin="0,0,0,0">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image x:Name="ButtonImage" Margin="5" Source="pack://application:,,,/Images/Icons/Error.png" RenderOptions.BitmapScalingMode="HighQuality"/>
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </Style.Triggers>
 
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="Red"/>
-                            <Setter Property="Foreground" Value="White"/>
-                        </Trigger>
-                    </Style.Triggers>
+                    </Style>
 
-                </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
 
-            </Button.Resources>
-        </Button>
 
         <Image x:Name="ButtonImage" Source="pack://application:,,,/Images/Icons/thisYear.png" Visibility="Collapsed"/>
 

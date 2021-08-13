@@ -301,11 +301,14 @@ namespace ProjectsNow.Windows.QuotationWindows
         {
             if (QuotationsList.SelectedItem is Quotation quotationData)
             {
+                var result = CMessageBox.Show("Printing", "Print with watermark?", CMessageBoxButton.YesNo, CMessageBoxImage.Question);
+
                 PrintQuotationWindow printQuotationWindow = new PrintQuotationWindow()
                 {
                     QuotationData = quotationData,
                     UserData = this.UserData,
                 };
+                 if (result == MessageBoxResult.Yes) printQuotationWindow.Background.IsChecked = true;
                 printQuotationWindow.ShowDialog();
             }
         }

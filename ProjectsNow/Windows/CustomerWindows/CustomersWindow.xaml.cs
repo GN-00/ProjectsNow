@@ -290,7 +290,7 @@ namespace ProjectsNow.Windows.CustomerWindows
 
         private void POBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            DataInput.Input.IntOnly(e, 4);
+            DataInput.Input.IntOnly(e, 12);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

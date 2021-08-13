@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
+             Loaded="UserControl_Loaded"
              FontFamily="Calibri (Body)"
              Height="29.7cm" 
              Width="21cm">
@@ -21,6 +22,7 @@
     </UserControl.Resources>
 
     <Grid Margin="20">
+        <Image x:Name="Background" Margin="-20" Source="/Images/WATERMARK.jpg" RenderOptions.BitmapScalingMode="HighQuality" Visibility="Collapsed"/>
 
         <StackPanel Margin="1cm,2.5cm,0,0" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
             <TextBlock Text="Quotation No." FontSize="18" FontWeight="Bold"/>

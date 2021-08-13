@@ -1721,5 +1721,8 @@
   <ItemGroup>
     <Resource Include="Images\Icons\UpdateCost.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\WATERMARK.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

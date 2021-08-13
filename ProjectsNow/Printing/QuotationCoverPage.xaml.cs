@@ -8,6 +8,7 @@ namespace ProjectsNow.Printing
 {
     public partial class QuotationCoverPage : UserControl
     {
+        public bool? BackgroundData { get; set; }
         public User UserData { get; set; }
         public Quotation QuotationData { get; set; }
         public List<QuotationContent> Contents { get; set; }
@@ -31,6 +32,13 @@ namespace ProjectsNow.Printing
 
             Contents = contents;
             DataContext = new { UserData, QuotationData, ContactData, Contents };
+        }
+
+        private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.Loaded -= UserControl_Loaded;
+            if (BackgroundData == null) BackgroundData = false;
+            if (BackgroundData.Value) Background.Visibility = System.Windows.Visibility.Visible;
         }
     }
 }
