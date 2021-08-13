@@ -60,6 +60,7 @@ namespace ProjectsNow.Database
 		public string WarrantyUnit { get; set; }
 
 		public string WarrantyCondition { get; set; }
+		public bool CancelationToggle { get; set; }
 		public double Cancellation1 { get; set; }
 		public double Cancellation2 { get; set; }
 		public double Cancellation3 { get; set; }

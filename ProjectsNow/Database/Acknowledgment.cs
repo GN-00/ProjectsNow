@@ -292,6 +292,13 @@ namespace ProjectsNow.Database
 			set { if (value != this._WarrantyCondition) { this._WarrantyCondition = value; NotifyPropertyChanged(); } }
 		}
 
+		private bool _CancelationToggle = false;
+		public bool CancelationToggle
+		{
+			get { return this._CancelationToggle; }
+			set { if (value != this._CancelationToggle) { this._CancelationToggle = value; NotifyPropertyChanged(); } }
+		}
+
 		private double _Cancellation1 = 0;
 		public double Cancellation1
 		{

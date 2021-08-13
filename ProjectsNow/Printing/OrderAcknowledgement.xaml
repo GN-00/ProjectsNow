@@ -119,38 +119,40 @@
                 <TextBlock Text="6-Warranty: " HorizontalAlignment="Left" FontSize="16"/>
                 <TextBlock Text="{Binding Warranty}" HorizontalAlignment="Left" FontSize="16"/>
             </StackPanel>
-            <TextBlock Text="7-Cancellation Policy: " HorizontalAlignment="Left" FontSize="16"/>
-            <StackPanel Orientation="Vertical" Margin="33,0,0,0">
-                <TextBlock Text="• After PO direct before start shop drawing deduction will be: " HorizontalAlignment="Left" FontSize="16"/>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="• " Visibility="Hidden" HorizontalAlignment="Left" FontSize="16"/>
-                    <TextBlock Text="{Binding Cancellation1}" HorizontalAlignment="Left" FontSize="16"/>
-                    <TextBlock Text="% of the total amount of PO (with VAT)." HorizontalAlignment="Left" FontSize="16"/>
-                </StackPanel>
+            <StackPanel x:Name="Cancelation" Visibility="Collapsed">
+                <TextBlock Text="7-Cancellation Policy: " HorizontalAlignment="Left" FontSize="16"/>
+                <StackPanel Orientation="Vertical" Margin="33,0,0,0">
+                    <TextBlock Text="• After PO direct before start shop drawing deduction will be: " HorizontalAlignment="Left" FontSize="16"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="• " Visibility="Hidden" HorizontalAlignment="Left" FontSize="16"/>
+                        <TextBlock Text="{Binding Cancellation1}" HorizontalAlignment="Left" FontSize="16"/>
+                        <TextBlock Text="% of the total amount of PO (with VAT)." HorizontalAlignment="Left" FontSize="16"/>
+                    </StackPanel>
 
-                <TextBlock Text="• After shop drawing approval before start fabrication deduction will be:" HorizontalAlignment="Left" FontSize="16"/>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="• " Visibility="Hidden" HorizontalAlignment="Left" FontSize="16"/>
-                    <TextBlock Text="{Binding Cancellation2}" HorizontalAlignment="Left" FontSize="16"/>
-                    <TextBlock Text="% of the total amount of PO (with VAT)." HorizontalAlignment="Left" FontSize="16"/>
-                </StackPanel>
+                    <TextBlock Text="• After shop drawing approval before start fabrication deduction will be:" HorizontalAlignment="Left" FontSize="16"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="• " Visibility="Hidden" HorizontalAlignment="Left" FontSize="16"/>
+                        <TextBlock Text="{Binding Cancellation2}" HorizontalAlignment="Left" FontSize="16"/>
+                        <TextBlock Text="% of the total amount of PO (with VAT)." HorizontalAlignment="Left" FontSize="16"/>
+                    </StackPanel>
 
-                <TextBlock Text="• During fabrication panels (less than 50% from job done) deduction will be:   " HorizontalAlignment="Left" FontSize="16"/>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="• " Visibility="Hidden" HorizontalAlignment="Left" FontSize="16"/>
-                    <TextBlock Text="{Binding Cancellation3}" HorizontalAlignment="Left" FontSize="16"/>
-                    <TextBlock Text="% of the total amount of PO (with VAT)." HorizontalAlignment="Left" FontSize="16"/>
-                </StackPanel>
+                    <TextBlock Text="• During fabrication panels (less than 50% from job done) deduction will be:   " HorizontalAlignment="Left" FontSize="16"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="• " Visibility="Hidden" HorizontalAlignment="Left" FontSize="16"/>
+                        <TextBlock Text="{Binding Cancellation3}" HorizontalAlignment="Left" FontSize="16"/>
+                        <TextBlock Text="% of the total amount of PO (with VAT)." HorizontalAlignment="Left" FontSize="16"/>
+                    </StackPanel>
 
-                <TextBlock Text="• During fabrication panels (more than 50% job done) deduction will be: " HorizontalAlignment="Left" FontSize="16"/>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="• " Visibility="Hidden" HorizontalAlignment="Left" FontSize="16"/>
-                    <TextBlock Text="{Binding Cancellation4}" HorizontalAlignment="Left" FontSize="16"/>
-                    <TextBlock Text="% of the total amount of PO (with VAT)." HorizontalAlignment="Left" FontSize="16"/>
+                    <TextBlock Text="• During fabrication panels (more than 50% job done) deduction will be: " HorizontalAlignment="Left" FontSize="16"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="• " Visibility="Hidden" HorizontalAlignment="Left" FontSize="16"/>
+                        <TextBlock Text="{Binding Cancellation4}" HorizontalAlignment="Left" FontSize="16"/>
+                        <TextBlock Text="% of the total amount of PO (with VAT)." HorizontalAlignment="Left" FontSize="16"/>
+                    </StackPanel>
+
                 </StackPanel>
-                
             </StackPanel>
-            
+
             <TextBlock Text="" HorizontalAlignment="Left" FontSize="16"/>
             <TextBlock Text="If you have any question about your order or need any other assistance please do not " HorizontalAlignment="Left" FontSize="16"/>
             <TextBlock Text="hesitate to contact us at by phone or email." HorizontalAlignment="Left" FontSize="16"/>

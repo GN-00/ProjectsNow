@@ -15,6 +15,9 @@ namespace ProjectsNow.Printing
         {
             this.Loaded -= UserControl_Loaded;
 
+            if (AcknowledgementInformationData.CancelationToggle)
+                Cancelation.Visibility = System.Windows.Visibility.Visible;
+
             DataContext = AcknowledgementInformationData;
         }
     }
