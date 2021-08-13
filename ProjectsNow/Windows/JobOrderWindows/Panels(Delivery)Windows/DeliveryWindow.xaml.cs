@@ -238,6 +238,8 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Delivery_Windows
         {
             if (DeliveriesList.SelectedItem is Delivery deliveryData)
             {
+                var result = CMessageBox.Show("Printing", "Print with watermark?", CMessageBoxButton.YesNo, CMessageBoxImage.Question);
+
                 string query;
                 List<DPanel> panels;
                 DeliveryInfromation deliveryInfromation;
@@ -281,7 +283,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Delivery_Windows
                             DeliveryInfromation = deliveryInfromation,
                             PanelsData = panels.Where(p => p.PanelSN > ((i - 1) * 10) && p.PanelSN <= ((i) * 10)).ToList()
                         };
-
+                        if (result == MessageBoxResult.Yes) deliveryForm.Background.Visibility = Visibility.Visible;
                         elements.Add(deliveryForm);
                     }
 

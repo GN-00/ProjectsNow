@@ -5,6 +5,7 @@ namespace ProjectsNow.Printing
 {
     public partial class OrderAcknowledgement : UserControl
     {
+        public bool BackgroundData { get; set; }
         public AcknowledgmentInformation AcknowledgementInformationData { get; set; }
         public OrderAcknowledgement()
         {
@@ -18,6 +19,7 @@ namespace ProjectsNow.Printing
             if (AcknowledgementInformationData.CancelationToggle)
                 Cancelation.Visibility = System.Windows.Visibility.Visible;
 
+            if (BackgroundData) Background.Visibility = System.Windows.Visibility.Visible;
             DataContext = AcknowledgementInformationData;
         }
     }

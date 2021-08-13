@@ -232,6 +232,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Invoicing_Windows
         {
             if(InvoicesList.SelectedItem is Invoice invoiceData)
             {
+                var result = CMessageBox.Show("Printing", "Print with watermark?", CMessageBoxButton.YesNo, CMessageBoxImage.Question);
                 InvoiceInformation invoiceInformation;
                 List<IPanel> panels;
                 List<string> POs;
@@ -278,6 +279,8 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Invoicing_Windows
                                 InvoiceInformationData = invoiceInformation,
                                 PanelsData = panels.Where(p => p.PanelSN > ((i - 1) * 8) && p.PanelSN <= ((i) * 8)).ToList()
                             };
+                            if (result == MessageBoxResult.Yes) invoiceForm.Background.Visibility = Visibility.Visible;
+
                         }
                         else
                         {
@@ -288,11 +291,10 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Invoicing_Windows
                                 InvoiceInformationData = invoiceInformation,
                                 PanelsData = panels.Where(p => p.PanelSN > ((i - 1) * 8) && p.PanelSN <= ((i) * 8)).ToList()
                             };
+                            if (result == MessageBoxResult.Yes) invoiceForm.Background.Visibility = Visibility.Visible;
                         }
-
                         elements.Add(invoiceForm);
                     }
-
                     Print.PrintPreview(elements, $"Invoice-{invoiceData.Number}");
                 }
                 else

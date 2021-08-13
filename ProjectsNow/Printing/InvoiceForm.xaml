@@ -5,11 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              Loaded="UserControl_Loaded"
-             Background="White"
              FontFamily="Calibri (Body)"
              Height="29.7cm" 
              Width="21cm">
     <Grid Margin="20">
+        <Image x:Name="Background" Margin="-20" Source="/Images/WATERMARK.jpg" RenderOptions.BitmapScalingMode="HighQuality" Visibility="Collapsed"/>
+
         <StackPanel Orientation="Vertical">
             <Grid DataContext="{Binding InvoiceInformationData}" Height="21" Margin="0,60,0,0">
                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Center">

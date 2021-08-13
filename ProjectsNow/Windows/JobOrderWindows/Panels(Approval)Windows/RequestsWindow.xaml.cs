@@ -245,6 +245,8 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Approval_Windows
         {
             if (RequestsList.SelectedItem is ApprovalRequest requestData)
             {
+                var result = CMessageBox.Show("Printing", "Print with watermark?", CMessageBoxButton.YesNo, CMessageBoxImage.Question);
+
                 string query;
                 List<APanel> panels;
                 List<string> POs;
@@ -287,7 +289,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Approval_Windows
                             RequestInformation = requestInfromation,
                             PanelsData = panels.Where(p => p.PanelSN > ((i - 1) * 10) && p.PanelSN <= ((i) * 10)).ToList()
                         };
-
+                        if (result == MessageBoxResult.Yes) requestforShopDrawingApproval.Background.Visibility = Visibility.Visible;
                         elements.Add(requestforShopDrawingApproval);
                     }
 

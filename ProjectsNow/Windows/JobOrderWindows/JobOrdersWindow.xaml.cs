@@ -156,6 +156,8 @@ namespace ProjectsNow.Windows.JobOrderWindows
         {
             if(JobOrdersList.SelectedItem is JobOrder jobOrderData)
             {
+                var result = CMessageBox.Show("Printing", "Print with watermark?", CMessageBoxButton.YesNo, CMessageBoxImage.Question);
+
                 string query;
                 List<string> POs;
                 Acknowledgment acknowledgementData;
@@ -188,6 +190,8 @@ namespace ProjectsNow.Windows.JobOrderWindows
                 }
 
                 OrderAcknowledgement acknowledgementForm = new OrderAcknowledgement() { AcknowledgementInformationData = acknowledgementInformationData };
+                
+                if (result == MessageBoxResult.Yes) acknowledgementForm.Background.Visibility = Visibility.Visible;
                 FrameworkElement element = acknowledgementForm;
                 Print.PrintPreview(element, $"Order Acknowledgement-{jobOrderData.Code}");
             }
