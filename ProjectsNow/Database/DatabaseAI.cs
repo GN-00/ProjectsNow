@@ -21,8 +21,8 @@ namespace ProjectsNow.Database
                 if (App.computerName == "HASAN2-PC")
                     return @"Data Source=hasan2-pc\PN;Initial Catalog=ProjectsNow;Integrated Security=False;User ID=sa;Password=Wing00Gundam;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
 
-                else if (App.computerName == "WG-0")
-                    return @"Data Source=WG-0\PN;Initial Catalog=ProjectsNow;Integrated Security=False;User ID=sa;Password=Wing00Gundam;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
+                else if (App.computerName == "DESKTOP-QLCQSS2")
+                    return @"Data Source=DESKTOP-QLCQSS2\PN;Initial Catalog=ProjectsNow;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
                 else
                     return @"Data Source=PCAPSSYSTEM\PROJECTSNOW;Initial Catalog=ProjectsNow;Integrated Security=False;User ID=sa;Password=Wing00Gundam;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False"; ;

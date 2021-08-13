@@ -40,7 +40,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2cm,7.5cm,2cm,0">
-            <TextBlock Text="Gentlemem, " HorizontalAlignment="Left" Width="3.5cm" FontSize="16"/>
+            <TextBlock Text="Gentlemen, " HorizontalAlignment="Left" Width="3.5cm" FontSize="16"/>
             <WrapPanel>
                 <TextBlock Text="E" FontWeight="Bold" Foreground="Red" FontSize="16"/>
                 <TextBlock Text="R-PCAPS " FontWeight="Bold" Foreground="#4f81bd" FontSize="16"/>
@@ -58,7 +58,7 @@
                 <TextBlock Text=". " FontSize="16"/>
                 <TextBlock Text="We " FontSize="16"/>
                 <TextBlock Text="have " FontSize="16"/>
-                <TextBlock Text="noteed " FontSize="16"/>
+                <TextBlock Text="noted " FontSize="16"/>
                 <TextBlock Text="your " FontSize="16"/>
                 <TextBlock Text="requirements " FontSize="16"/>
                 <TextBlock Text="and " FontSize="16"/>
@@ -68,7 +68,7 @@
                 <TextBlock Text="order " FontSize="16"/>
                 <TextBlock Text="on " FontSize="16"/>
                 <TextBlock Text="the " FontSize="16"/>
-                <TextBlock Text="folllowing " FontSize="16"/>
+                <TextBlock Text="following " FontSize="16"/>
                 <TextBlock Text="terms " FontSize="16"/>
                 <TextBlock Text="and " FontSize="16"/>
                 <TextBlock Text="Conditions: " FontSize="16"/>
@@ -150,12 +150,11 @@
                 </StackPanel>
                 
             </StackPanel>
-
             
             <TextBlock Text="" HorizontalAlignment="Left" FontSize="16"/>
             <TextBlock Text="If you have any question about your order or need any other assistance please do not " HorizontalAlignment="Left" FontSize="16"/>
             <TextBlock Text="hesitate to contact us at by phone or email." HorizontalAlignment="Left" FontSize="16"/>
-            <TextBlock Text="Please be sure to have purshase order number or our O.A No. availble when calling and " HorizontalAlignment="Left" FontSize="16"/>
+            <TextBlock Text="Please be sure to have purchase order number or our O.A No. available when calling and " HorizontalAlignment="Left" FontSize="16"/>
             <TextBlock Text="to include it in any correspondence to us." HorizontalAlignment="Left" FontSize="16"/>
             <TextBlock Text="Thank you for doing business with us, we assuring you of our best attention at all the times." HorizontalAlignment="Left" FontSize="16"/>
             <TextBlock Text="" HorizontalAlignment="Left" FontSize="16"/>
