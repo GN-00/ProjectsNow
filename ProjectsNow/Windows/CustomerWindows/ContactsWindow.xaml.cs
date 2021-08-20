@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using ProjectsNow.Windows.MessageWindows;
+using System.ComponentModel;
 
 namespace ProjectsNow.Windows.CustomerWindows
 {
@@ -171,11 +172,7 @@ namespace ProjectsNow.Windows.CustomerWindows
             Done.Visibility = ReadOnly.Visibility = Visibility.Visible;
             if (action == Actions.New)
             {
-                List<Contact> contacts = RecordsData.ToList();
-                contacts.Add(recordData);
-                contacts.Sort((x, y) => x.ContactName.CompareTo(y.ContactName));
-                int index = contacts.IndexOf(recordData);
-                RecordsData.Insert(index, recordData);
+                RecordsData.Add(recordData);
                 using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
                 {
                     var query = DatabaseAI.InsertRecord<Contact>();
@@ -234,6 +231,11 @@ namespace ProjectsNow.Windows.CustomerWindows
                 NavigationPanel.Text = $"Contacts: {viewRecordsData.View.Cast<object>().Count()}";
             else
                 NavigationPanel.Text = $"Contact: {selectedIndex + 1} / {viewRecordsData.View.Cast<object>().Count()}";
+
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                viewRecordsData.View.SortDescriptions.Add(new SortDescription("ContactName", ListSortDirection.Ascending));
+            }
         }
         private void UpdateOtherWindow(SqlConnection connection)
         {

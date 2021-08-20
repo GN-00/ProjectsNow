@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using ProjectsNow.Windows.MessageWindows;
+using System.ComponentModel;
 
 namespace ProjectsNow.Windows.CustomerWindows
 {
@@ -161,11 +162,7 @@ namespace ProjectsNow.Windows.CustomerWindows
             Done.Visibility = ReadOnly.Visibility = Visibility.Visible;
             if (action == Actions.New)
             {
-                List<Consultant> consultants = RecordsData.ToList();
-                consultants.Add(recordData);
-                consultants.Sort((x, y) => x.ConsultantName.CompareTo(y.ConsultantName));
-                int index = consultants.IndexOf(recordData);
-                RecordsData.Insert(index, recordData);
+                RecordsData.Add(recordData);
                 using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
                 {
                     var query = DatabaseAI.InsertRecord<Consultant>();
@@ -221,6 +218,11 @@ namespace ProjectsNow.Windows.CustomerWindows
                 NavigationPanel.Text = $"Consultants: {viewRecordsData.View.Cast<object>().Count()}";
             else
                 NavigationPanel.Text = $"Consultant: {selectedIndex + 1} / {viewRecordsData.View.Cast<object>().Count()}";
+
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                viewRecordsData.View.SortDescriptions.Add(new SortDescription("ConsultantName", ListSortDirection.Ascending));
+            }
         }
 
         private void DataFiltrer(object sender, FilterEventArgs e)

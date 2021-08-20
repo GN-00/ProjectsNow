@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using ProjectsNow.Windows.MessageWindows;
+using System.ComponentModel;
 
 namespace ProjectsNow.Windows.CustomerWindows
 {
@@ -176,11 +177,7 @@ namespace ProjectsNow.Windows.CustomerWindows
 
             if (action == Actions.New)
             {
-                List<Customer> customers = RecordsData.ToList();
-                customers.Add(recordData);
-                customers.Sort((x, y) => x.CustomerName.CompareTo(y.CustomerName));
-                int index = customers.IndexOf(recordData);
-                RecordsData.Insert(index, recordData);
+                RecordsData.Add(recordData);
                 using (SqlConnection connection = new SqlConnection(DatabaseAI.ConnectionString))
                 {
                     var query = DatabaseAI.InsertRecord<Customer>();
@@ -228,6 +225,7 @@ namespace ProjectsNow.Windows.CustomerWindows
                 NavigationPanel.Text = $"Customers: {viewRecordsData.View.Cast<object>().Count()}";
             else
                 NavigationPanel.Text = $"Customer: {selectedIndex + 1} / {viewRecordsData.View.Cast<object>().Count()}";
+
             DataContext = new { recordData, UserData };
         }
         private void DataGrid_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -237,6 +235,12 @@ namespace ProjectsNow.Windows.CustomerWindows
                 NavigationPanel.Text = $"Customers: {viewRecordsData.View.Cast<object>().Count()}";
             else
                 NavigationPanel.Text = $"Customer: {selectedIndex + 1} / {viewRecordsData.View.Cast<object>().Count()}";
+
+
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                viewRecordsData.View.SortDescriptions.Add(new SortDescription("CustomerName", ListSortDirection.Ascending));
+            }
         }
 
 
