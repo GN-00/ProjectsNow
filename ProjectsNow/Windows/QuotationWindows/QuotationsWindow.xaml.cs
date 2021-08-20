@@ -308,7 +308,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                     QuotationData = quotationData,
                     UserData = this.UserData,
                 };
-                 if (result == MessageBoxResult.Yes) printQuotationWindow.Background.IsChecked = true;
+                 if (result == MessageBoxResult.Yes) printQuotationWindow.BackgroundImage.IsChecked = true;
                 printQuotationWindow.ShowDialog();
             }
         }

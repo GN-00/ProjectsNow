@@ -223,7 +223,7 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <ToggleButton x:Name="Background" IsChecked="False" Margin="10,0,20,0" Width="38" Height="20" Style="{StaticResource SwitchTypeToggleButton}" IsEnabled="False"/>
+                <ToggleButton x:Name="BackgroundImage" IsChecked="False" Margin="10,0,20,0" Width="38" Height="20" Style="{StaticResource SwitchTypeToggleButton}" IsEnabled="False"/>
                 <TextBlock Text="Background" Foreground="Blue" FontSize="18" VerticalAlignment="Center"/>
             </StackPanel>
         </StackPanel>

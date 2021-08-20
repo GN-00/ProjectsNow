@@ -118,7 +118,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                 QuotationData = QuotationData,
                 UserData = this.UserData,
             };
-            if (result == MessageBoxResult.Yes) printQuotationWindow.Background.IsChecked = true;
+            if (result == MessageBoxResult.Yes) printQuotationWindow.BackgroundImage.IsChecked = true;
             printQuotationWindow.ShowDialog();
         }
         private void Submit_Click(object sender, RoutedEventArgs e)

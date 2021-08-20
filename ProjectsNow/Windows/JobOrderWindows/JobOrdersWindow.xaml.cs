@@ -191,7 +191,7 @@ namespace ProjectsNow.Windows.JobOrderWindows
 
                 OrderAcknowledgement acknowledgementForm = new OrderAcknowledgement() { AcknowledgementInformationData = acknowledgementInformationData };
                 
-                if (result == MessageBoxResult.Yes) acknowledgementForm.Background.Visibility = Visibility.Visible;
+                if (result == MessageBoxResult.Yes) acknowledgementForm.BackgroundImage.Visibility = Visibility.Visible;
                 FrameworkElement element = acknowledgementForm;
                 Print.PrintPreview(element, $"Order Acknowledgement-{jobOrderData.Code}");
             }

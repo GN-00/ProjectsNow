@@ -19,7 +19,7 @@ namespace ProjectsNow.Printing
             if (AcknowledgementInformationData.CancelationToggle)
                 Cancelation.Visibility = System.Windows.Visibility.Visible;
 
-            if (BackgroundData) Background.Visibility = System.Windows.Visibility.Visible;
+            if (BackgroundData) BackgroundImage.Visibility = System.Windows.Visibility.Visible;
             DataContext = AcknowledgementInformationData;
         }
     }

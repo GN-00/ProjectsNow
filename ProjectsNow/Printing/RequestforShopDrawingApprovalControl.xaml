@@ -9,7 +9,7 @@
              Height="29.7cm" 
              Width="21cm">
     <Grid>
-        <Image x:Name="Background" Source="/Images/WATERMARK.jpg" RenderOptions.BitmapScalingMode="HighQuality" Visibility="Collapsed"/>
+        <Image x:Name="BackgroundImage" Source="/Images/WATERMARK.png" RenderOptions.BitmapScalingMode="HighQuality" Visibility="Collapsed"/>
 
         <Grid Margin="20,20,20,1.5cm">
 

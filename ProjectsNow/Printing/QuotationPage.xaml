@@ -10,7 +10,7 @@
              Height="29.7cm" 
              Width="21cm">
     <Grid Margin="20">
-        <Image x:Name="Background" Margin="-20" Source="/Images/WATERMARK.jpg" RenderOptions.BitmapScalingMode="HighQuality" Visibility="Collapsed"/>
+        <Image x:Name="BackgroundImage" Margin="-20" Source="/Images/WATERMARK.png" RenderOptions.BitmapScalingMode="HighQuality" Visibility="Collapsed"/>
 
         <StackPanel Margin="1cm,2.5cm,0,0" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
             <TextBlock Text="Quotation No." FontSize="18" FontWeight="Bold"/>

@@ -42,7 +42,6 @@ namespace ProjectsNow.Printing
         private static void SetAddItemValue(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             Border border;
-            Viewbox viewbox;
             TextBlock textBlock;
             var table = d as QuotationPanelInfo;
             if (table.ItemsData == null)

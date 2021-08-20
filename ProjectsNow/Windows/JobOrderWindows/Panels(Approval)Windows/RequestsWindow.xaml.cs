@@ -289,7 +289,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Approval_Windows
                             RequestInformation = requestInfromation,
                             PanelsData = panels.Where(p => p.PanelSN > ((i - 1) * 10) && p.PanelSN <= ((i) * 10)).ToList()
                         };
-                        if (result == MessageBoxResult.Yes) requestforShopDrawingApproval.Background.Visibility = Visibility.Visible;
+                        if (result == MessageBoxResult.Yes) requestforShopDrawingApproval.BackgroundImage.Visibility = Visibility.Visible;
                         elements.Add(requestforShopDrawingApproval);
                     }
 

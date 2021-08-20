@@ -283,7 +283,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Delivery_Windows
                             DeliveryInfromation = deliveryInfromation,
                             PanelsData = panels.Where(p => p.PanelSN > ((i - 1) * 10) && p.PanelSN <= ((i) * 10)).ToList()
                         };
-                        if (result == MessageBoxResult.Yes) deliveryForm.Background.Visibility = Visibility.Visible;
+                        if (result == MessageBoxResult.Yes) deliveryForm.BackgroundImage.Visibility = Visibility.Visible;
                         elements.Add(deliveryForm);
                     }
 

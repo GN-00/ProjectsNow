@@ -279,7 +279,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Invoicing_Windows
                                 InvoiceInformationData = invoiceInformation,
                                 PanelsData = panels.Where(p => p.PanelSN > ((i - 1) * 8) && p.PanelSN <= ((i) * 8)).ToList()
                             };
-                            if (result == MessageBoxResult.Yes) invoiceForm.Background.Visibility = Visibility.Visible;
+                            if (result == MessageBoxResult.Yes) invoiceForm.BackgroundImage.Visibility = Visibility.Visible;
 
                         }
                         else
@@ -291,7 +291,7 @@ namespace ProjectsNow.Windows.JobOrderWindows.Panels_Invoicing_Windows
                                 InvoiceInformationData = invoiceInformation,
                                 PanelsData = panels.Where(p => p.PanelSN > ((i - 1) * 8) && p.PanelSN <= ((i) * 8)).ToList()
                             };
-                            if (result == MessageBoxResult.Yes) invoiceForm.Background.Visibility = Visibility.Visible;
+                            if (result == MessageBoxResult.Yes) invoiceForm.BackgroundImage.Visibility = Visibility.Visible;
                         }
                         elements.Add(invoiceForm);
                     }

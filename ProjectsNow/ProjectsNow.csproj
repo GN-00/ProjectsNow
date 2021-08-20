@@ -1722,7 +1722,12 @@
     <Resource Include="Images\Icons\UpdateCost.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\WATERMARK.jpg" />
+    <Resource Include="Images\Arahim.png" />
+    <Resource Include="Images\Qasim.png" />
+    <Resource Include="Images\Waheeb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\WATERMARK.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

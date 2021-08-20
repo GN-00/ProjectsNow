@@ -521,7 +521,7 @@ namespace ProjectsNow.Windows.QuotationWindows
             if (BillCheck.IsChecked == true && Panels.Count != 0)
             {
                 PanelsBillPages = new List<FrameworkElement>();
-                page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                 page.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
                 page.Arrange(new Rect(page.DesiredSize));
 
@@ -796,7 +796,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                     {
                         PanelsBillPages.Add(page);
                         totalHeight = 0;
-                        page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                        page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                         StackPanel subStackPanel = stackPanel; 
 
                         stackPanel = new StackPanel() { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 0.5 * cm, 0, 0) };
@@ -1142,7 +1142,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                 if (totalHeight > pageBodyHight)
                 {
                     PanelsBillPages.Add(page);
-                    page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                    page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
 
                     line = new Line()
                     {
@@ -1195,7 +1195,7 @@ namespace ProjectsNow.Windows.QuotationWindows
             if (TechnicalCheck.IsChecked == true && Panels.Count != 0 && Items.Count != 0)
             {
                 PanelsDetailsPages = new List<FrameworkElement>();
-                var page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                var page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                 page.Body.Margin = new Thickness(0, 5 * cm, 0, 0);
 
                 Line line;
@@ -1250,7 +1250,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                             {
                                 PanelsDetailsPages.Add(page);
                                 page.Continue.Visibility = Visibility.Visible;
-                                page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                                page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                                 page.Body.Margin = new Thickness(0, 5 * cm, 0, 0);
 
                                 totalHeight = 0;
@@ -1297,7 +1297,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                         else if (750 > panelInformationHeight && panelInformationHeight > 750 * 0.6)
                         {
                             PanelsDetailsPages.Add(page);
-                            page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                            page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                             page.Body.Margin = new Thickness(0, 5 * cm, 0, 0);
 
                             totalHeight = 0;
@@ -1323,7 +1323,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                                 {
                                     PanelsDetailsPages.Add(page);
                                     page.Continue.Visibility = Visibility.Visible;
-                                    page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                                    page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                                     page.Body.Margin = new Thickness(0, 5 * cm, 0, 0);
 
                                     totalHeight = 0;
@@ -1340,7 +1340,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                                 else if (i == 0 && totalHeight + 0.6 * cm >= pageBodyHight)
                                 {
                                     PanelsDetailsPages.Add(page);
-                                    page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                                    page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                                     page.Body.Margin = new Thickness(0, 5 * cm, 0, 0);
 
                                     totalHeight = 0;
@@ -1356,7 +1356,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                                 else if (i == 0 && totalHeight + (5 * 0.6 * cm) >= pageBodyHight)
                                 {
                                     PanelsDetailsPages.Add(page);
-                                    page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                                    page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                                     page.Body.Margin = new Thickness(0, 5 * cm, 0, 0);
 
                                     totalHeight = 0;
@@ -1447,7 +1447,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                 }
 
 
-                var quotationCoverPage = new QuotationCoverPage(UserData, QuotationData, contents) { BackgroundData = Background.IsChecked };
+                var quotationCoverPage = new QuotationCoverPage(UserData, QuotationData, contents) { BackgroundData = BackgroundImage.IsChecked };
                 quotationCoverPage.TotalPages.Text = totalPages.ToString();
                 quotationPages.Add(quotationCoverPage);
                 quotationCoverPage.PageNumber.Text = quotationPages.Count.ToString();
@@ -1455,7 +1455,7 @@ namespace ProjectsNow.Windows.QuotationWindows
 
             if (TermsCheck.IsChecked == true && Terms.Count != 0)
             {
-                page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                 page.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
                 page.Arrange(new Rect(page.DesiredSize));
 
@@ -1525,7 +1525,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                         quotationPages.Add(page);
                         page.PageNumber.Text = quotationPages.Count.ToString();
                         totalHeight = 0;
-                        page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                        page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                         page.Body.Children.Add(textBlock);
                         totalHeight += textBlock.ActualHeight;
                     }
@@ -1570,7 +1570,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                             quotationPages.Add(page);
                             page.PageNumber.Text = quotationPages.Count.ToString();
                             totalHeight = 0;
-                            page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                            page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                             page.Body.Children.Add(stackPanel);
                             totalHeight += stackPanel.ActualHeight;
                         }
@@ -1606,7 +1606,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                         quotationPages.Add(page);
                         page.PageNumber.Text = quotationPages.Count.ToString();
                         totalHeight = 0;
-                        page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                        page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                         page.Body.Children.Add(textBlock);
                         totalHeight += textBlock.ActualHeight;
                     }
@@ -1634,7 +1634,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                         quotationPages.Add(page);
                         page.PageNumber.Text = quotationPages.Count.ToString();
                         totalHeight = 0;
-                        page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                        page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                         page.Body.Children.Add(textBlock);
                         totalHeight += textBlock.ActualHeight;
                     }
@@ -1679,7 +1679,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                             quotationPages.Add(page);
                             page.PageNumber.Text = quotationPages.Count.ToString();
                             totalHeight = 0;
-                            page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                            page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                             page.Body.Children.Add(stackPanel);
                             totalHeight += stackPanel.ActualHeight;
                         }
@@ -1715,7 +1715,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                         quotationPages.Add(page);
                         page.PageNumber.Text = quotationPages.Count.ToString();
                         totalHeight = 0;
-                        page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                        page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                         page.Body.Children.Add(textBlock);
                         totalHeight += textBlock.ActualHeight;
                     }
@@ -1760,7 +1760,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                             quotationPages.Add(page);
                             page.PageNumber.Text = quotationPages.Count.ToString();
                             totalHeight = 0;
-                            page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                            page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                             page.Body.Children.Add(stackPanel);
                             totalHeight += stackPanel.ActualHeight;
                         }
@@ -1796,7 +1796,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                         quotationPages.Add(page);
                         page.PageNumber.Text = quotationPages.Count.ToString();
                         totalHeight = 0;
-                        page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                        page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                         page.Body.Children.Add(textBlock);
                         totalHeight += textBlock.ActualHeight;
                     }
@@ -1841,7 +1841,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                             quotationPages.Add(page);
                             page.PageNumber.Text = quotationPages.Count.ToString();
                             totalHeight = 0;
-                            page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                            page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                             page.Body.Children.Add(stackPanel);
                             totalHeight += stackPanel.ActualHeight;
                         }
@@ -1877,7 +1877,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                         quotationPages.Add(page);
                         page.PageNumber.Text = quotationPages.Count.ToString();
                         totalHeight = 0;
-                        page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                        page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                         page.Body.Children.Add(textBlock);
                         totalHeight += textBlock.ActualHeight;
                     }
@@ -1922,7 +1922,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                             quotationPages.Add(page);
                             page.PageNumber.Text = quotationPages.Count.ToString();
                             totalHeight = 0;
-                            page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                            page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                             page.Body.Children.Add(stackPanel);
                             totalHeight += stackPanel.ActualHeight;
                         }
@@ -1958,7 +1958,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                         quotationPages.Add(page);
                         page.PageNumber.Text = quotationPages.Count.ToString();
                         totalHeight = 0;
-                        page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                        page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                         page.Body.Children.Add(textBlock);
                         totalHeight += textBlock.ActualHeight;
                     }
@@ -2003,7 +2003,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                             quotationPages.Add(page);
                             page.PageNumber.Text = quotationPages.Count.ToString();
                             totalHeight = 0;
-                            page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                            page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                             page.Body.Children.Add(stackPanel);
                             totalHeight += stackPanel.ActualHeight;
                         }
@@ -2039,7 +2039,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                         quotationPages.Add(page);
                         page.PageNumber.Text = quotationPages.Count.ToString();
                         totalHeight = 0;
-                        page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                        page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                         page.Body.Children.Add(textBlock);
                         totalHeight += textBlock.ActualHeight;
                     }
@@ -2084,7 +2084,7 @@ namespace ProjectsNow.Windows.QuotationWindows
                             quotationPages.Add(page);
                             page.PageNumber.Text = quotationPages.Count.ToString();
                             totalHeight = 0;
-                            page = new QuotationPage(QuotationData.QuotationCode) { BackgroundData = Background.IsChecked };
+                            page = new QuotationPage(QuotationData) { BackgroundData = BackgroundImage.IsChecked };
                             page.Body.Children.Add(stackPanel);
                             totalHeight += stackPanel.ActualHeight;
                         }

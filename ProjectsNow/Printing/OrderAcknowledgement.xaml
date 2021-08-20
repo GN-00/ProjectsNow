@@ -9,7 +9,7 @@
              Height="29.7cm" 
              Width="21cm">
     <Grid Margin="20">
-        <Image x:Name="Background" Margin="-20" Source="/Images/WATERMARK.jpg" RenderOptions.BitmapScalingMode="HighQuality" Visibility="Collapsed"/>
+        <Image x:Name="BackgroundImage" Margin="-20" Source="/Images/WATERMARK.png" RenderOptions.BitmapScalingMode="HighQuality" Visibility="Collapsed"/>
 
         <TextBlock Text="ORDER ACKNOWLEDGEMENT" FontSize="28" VerticalAlignment="Top" HorizontalAlignment="Center" TextDecorations="Underline" Margin="0,2.5cm,0,0" />
 
